@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Raleway:wght@500&display=swap" rel="stylesheet">
+        
+        <meta charset="UTF-8">
+        <title>What the heyyyyyl</title>
+        <link rel="stylesheet" href="GameStyleSheet.css">
+    </head>
+
+    <body >
+        <div id = "TitleScreen">
+            <div id = "LevelsContainer">
+                <button onclick="startGame();" id = "startButton">Level 1</button>
+                <button onclick="startGame();" id = "startButton2">Level 2</button>
+            </div>
+        
+        </div>
+
+        <img id="grid" width="220"  src='gameSprites/grid.png' alt="grid" class = "hidden">
+
+
+        <footer><span id="timer"></span> </footer>
+        <script src = "gameScript.js"></script>
+    </body>
+</html>
