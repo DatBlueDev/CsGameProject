@@ -161,7 +161,8 @@ function wait(time) {
 }
 
  async function collisionDamage(){
-    console.log("test");
+    HealthBar.value-=15;
+
 }
 
 async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 5, bulletDirection = "r", hasCollision = true, bulletsInCircle = 5){ // types = basic, danger, circle
