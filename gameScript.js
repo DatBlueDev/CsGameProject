@@ -1,8 +1,11 @@
 var playerModel;
 var playerHeight = 30;
 var playerWidth = 30;
-
+var degreesRotation;
+var gameLevel;
 var bulletModels = [];
+var laserModels = [];
+var i = 0;
 var bulletHeight = 30;
 var bulletWidth = 30;
 
@@ -17,10 +20,11 @@ var gridOffsetY = 0;
 var gridConstant = 3.23;
 
 var health = 100;
+var maxHealth = 100;
+
 var startTime = Date.now();
 var immunityFrameTimer = 0;
-var immunityFrames = 50;
-var audio = new Audio('gameMusic/Mittsies_Titanium.mp3');
+var immunityFrames = 30;
 var TitleScreen = document.getElementById("TitleScreen")
 var GameScene = document.getElementById("GameScene")
 
@@ -28,17 +32,16 @@ grid = document.getElementById("grid");
 playerImage = document.getElementById("playerSprite");
 HealthBar = document.getElementById("Health");
 
-function startGame() {
+function startGame(level) {
     startTime = Date.now();
     HealthBar.value = 100;
-
+    gameLevel = level;
     TitleScreen.remove();
     GameScene.style.display = "block";
 
     playerModel = new imageComponent(playerImage, 30, 30, 400-(playerHeight/2), 400-(playerWidth/2));
     gridModel = new imageComponent(grid, gridHeight, gridWidth, ((canvasHeight/2) - (gridHeight/2)), ((canvasWidth/2) - (gridWidth/2)));
-    audio.play();
-    
+
 
     myGameArea.start();
     main();
@@ -77,7 +80,8 @@ function component(width, height, color, x, y) {
     }    
 }
 
-function BulletComponent(width, height, color, x, y, hasCollision = true) {
+
+function BulletComponent(width, height, color, x, y, hasCollision = true, bulletDirection = "l", bulletsInCircle =5, isFerris = false, bulletLocation=[], j=0, radius=1,rotationSpeed=1,bulletSpeed=1) {
     this.width = width;
     this.height = height;
     this.speedX = 0;
@@ -85,7 +89,11 @@ function BulletComponent(width, height, color, x, y, hasCollision = true) {
     this.x = x;
     this.y = y;    
     this.hasCollision = hasCollision;    
+    this.bulletDirection = bulletDirection;
+    this.bulletsInCircle = bulletsInCircle;
+    this.isFerris = isFerris;
 
+    degreesRotation=0;
     this.update = function() {
         ctx = myGameArea.context;
         ctx.fillStyle = color;
@@ -94,9 +102,37 @@ function BulletComponent(width, height, color, x, y, hasCollision = true) {
     this.newPos = function() {
         this.x += this.speedX;
         this.y += this.speedY;        
-    }    
+    }        
+    this.rotate = function(degreesRotation) {
+        if (bulletDirection == "r"){
+            bulletLocation[0]  += bulletSpeed;
+        }
+        else if (bulletDirection == "l"){
+            bulletLocation[0]  += -bulletSpeed;
+        }
+        else if (bulletDirection == "u"){
+            bulletLocation[1] += -bulletSpeed;
+        }
+        else if (bulletDirection == "d"){
+            bulletLocation[1] += bulletSpeed;
+        }
+        bulletModels[j].x = bulletLocation[0] + (100*radius*(Math.cos(((rotationSpeed*degreesRotation+((360/bulletsInCircle)*j))*Math.PI/180)))); 
+        bulletModels[j].y = bulletLocation[1] + (100*radius*(Math.sin(((rotationSpeed*degreesRotation+((360/bulletsInCircle)*j))*Math.PI/180))));  
 
 
+        }
+
+
+    }  
+
+
+
+function FerrisSpin(bulletsInCircle, bulletLocation){
+
+    for(let i = 0;  i <= bulletsInCircle; i+=1){
+        bulletModels[i].x = bulletLocation[0] + (100*(Math.cos((degreesRotation*i)*Math.PI/180))); 
+        bulletModels[i].y = bulletLocation[1] + (100*(Math.sin((degreesRotation*i)*Math.PI/180)));  
+    }
 }
 function imageComponent(image, width, height, x, y) {
     this.width = width;
@@ -124,15 +160,30 @@ function imageComponent(image, width, height, x, y) {
 // }
 
 
+function gameOver(){
 
+}
+function win(){
+
+}
 async function updateGameArea() {
+    if (health<=maxHealth){
+        health+=0.05;
 
+    }
+    HealthBar.value=health;
+
+    if (health<=0){
+        gameOver();
+    }
+    degreesRotation+=0.05;
     myGameArea.clear();
     gridModel.newPos();
     gridModel.update();
     playerModel.newPos();    
     playerModel.update();
-    
+    degreesRotation +=1;
+
     for (let i = 0; i <= bulletModels.length-1; i++){
         bulletModels[i].newPos();    
         bulletModels[i].update();
@@ -147,7 +198,42 @@ async function updateGameArea() {
             }
 
         }
+        if(bulletModels[i].isFerris == true){
+            bulletModels[i].rotate(degreesRotation);
+            console.log("9")
+        }
+
     }
+    for (let i = 0; i <= laserModels.length-1; i++){
+        laserModels[i].newPos();    
+        laserModels[i].update();
+        if (laserModels[i].hasCollision == true){
+            console.log("test");
+            if (laserModels[i].bulletDirection == "l" ||laserModels[i].bulletDirection == "r"){
+                if(playerModel.x > laserModels[i].x - 1000 && playerModel.x < laserModels[i].x + 1000){
+                    if (playerModel.y < laserModels[i].y + 30 && playerModel.y > laserModels[i].y - 30){
+                        if (immunityFrameTimer == 0){
+                            await collisionDamage();
+                            immunityFrameTimer = immunityFrames;
+                        }
+                    }
+                }
+            }
+            if (laserModels[i].bulletDirection == "u" ||laserModels[i].bulletDirection == "d"){
+
+                if(playerModel.x > laserModels[i].x - 30 && playerModel.x < laserModels[i].x + 30){
+                    if (playerModel.y < laserModels[i].y + 1000 && playerModel.y > laserModels[i].y - 1000){
+                        if (immunityFrameTimer == 0){
+                            await collisionDamage();
+                            immunityFrameTimer = immunityFrames;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
     if (immunityFrameTimer >=1){
         immunityFrameTimer-=1;
     }
@@ -161,11 +247,29 @@ function wait(time) {
 }
 
  async function collisionDamage(){
-    HealthBar.value-=15;
+    health -= 15;
+    HealthBar.value=health;
 
 }
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
 
-async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 5, bulletDirection = "r", hasCollision = true, bulletsInCircle = 5){ // types = basic, danger, circle
+async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1, bulletDirection = "r", hasCollision = true, laserActivationTime=8, bulletsInCircle = 5, radius=1,rotationSpeed=1){ // types = basic, danger, circle
     await wait(ActivationTime*1000);
 
 
@@ -186,54 +290,70 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 5
     }
     else if (type == "danger"){
         var laserWidth = 20;
-        var bulletState = bulletModels.length-1;
-        for (let i = -1; i<=8; i+=1){
+        var bulletState = laserModels.length-1;
+        for (let i = -1; i<=laserActivationTime; i+=1){
             
             if (bulletDirection == "r" || bulletDirection == "l"){
-                bulletModels.push( new BulletComponent(800, laserWidth, "rgba(255,20,20,"+0.02*i+")", 0, bulletLocation[1]-((laserWidth/2))/2, false));
-                var bulletState = bulletModels.length-1;
+                laserModels.push( new BulletComponent(800, laserWidth, "rgba(255,20,20,"+0.02*i+")", 0, bulletLocation[1]-((laserWidth/2))/2, false));
+                var bulletState = laserModels.length-1;
 
             }
             if (bulletDirection == "u" || bulletDirection == "d"){
-                bulletModels.push( new BulletComponent(laserWidth, 800, "rgba(255,20,20,"+ 0.02*i+")", bulletLocation[0]-((laserWidth/2)/2), 0, false));
-                var bulletState = bulletModels.length-1;
+                laserModels.push( new BulletComponent(laserWidth, 800, "rgba(255,20,20,"+ 0.02*i+")", bulletLocation[0]-((laserWidth/2)/2), 0, false));
+                var bulletState = laserModels.length-1;
 
             }
             laserWidth +=1;
             await wait(50);
-            bulletModels.splice(bulletState, bulletState);
+            laserModels.splice(bulletState, bulletState);
         }
         if (bulletDirection == "r" || bulletDirection == "l"){
-            bulletModels.push( new BulletComponent(800, 40, "rgba(255,20,20,1   )", 0, bulletLocation[1]-((40/2)/2), true));
+            laserModels.push( new BulletComponent(800, 40, "rgba(255,20,20,1   )", 0, bulletLocation[1]-((40/2)/2), true));
 
         }
         if (bulletDirection == "u" || bulletDirection == "d"){
-            bulletModels.push( new BulletComponent(40, 800, "rgba(255,20,20,1)", bulletLocation[0]-((40/2)/2), 0, true));
+            laserModels.push( new BulletComponent(40, 800, "rgba(255,20,20,1)", bulletLocation[0]-((40/2)/2), 0, true));
 
         }
         
-        await wait(10);
+        await wait(50);
 
-        bulletModels.splice(bulletState, bulletState);
+        laserModels.splice(bulletState, bulletState);
 
-        for (let i = 0; i<=10; i+=1){
-            bulletState = bulletModels.length-1;
+        for (let i = 0; i<=15; i+=1){
+            bulletState = laserModels.length-1;
 
             if (bulletDirection == "r" || bulletDirection == "l"){
-                bulletModels.push( new BulletComponent(800, laserWidth-i*4, "rgba(255,20,20,"+1-(0.1*i)+")", 0, (bulletLocation[1]-((laserWidth/2))/2)+i*2, false));
-                var bulletState = bulletModels.length-1;
+                laserModels.push( new BulletComponent(800, laserWidth-i*4, "rgba(255,255,255,"+1+")", 0, (bulletLocation[1]-((laserWidth/2))/2)+i*2, false));
+                var bulletState = laserModels.length-1;
 
             }
             if (bulletDirection == "u" || bulletDirection == "d"){
-                bulletModels.push( new BulletComponent(laserWidth-i*4, 800, "rgba(255,20,20,"+ 1-(0.02*i)+")", (bulletLocation[0]-((laserWidth/2)/2))+i*2, 0, false));
-                var bulletState = bulletModels.length-1;
+                laserModels.push( new BulletComponent(laserWidth-i*4, 800, "rgba(255,255,255,"+ 1+")", (bulletLocation[0]-((laserWidth/2)/2))+i*2, 0, false));
+                var bulletState = laserModels.length-1;
 
             }
 
-            await wait(10);
-            bulletModels.splice(bulletState, bulletState);
+            await wait(5);
+            laserModels.splice(bulletState, bulletState);
 
         }
+
+    }
+    else if ("Ferris"){
+        degreesRotation = 360/bulletsInCircle;
+        console.log("ferris spanwed");
+        let a = [];
+        
+
+        
+        for(let i = bulletModels.length;  i <= bulletsInCircle+bulletModels.length; i+=1){
+            bulletModels.push( new BulletComponent(20, 20, "pink",bulletLocation[0],bulletLocation[0],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed));
+            console.log("bulletSpanedFerris");
+        }
+
+        
+
 
     }
 
@@ -263,61 +383,14 @@ function main(){
     middleXDanger = [390, 0]
     rightDanger = [480, 0]
     // spawnBullet("danger", 0, topDanger, 10, "r") ;
- 
-
-    spawnBullet("basic", 0, lt, 10, "r") ;
-    spawnBullet("basic", 1.75, rm, 10, "l") ;
-    spawnBullet("basic", 3.5,lb, 10, "r") ;
-
-    spawnBullet("basic", 5.00, bl, 10, "u") ;
-    spawnBullet("basic", 5.00, br, 10, "u") ;
-    for (let i = 6.50; i <= 12; i+=0.5){
-        spawnBullet("basic", i, bl, 10, "u") ;
-        spawnBullet("basic", i, br, 10, "u") ;
+    console.log(gameLevel);
+    if (gameLevel == 1){
+        bulletScript1();
+    }
+    else if (gameLevel == 2) {
+        bulletScript2();
     }
 
-    spawnBullet("basic", 6.4, rt, 10, "l") ;
-    spawnBullet("basic", 6.75, lm, 10, "r") ;
-    spawnBullet("basic", 7.25, rb, 10, "l") ;
-
-    spawnBullet("basic", 7.75, lt, 10, "r") ;
-    spawnBullet("basic", 8.25, rm, 10, "l") ;
-    spawnBullet("basic", 8.75, lb, 10, "r") ;
-
-    spawnBullet("basic", 9.25, rt, 10, "l") ;
-    spawnBullet("basic", 9.75, lm, 10, "r") ;
-    spawnBullet("basic", 10.25, rb, 10, "l") ;
-
-    spawnBullet("basic", 10.75, [-10, 300], 10, "r") ;
-    spawnBullet("basic", 11.25, [810, 390], 10, "l") ;
-    spawnBullet("basic", 11.75, [-10, 480], 10, "r") ;
-
-    for (let i = 13; i <= 20; i+=1){
-        spawnBullet("basic", i, [300, 810], 10, "u") ;
-        spawnBullet("basic", i, [480, 810], 10, "u") ;
-    }
-    for (let i = 13; i <= 20; i+=1){
-        spawnBullet("basic", i, [810, 300], 10, "l") ;
-        spawnBullet("basic", i, [810, 480], 10, "l") ;
-    }
-    for (let i = 13; i <= 20; i+=1){
-        spawnBullet("basic", i+0.5, [-10, 390], 10, "r") ;
-        spawnBullet("basic", i+0.5, [810, 390], 10, "l") ;
-    }
-    for (let i = 20; i <= 30; i+=0.2){
-        spawnBullet("basic", i, lm, 5, "r") ;
-        spawnBullet("basic", i, rm, 5, "l") ;
-
-    }
-    for (let i = 22; i <= 30; i+=2){
-        spawnBullet("basic", i, tl, 15, "d") ;
-        spawnBullet("basic", i, tm, 15, "d") ;
-        spawnBullet("basic", i+0.6, br, 15, "u") ;
-        spawnBullet("basic", i+0.6, bm, 15, "u") ;
-    }
-    spawnBullet("danger", 30, leftDanger, 10, "u") ;
-    spawnBullet("danger", 30.5, middleXDanger, 10, "u") ;
-    spawnBullet("danger", 31, rightDanger, 10, "u") ;
 
 }
 
@@ -374,6 +447,7 @@ $(document).keydown(function(event) {
         playerModel.x = MiddleX; 
         playerModel.y = MiddleY;
     }
+
 
 
 });
