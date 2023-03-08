@@ -27,7 +27,7 @@ var immunityFrameTimer = 0;
 var immunityFrames = 30;
 var TitleScreen = document.getElementById("TitleScreen")
 var GameScene = document.getElementById("GameScene")
-
+var playerLocation;
 grid = document.getElementById("grid");
 playerImage = document.getElementById("playerSprite");
 HealthBar = document.getElementById("Health");
@@ -92,7 +92,8 @@ function BulletComponent(width, height, color, x, y, hasCollision = true, bullet
     this.bulletDirection = bulletDirection;
     this.bulletsInCircle = bulletsInCircle;
     this.isFerris = isFerris;
-
+    var xk =bulletLocation[0];
+    var yk =bulletLocation[1];
     degreesRotation=0;
     this.update = function() {
         ctx = myGameArea.context;
@@ -103,23 +104,26 @@ function BulletComponent(width, height, color, x, y, hasCollision = true, bullet
         this.x += this.speedX;
         this.y += this.speedY;        
     }        
+    
     this.rotate = function(degreesRotation) {
+
+
         if (bulletDirection == "r"){
-            bulletLocation[0]  += bulletSpeed;
+            xk  += bulletSpeed;
         }
         else if (bulletDirection == "l"){
-            bulletLocation[0]  += -bulletSpeed;
+            xk  += -bulletSpeed;
         }
         else if (bulletDirection == "u"){
-            bulletLocation[1] += -bulletSpeed;
+            yk += -bulletSpeed;
         }
         else if (bulletDirection == "d"){
-            bulletLocation[1] += bulletSpeed;
+            yk += bulletSpeed;
         }
-        bulletModels[j].x = bulletLocation[0] + (100*radius*(Math.cos(((rotationSpeed*degreesRotation+((360/bulletsInCircle)*j))*Math.PI/180)))); 
-        bulletModels[j].y = bulletLocation[1] + (100*radius*(Math.sin(((rotationSpeed*degreesRotation+((360/bulletsInCircle)*j))*Math.PI/180))));  
-
-
+        bulletModels[j].x = xk + (100*radius*(Math.cos(((rotationSpeed*degreesRotation+((360/bulletsInCircle)*j))*Math.PI/180)))); 
+        bulletModels[j].y = yk + (100*radius*(Math.sin(((rotationSpeed*degreesRotation+((360/bulletsInCircle)*j))*Math.PI/180))));  
+        console.log(j);
+        
         }
 
 
@@ -188,8 +192,8 @@ async function updateGameArea() {
         bulletModels[i].newPos();    
         bulletModels[i].update();
         if (bulletModels[i].hasCollision == true){
-            if(playerModel.x > bulletModels[i].x - 30 && playerModel.x < bulletModels[i].x + 30){
-                if (playerModel.y < bulletModels[i].y + 30 && playerModel.y > bulletModels[i].y - 30){
+            if(playerModel.x > bulletModels[i].x - 20 && playerModel.x < bulletModels[i].x + 20){
+                if (playerModel.y < bulletModels[i].y + 20 && playerModel.y > bulletModels[i].y - 20){
                     if (immunityFrameTimer == 0){
                         await collisionDamage();
                         immunityFrameTimer = immunityFrames;
@@ -200,7 +204,6 @@ async function updateGameArea() {
         }
         if(bulletModels[i].isFerris == true){
             bulletModels[i].rotate(degreesRotation);
-            console.log("9")
         }
 
     }
@@ -208,7 +211,6 @@ async function updateGameArea() {
         laserModels[i].newPos();    
         laserModels[i].update();
         if (laserModels[i].hasCollision == true){
-            console.log("test");
             if (laserModels[i].bulletDirection == "l" ||laserModels[i].bulletDirection == "r"){
                 if(playerModel.x > laserModels[i].x - 1000 && playerModel.x < laserModels[i].x + 1000){
                     if (playerModel.y < laserModels[i].y + 30 && playerModel.y > laserModels[i].y - 30){
@@ -219,11 +221,16 @@ async function updateGameArea() {
                     }
                 }
             }
-            if (laserModels[i].bulletDirection == "u" ||laserModels[i].bulletDirection == "d"){
+            console.log("collision");
+            console.log("bulletdirection: " + laserModels[i].bulletDirection);
 
+            if (laserModels[i].bulletDirection == "u" ||laserModels[i].bulletDirection == "d"){
+                console.log("has direction u or d");
                 if(playerModel.x > laserModels[i].x - 30 && playerModel.x < laserModels[i].x + 30){
-                    if (playerModel.y < laserModels[i].y + 1000 && playerModel.y > laserModels[i].y - 1000){
+                    if (playerModel.y > laserModels[i].y - 1000 && playerModel.y < laserModels[i].y + 1000){
+
                         if (immunityFrameTimer == 0){
+
                             await collisionDamage();
                             immunityFrameTimer = immunityFrames;
                         }
@@ -247,7 +254,10 @@ function wait(time) {
 }
 
  async function collisionDamage(){
-    health -= 15;
+
+    health -= 30;
+    console.log(health);
+
     HealthBar.value=health;
 
 }
@@ -308,11 +318,11 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
             laserModels.splice(bulletState, bulletState);
         }
         if (bulletDirection == "r" || bulletDirection == "l"){
-            laserModels.push( new BulletComponent(800, 40, "rgba(255,20,20,1   )", 0, bulletLocation[1]-((40/2)/2), true));
+            laserModels.push( new BulletComponent(800, 40, "rgba(255,20,20,1)", 0, bulletLocation[1]-((40/2)/2), true, bulletDirection));
 
         }
         if (bulletDirection == "u" || bulletDirection == "d"){
-            laserModels.push( new BulletComponent(40, 800, "rgba(255,20,20,1)", bulletLocation[0]-((40/2)/2), 0, true));
+            laserModels.push( new BulletComponent(40, 800, "rgba(255,20,20,1)", bulletLocation[0]-((40/2)/2), 0, true, bulletDirection));
 
         }
         
@@ -346,10 +356,12 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
         let a = [];
         
 
-        
-        for(let i = bulletModels.length;  i <= bulletsInCircle+bulletModels.length; i+=1){
-            bulletModels.push( new BulletComponent(20, 20, "pink",bulletLocation[0],bulletLocation[0],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed));
+        var b = bulletModels.length-1;
+        for(var i = b+1;  i <= bulletsInCircle+b; i+=1){
+            bulletModels.push( new BulletComponent(20, 20, "pink",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed));
             console.log("bulletSpanedFerris");
+            
+            console.log(bulletModels.length);
         }
 
         
@@ -402,50 +414,62 @@ $(document).keydown(function(event) {
     Down = ((canvasHeight/2) + (gridHeight/gridConstant) - (playerHeight/2));
     MiddleY = ((canvasHeight/2)- (playerHeight/gridConstant));
     MiddleX = ((canvasWidth/2) - (playerWidth/gridConstant)); 
+    console.log(Math.floor(Number(playerModel.x)));
 
     if (key === 65){ // A
         playerModel.x = Left; 
         playerModel.y = MiddleY;
+        playerLocation = 4;
     }
     
     if (key === 68){ // D
         playerModel.x = Right; 
         playerModel.y = MiddleY;
+        playerLocation = 6;
+
     }
     
     if (key === 87){ // W
         playerModel.x = MiddleX; 
         playerModel.y = Up;
+        playerLocation = 2;
     }
     
     if (key === 88){ // X
         playerModel.x = MiddleX; 
         playerModel.y = Down;
+        playerLocation = 8;
     }
 
     if (key === 81){ // Q
         playerModel.x = Left; 
         playerModel.y = Up;
+        playerLocation = 1;
     }
 
     if (key === 69){ // E
         playerModel.x = Right; 
         playerModel.y = Up;
+        playerLocation = 3;
     }
     
     if (key === 90){ // Z
         playerModel.x = Left; 
         playerModel.y = Down
+        playerLocation = 7;
     }
     
     if (key === 67){ // C
         playerModel.x = Down; 
         playerModel.y = Right;
+        playerLocation = 9;
     }
 
     if (key === 83){ // S
         playerModel.x = MiddleX; 
         playerModel.y = MiddleY;
+        playerLocation = 5;
+
     }
 
 
