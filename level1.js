@@ -1,7 +1,6 @@
 function bulletScript1(){
     
-    var audio = new Audio('gameMusic/Mittsies_Titanium.mp3');
-    audio.play();
+
     
 
 
@@ -90,15 +89,13 @@ function bulletScript1(){
 
 }
 function bulletScript2(){
-    var audio = new Audio('gameMusic/rainyBoots.mp3');
-    audio.play();
 
 
-    for(var i =1.7; i <= 15; i+=0.1){
+    for(var i =1.7; i <= 14.2; i+=0.1){
         spawnBullet("basic", i, rb, 10, "l");
 
     }    
-    for(var i =3.4; i <= 15; i+=0.1){
+    for(var i =3.4; i <= 14.2; i+=0.1){
         spawnBullet("basic", i, lt, 10, "r");
 
     }
@@ -132,7 +129,7 @@ function bulletScript2(){
     spawnBullet("danger", 11+0.5*5, middleXDanger, 10, "u");
     spawnBullet("danger", 11+0.5*6, leftDanger, 10, "u");
 
-    spawnBullet("ferris", 15, rm, 7, "l", true, 0,9,1.5,2);
+    spawnBullet("ferris", 14.4, [rm[0]+100, rm[1]], 7, "l", true, 0,9,1.5,2);
     spawnBullet("basic", 18, rt, 5, "l");
     spawnBullet("basic", 18, rm, 5, "l");
     spawnBullet("basic", 18.1, rt, 5, "l");
