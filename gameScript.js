@@ -26,22 +26,26 @@ var startTime = Date.now();
 var immunityFrameTimer = 0;
 var immunityFrames = 30;
 var TitleScreen = document.getElementById("TitleScreen")
+var LevelScreen = document.getElementById("Levels")
+
 var GameScene = document.getElementById("GameScene")
 var playerLocation;
+var running = true;
+var godMode=false;
 grid = document.getElementById("grid");
 playerImage = document.getElementById("playerSprite");
 HealthBar = document.getElementById("Health");
+var hurtEffect = new Audio('gameSoundEffects/hurtSoundEffect.mp3');
 var music1 = new Audio('gameMusic/Mittsies_Titanium.mp3');
 var music2 = new Audio('gameMusic/rainyBoots.mp3');
 
 function startGame(level) {
-	console.log(degreesRotation);
-	console.log(typeof(degreesRotation));
+
 
     startTime = Date.now();
     HealthBar.value = 100;
     gameLevel = level;
-    TitleScreen.remove();
+    LevelScreen.remove();
     GameScene.style.display = "block";
 
     playerModel = new imageComponent(playerImage, 30, 30, 400-(playerHeight/2), 400-(playerWidth/2));
@@ -100,9 +104,7 @@ function BulletComponent(width, height, color, x, y, hasCollision = true, bullet
     this.isFerris = isFerris;
     var xk =bulletLocation[0];
     var yk =bulletLocation[1]; 
-	console.log(typeof(degreesRotation));
-    degreesRotation.push(0);
-	ferrisNumber +=1;
+
     this.update = function() {
         ctx = myGameArea.context;
         ctx.fillStyle = color;
@@ -130,7 +132,8 @@ function BulletComponent(width, height, color, x, y, hasCollision = true, bullet
         }
         bulletModels[j].x = xk + (100*radius*(Math.cos(((rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180)))); 
         bulletModels[j].y = yk + (100*radius*(Math.sin(((rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180))));  
-        
+        degreesRotation[ferrisNumber]+=0.05;
+
         }
 
 
@@ -172,91 +175,95 @@ function imageComponent(image, width, height, x, y) {
 
 
 function gameOver(){
-    music1.pause();
-    music2.pause();
-    console.log("testgdfghds");
-    showGameOver();
+    if(!godMode){
+        music1.pause();
+        music2.pause();
+        showGameOver();
+    }
+
 }
 function win(){
 
 }
 async function updateGameArea() {
-    if (health<=maxHealth){
-        health+=0.05;
-
-    }
-    HealthBar.value=health;
-
-    if (health<=0){
-        gameOver();
-    }
-    myGameArea.clear();
-    gridModel.newPos();
-    gridModel.update();
-    playerModel.newPos();    
-    playerModel.update();
-    for (let i = 0; i <= degreesRotation.length-1; i++){
-		degreesRotation[i]+=0.05;
-	}
-	
-
-
-    for (let i = 0; i <= bulletModels.length-1; i++){
-        bulletModels[i].newPos();    
-        bulletModels[i].update();
-        if (bulletModels[i].hasCollision == true){
-            if(playerModel.x > bulletModels[i].x - 20 && playerModel.x < bulletModels[i].x + 20){
-                if (playerModel.y < bulletModels[i].y + 20 && playerModel.y > bulletModels[i].y - 20){
-                    if (immunityFrameTimer == 0){
-                        await collisionDamage();
-                        immunityFrameTimer = immunityFrames;
-                    }
-                }
-            }
-
+    if (running == true){
+        console.log("running");
+        if (health<=maxHealth){
+            health+=0.05;
+    
         }
-        if(bulletModels[i].isFerris == true){
-            bulletModels[i].rotate(degreesRotation);
+        HealthBar.value=health;
+    
+        if (health<=0){
+            gameOver();
         }
-
-    }
-    for (let i = 0; i <= laserModels.length-1; i++){
-        laserModels[i].newPos();    
-        laserModels[i].update();
-        if (laserModels[i].hasCollision == true){
-            if (laserModels[i].bulletDirection == "l" ||laserModels[i].bulletDirection == "r"){
-                if(playerModel.x > laserModels[i].x - 1000 && playerModel.x < laserModels[i].x + 1000){
-                    if (playerModel.y < laserModels[i].y + 30 && playerModel.y > laserModels[i].y - 30){
+        myGameArea.clear();
+        gridModel.newPos();
+        gridModel.update();
+        playerModel.newPos();    
+        playerModel.update();
+    
+        
+    
+    
+        for (let i = 0; i <= bulletModels.length-1; i++){
+            bulletModels[i].newPos();    
+            bulletModels[i].update();
+            if (bulletModels[i].hasCollision == true){
+                if(playerModel.x > bulletModels[i].x - 20 && playerModel.x < bulletModels[i].x + 20){
+                    if (playerModel.y < bulletModels[i].y + 20 && playerModel.y > bulletModels[i].y - 20){
                         if (immunityFrameTimer == 0){
                             await collisionDamage();
                             immunityFrameTimer = immunityFrames;
                         }
                     }
                 }
+    
             }
-
-
-            if (laserModels[i].bulletDirection == "u" ||laserModels[i].bulletDirection == "d"){
-                if(playerModel.x > laserModels[i].x - 30 && playerModel.x < laserModels[i].x + 30){
-                    if (playerModel.y > laserModels[i].y - 1000 && playerModel.y < laserModels[i].y + 1000){
-
-                        if (immunityFrameTimer == 0){
-
-                            await collisionDamage();
-                            immunityFrameTimer = immunityFrames;
+            if(bulletModels[i].isFerris == true){
+                bulletModels[i].rotate(degreesRotation);
+            }
+    
+        }
+        for (let i = 0; i <= laserModels.length-1; i++){
+            laserModels[i].newPos();    
+            laserModels[i].update();
+            if (laserModels[i].hasCollision == true){
+                if (laserModels[i].bulletDirection == "l" ||laserModels[i].bulletDirection == "r"){
+                    if(playerModel.x > laserModels[i].x - 1000 && playerModel.x < laserModels[i].x + 1000){
+                        if (playerModel.y < laserModels[i].y + 30 && playerModel.y > laserModels[i].y - 30){
+                            if (immunityFrameTimer == 0){
+                                await collisionDamage();
+                                immunityFrameTimer = immunityFrames;
+                            }
+                        }
+                    }
+                }
+    
+    
+                if (laserModels[i].bulletDirection == "u" ||laserModels[i].bulletDirection == "d"){
+                    if(playerModel.x > laserModels[i].x - 30 && playerModel.x < laserModels[i].x + 30){
+                        if (playerModel.y > laserModels[i].y - 1000 && playerModel.y < laserModels[i].y + 1000){
+    
+                            if (immunityFrameTimer == 0){
+    
+                                await collisionDamage();
+                                immunityFrameTimer = immunityFrames;
+                            }
                         }
                     }
                 }
             }
+    
         }
-
+    
+        if (immunityFrameTimer >=1){
+            immunityFrameTimer-=1;
+        }
+        var elapsedTime = Date.now() - startTime;
+        document.getElementById("timer").innerHTML = (elapsedTime / 1000).toFixed(3);
     }
-
-    if (immunityFrameTimer >=1){
-        immunityFrameTimer-=1;
-    }
-    var elapsedTime = Date.now() - startTime;
-    document.getElementById("timer").innerHTML = (elapsedTime / 1000).toFixed(3);
+    
 }
 function wait(time) {
     return new Promise(resolve => {
@@ -267,7 +274,7 @@ function wait(time) {
  async function collisionDamage(){
 
     health -= 30;
-
+    hurtEffect.play();
     HealthBar.value=health;
 
 }
@@ -361,11 +368,10 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
 
     }
     else if ("Ferris"){
-        for (let i = 0; i <= degreesRotation.length-1; i++){
-			degreesRotation[i] = 360/bulletsInCircle;
-		} 
+
         let a = [];
-        
+        degreesRotation.push(0);
+        ferrisNumber +=1;
 
         var b = bulletModels.length-1;
         for(var i = b+1;  i <= bulletsInCircle+b; i+=1){

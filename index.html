@@ -12,8 +12,15 @@
         <link rel="stylesheet" href="GameStyleSheet.css">
     </head>
 
-    <body >
-        <div id = "TitleScreen">
+    <body id="mainBody">
+        <div id = "HomeScreen">
+            <div id = "HomeButtons">
+                <button onclick="showLevels(); " id = "levelButton">Play</button>
+                <button onclick="startGame(2);" id = "howButton">How To Play</button>
+            </div>
+        
+        </div>
+        <div id = "Levels">
             <div id = "LevelsContainer">
                 <button onclick="startGame(1); " id = "startButton">Level 1</button>
                 <button onclick="startGame(2);" id = "startButton2">Level 2</button>
@@ -22,8 +29,15 @@
         </div>
 
         <div id="GameScene">
-            <label for="Health">HP: </label>
-            <progress id="Health" value="32" max="100"> 100% </progress>
+            <div id = "HealthInfo">
+                <label for="Health">HP: </label>
+                <progress id="Health" value="32" max="100"> 100% </progress>
+            </div>
+
+    
+        </div>
+        <div id="GameOverScene">
+            <h1>Game Over!</h1>
     
         </div>
         <img id="playerSprite" width="220"  src='gameSprites/playerSprite.png' alt="playerSprite" class = "hidden">
