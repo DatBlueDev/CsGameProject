@@ -30,6 +30,11 @@ button{
 }
 #GameScene{
     display:none;
+    justify-content: center;
+}
+canvas{
+
+
 }
 label{
     padding-top:20px;
@@ -40,9 +45,15 @@ progress::-webkit-progress-bar {background-color: rgb(204, 26, 26); width: 100%;
 progress{background-color: rgb(41, 255, 41) !important;}
 progress::-moz-progress-bar  {background-color: rgb(204, 26, 26); width: 100%;}
 
+#HealthInfo{
+    position:absolute;
+    top:11px;
+    left:10px;
+}
 
-
-
+#Levels{
+    display:none;
+}
 footer {
 
     color: white;
