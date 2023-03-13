@@ -30,6 +30,11 @@ button{
 }
 #GameScene{
     display:none;
+    justify-content: center;
+}
+canvas{
+
+
 }
 label{
     padding-top:20px;
