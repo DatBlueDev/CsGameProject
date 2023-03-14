@@ -20,6 +20,11 @@ button{
     font-family: PressStart;
 
 }
+#TipBar{
+    margin-top:5%;
+    font-weight:50;
+    font-size:medium;
+}
 .hidden
 {
     display:none;
@@ -39,6 +44,10 @@ canvas{
 label{
     padding-top:20px;
     color:white
+}
+#GameOverText{
+    margin-top:5%;
+    font-size:600%;
 }
 progress::-webkit-progress-value {background-color: rgb(41, 255, 41) !important;}
 progress::-webkit-progress-bar {background-color: rgb(204, 26, 26); width: 100%;}
