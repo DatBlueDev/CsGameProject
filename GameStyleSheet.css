@@ -12,18 +12,35 @@ body{
     margin-top:3%;
     font-family: PressStart;
 }
+#TitleImage{
+    width:50%;
+    animation-duration:2s;
+}
 
 button{
     font-size:30px;
     height:50px;
+    width:20%;
     background-color: white;
     font-family: PressStart;
 
 }
+#HitCounter{
+    color:white;
+}
+button:hover{
+    transform:scale(1.15, 1.15);
+}
 #TipBar{
     margin-top:5%;
     font-weight:50;
+    font-family: PressStart;
+    color:white;
     font-size:medium;
+    transition: delay 3s;
+    animation-delay:1s;
+    animation-duration:4s;
+    animation-fill-mode: both;
 }
 .hidden
 {
@@ -41,19 +58,34 @@ canvas{
 
 
 }
+#HowToPlayScene{
+    display:none;
+    font-family: PressStart;
+
+}
 label{
     padding-top:20px;
     color:white
 }
+#GameOverScene{
+    color:white;
+    display:none;
+}
 #GameOverText{
+    color:white;
     margin-top:5%;
     font-size:600%;
+    font-family: PressStart;
+
 }
 progress::-webkit-progress-value {background-color: rgb(41, 255, 41) !important;}
 progress::-webkit-progress-bar {background-color: rgb(204, 26, 26); width: 100%;}
 progress{background-color: rgb(41, 255, 41) !important;}
 progress::-moz-progress-bar  {background-color: rgb(204, 26, 26); width: 100%;}
 
+#levelButton{
+    margin-top:-5%;
+}
 #HealthInfo{
     position:absolute;
     top:11px;

@@ -7,7 +7,7 @@ var laserModels = [];
 var i = 0;
 var bulletHeight = 30;
 var bulletWidth = 30;
-
+var hitCounter = 0; 
 var canvasHeight = 800;
 var canvasWidth = 800;
 
@@ -25,10 +25,11 @@ var ferrisNumber = -1;
 var startTime = Date.now();
 var immunityFrameTimer = 0;
 var immunityFrames = 30;
-var TitleScreen = document.getElementById("TitleScreen")
-var LevelScreen = document.getElementById("Levels")
+var TitleScreen = document.getElementById("TitleScreen");
+var LevelScreen = document.getElementById("Levels");
+var hitCounterHTML = document.getElementById("HitCounter");
 
-var GameScene = document.getElementById("GameScene")
+var GameScene = document.getElementById("GameScene");
 var playerLocation;
 var running = true;
 var godMode=false;
@@ -36,20 +37,28 @@ grid = document.getElementById("grid");
 playerImage = document.getElementById("playerSprite");
 HealthBar = document.getElementById("Health");
 var hurtEffect = new Audio('gameSoundEffects/hurtSoundEffect.mp3');
+var menuHit = new Audio('gameSoundEffects/menuhit.wav');
 var music1 = new Audio('gameMusic/Mittsies_Titanium.mp3');
 var music2 = new Audio('gameMusic/rainyBoots.mp3');
+var music3 = new Audio('gameMusic/DOSTHymnRemix.mp3');
 
-function startGame(level) {
-
+var filterStrength = 20;
+var frameTime = 0, lastLoop = new Date, thisLoop;
+async function startGame(level) {
+    await wait(10);
+    menuHit.play();
+    LevelScreen.remove();
+    await wait(0.4);
+    
 
     startTime = Date.now();
     HealthBar.value = 100;
     gameLevel = level;
-    LevelScreen.remove();
+
     GameScene.style.display = "block";
 
-    playerModel = new imageComponent(playerImage, 30, 30, 400-(playerHeight/2), 400-(playerWidth/2));
-    gridModel = new imageComponent(grid, gridHeight, gridWidth, ((canvasHeight/2) - (gridHeight/2)), ((canvasWidth/2) - (gridWidth/2)));
+    playerModel = new imageComponent(playerImage, 40, 54, 400-(playerHeight/2), 400-(playerWidth/2));
+    gridModel = new imageComponent(grid, gridHeight, gridWidth, ((canvasHeight/2))-10, (canvasWidth/2)-10);
 
 
     myGameArea.start();
@@ -71,7 +80,10 @@ var myGameArea = {
     }
     
 }
-
+var fpsOut = document.getElementById('fps');
+setInterval(function(){
+  fpsOut.innerHTML = (1000/frameTime).toFixed(1) + " fps";
+},1000);
 function component(width, height, color, x, y) {
     this.width = width;
     this.height = height;
@@ -91,7 +103,7 @@ function component(width, height, color, x, y) {
 }
 
 
-function BulletComponent(width, height, color, x, y, hasCollision = true, bulletDirection = "l", bulletsInCircle =5, isFerris = false, bulletLocation=[], j=0, radius=1,rotationSpeed=1,bulletSpeed=1) {
+function BulletComponent(width, height, color, x, y, hasCollision = true, bulletDirection = "l", bulletsInCircle =5, isFerris = false, bulletLocation=[], j=0, radius=1,rotationSpeed=1,bulletSpeed=1, ferrisNumber) {
     this.width = width;
     this.height = height;
     this.speedX = 0;
@@ -102,13 +114,16 @@ function BulletComponent(width, height, color, x, y, hasCollision = true, bullet
     this.bulletDirection = bulletDirection;
     this.bulletsInCircle = bulletsInCircle;
     this.isFerris = isFerris;
+    this.rotationSpeed = rotationSpeed;
+    this.ferrisNumber = ferrisNumber;
+
     var xk =bulletLocation[0];
     var yk =bulletLocation[1]; 
 
     this.update = function() {
         ctx = myGameArea.context;
         ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fillRect(this.x-(this.width/2), this.y-(this.height/2), this.width, this.height);
     }
     this.newPos = function() {
         this.x += this.speedX;
@@ -130,9 +145,12 @@ function BulletComponent(width, height, color, x, y, hasCollision = true, bullet
         else if (bulletDirection == "d"){
             yk += bulletSpeed;
         }
-        bulletModels[j].x = xk + (100*radius*(Math.cos(((rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180)))); 
-        bulletModels[j].y = yk + (100*radius*(Math.sin(((rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180))));  
+        bulletModels[j].x = xk + (100*radius*(Math.cos(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180)))); 
+        bulletModels[j].y = yk + (100*radius*(Math.sin(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180))));  
         degreesRotation[ferrisNumber]+=0.05;
+        console.log(degreesRotation);
+        console.log(ferrisNumber);
+
 
         }
 
@@ -141,13 +159,7 @@ function BulletComponent(width, height, color, x, y, hasCollision = true, bullet
 
 
 
-function FerrisSpin(bulletsInCircle, bulletLocation){
 
-    for(let i = 0;  i <= bulletsInCircle; i+=1){
-        bulletModels[i].x = bulletLocation[0] + (100*(Math.cos((degreesRotation*i)*Math.PI/180))); 
-        bulletModels[i].y = bulletLocation[1] + (100*(Math.sin((degreesRotation*i)*Math.PI/180)));  
-    }
-}
 function imageComponent(image, width, height, x, y) {
     this.width = width;
     this.height = height;
@@ -159,7 +171,7 @@ function imageComponent(image, width, height, x, y) {
     this.update = function() {
         ctx = myGameArea.context;
 
-        ctx.drawImage(image, this.x, this.y, this.width, this.height);
+        ctx.drawImage(image, this.x-(this.width/2), this.y-(this.height/2), this.width, this.height);
         
         
     }
@@ -186,10 +198,13 @@ function win(){
 
 }
 async function updateGameArea() {
+    var thisFrameTime = (thisLoop=new Date) - lastLoop;
+    frameTime+= (thisFrameTime - frameTime) / filterStrength;
+    lastLoop = thisLoop;
     if (running == true){
         console.log("running");
         if (health<=maxHealth){
-            health+=0.05;
+            health+=0.10;
     
         }
         HealthBar.value=health;
@@ -273,9 +288,12 @@ function wait(time) {
 
  async function collisionDamage(){
 
-    health -= 30;
+    health -= 25;
     hurtEffect.play();
     HealthBar.value=health;
+    hitCounter+=1;
+
+    hitCounterHTML.innerHTML = "Hits Taken: " + hitCounter;
 
 }
 function shuffle(array) {
@@ -320,13 +338,14 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
         var bulletState = laserModels.length-1;
         for (let i = -1; i<=laserActivationTime; i+=1){
             
+            
             if (bulletDirection == "r" || bulletDirection == "l"){
-                laserModels.push( new BulletComponent(800, laserWidth, "rgba(255,20,20,"+0.02*i+")", 0, bulletLocation[1]-((laserWidth/2))/2, false));
+                laserModels.push( new BulletComponent(1200, laserWidth, "rgba(255,20,20,"+0.02*i+")", 400, (bulletLocation[1]), false));
                 var bulletState = laserModels.length-1;
 
             }
             if (bulletDirection == "u" || bulletDirection == "d"){
-                laserModels.push( new BulletComponent(laserWidth, 800, "rgba(255,20,20,"+ 0.02*i+")", bulletLocation[0]-((laserWidth/2)/2), 0, false));
+                laserModels.push( new BulletComponent(laserWidth, 1200, "rgba(255,20,20,"+ 0.02*i+")", bulletLocation[0], 400, false));
                 var bulletState = laserModels.length-1;
 
             }
@@ -335,11 +354,11 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
             laserModels.splice(bulletState, bulletState);
         }
         if (bulletDirection == "r" || bulletDirection == "l"){
-            laserModels.push( new BulletComponent(800, 40, "rgba(255,20,20,1)", 0, bulletLocation[1]-((40/2)/2), true, bulletDirection));
+            laserModels.push( new BulletComponent(1200, 40, "rgba(255,20,20,1)", 380, bulletLocation[1], true, bulletDirection));
 
         }
         if (bulletDirection == "u" || bulletDirection == "d"){
-            laserModels.push( new BulletComponent(40, 800, "rgba(255,20,20,1)", bulletLocation[0]-((40/2)/2), 0, true, bulletDirection));
+            laserModels.push( new BulletComponent(40, 1200, "rgba(255,20,20,1)", bulletLocation[0], 380, true, bulletDirection));
 
         }
         
@@ -351,12 +370,12 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
             bulletState = laserModels.length-1;
 
             if (bulletDirection == "r" || bulletDirection == "l"){
-                laserModels.push( new BulletComponent(800, laserWidth-i*4, "rgba(255,255,255,"+1+")", 0, (bulletLocation[1]-((laserWidth/2))/2)+i*2, false));
+                laserModels.push( new BulletComponent(1200, laserWidth-i*3, "rgba(255,255,255,"+1+")",400, bulletLocation[1], false));
                 var bulletState = laserModels.length-1;
 
             }
             if (bulletDirection == "u" || bulletDirection == "d"){
-                laserModels.push( new BulletComponent(laserWidth-i*4, 800, "rgba(255,255,255,"+ 1+")", (bulletLocation[0]-((laserWidth/2)/2))+i*2, 0, false));
+                laserModels.push( new BulletComponent(laserWidth-i*3, 1200, "rgba(255,255,255,"+ 1+")", bulletLocation[0], 400, false));
                 var bulletState = laserModels.length-1;
 
             }
@@ -375,7 +394,7 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
 
         var b = bulletModels.length-1;
         for(var i = b+1;  i <= bulletsInCircle+b; i+=1){
-            bulletModels.push( new BulletComponent(20, 20, "pink",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed));
+            bulletModels.push( new BulletComponent(20, 20, "pink",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed, ferrisNumber));
 
         }
 
@@ -416,7 +435,12 @@ function main(){
     }
     else if (gameLevel == 2) {
         music2.play();
+
         bulletScript2();
+    }
+    else if (gameLevel == 3) {
+        music3.play();
+        bulletScript3();
     }
 
 
@@ -475,8 +499,8 @@ $(document).keydown(function(event) {
     }
     
     if (key === 67){ // C
-        playerModel.x = Down; 
-        playerModel.y = Right;
+        playerModel.x = Right; 
+        playerModel.y = Down;
         playerLocation = 9;
     }
 

@@ -60,7 +60,7 @@ function bulletScript1(){
     spawnBullet("danger", 31, rightDanger, 10, "u") ;
 
 
-    for (let i = 34; i <= 38; i++){
+    for (let i = 34; i < 39; i++){
         spawnBullet("basic", i, shuffle([tr,tm,tl])[0], 10, "d") ;
         spawnBullet("basic", i, shuffle([tr,tm,tl])[0], 10, "d") ;
 
@@ -112,13 +112,13 @@ function bulletScript2(){
         spawnBullet("basic", i, tr, 10, "d");
 
     }    
-    for(var i =7; i <= 11; i+=1){
-        spawnBullet("basic", i,tm, 10, "d");
+    for(var i =7; i <= 10.7; i+=0.9){
+        spawnBullet("basic", i,tm, 8, "d");
 
     }
 
-    for(var i =7; i <= 11; i+=1){
-        spawnBullet("basic", i+0.5, bl, 10, "u");
+    for(var i =7; i <= 10.7; i+=0.9){
+        spawnBullet("basic", i+0.5, bl, 8, "u");
 
     }
     
@@ -130,58 +130,35 @@ function bulletScript2(){
     spawnBullet("danger", 11+0.5*5, middleXDanger, 10, "u");
     spawnBullet("danger", 11+0.5*6, leftDanger, 10, "u");
 
-    spawnBullet("ferris", 14.1, [rb[0]+400, rb[1]], 7, "l", true, 0,9,1,2);
-    spawnBullet("ferris", 14.1, [tl[0], tl[1]-400], 7, "d", true, 0,9,1,2);
+    spawnBullet("ferris", 14.1, [rb[0]+400, rb[1]], 7, "l", true, 0,9,1,7);
+    spawnBullet("ferris", 14.1, [tl[0], tl[1]-400], 7, "d", true, 0,9,1,7);
 
-    spawnBullet("ferris", 15.6, [lt[0]-400, lt[1]], 7, "r", true, 0,9,1,2);
-    spawnBullet("ferris", 15.6, [br[0], br[1]+400], 7, "u", true, 0,9,1,2);
+    spawnBullet("ferris", 14.1, [lt[0]-900, lt[1]], 7, "r", true, 0,9,1,7);
+    spawnBullet("ferris", 14.1, [br[0], br[1]+900], 7, "u", true, 0,9,1,7);
 
     spawnBullet("basic", 18, rt, 5, "l");
     spawnBullet("basic", 18, rm, 5, "l");
-    spawnBullet("basic", 18.1, rt, 5, "l");
-    spawnBullet("basic", 18.1, rm, 5, "l");
     spawnBullet("basic", 18.5, rt, 5, "l");
     spawnBullet("basic", 18.5, rb, 5, "l");
-    spawnBullet("basic", 18.6, rt, 5, "l");
-    spawnBullet("basic", 18.6, rb, 5, "l");
     spawnBullet("basic", 19, rb, 5, "l");
     spawnBullet("basic", 19, rm, 5, "l");
-    spawnBullet("basic", 19.1, rb, 5, "l");
-    spawnBullet("basic", 19.1, rm, 5, "l");
     spawnBullet("basic", 19.5, rt, 5, "l");
     spawnBullet("basic", 19.5, rb, 5, "l");
-    spawnBullet("basic", 19.6, rt, 5, "l");
-    spawnBullet("basic", 19.6, rb, 5, "l");
     spawnBullet("basic", 20, rt, 5, "l");
     spawnBullet("basic", 20, rm, 5, "l");
-    spawnBullet("basic", 20.1, rt, 5, "l");
-    spawnBullet("basic", 20.1, rm, 5, "l");
     spawnBullet("basic", 20.5, rb, 5, "l");
     spawnBullet("basic", 20.5, rm, 5, "l");
-    spawnBullet("basic", 20.6, rb, 5, "l");
-    spawnBullet("basic", 20.6, rm, 5, "l");
     spawnBullet("basic", 21, rt, 5, "l");
     spawnBullet("basic", 21, rm, 5, "l");
     spawnBullet("basic", 21.5, rb, 5, "l");
     spawnBullet("basic", 21.5, rm, 5, "l");
-    spawnBullet("basic", 21.1, rt, 5, "l");
-    spawnBullet("basic", 21.1, rm, 5, "l");
-    spawnBullet("basic", 21.5, rb, 5, "l");
-    spawnBullet("basic", 21.5, rm, 5, "l");
-    spawnBullet("basic", 21.6, rb, 5, "l");
-    spawnBullet("basic", 21.6, rm, 5, "l");
     spawnBullet("basic", 22, rt, 5, "l");
-    spawnBullet("basic", 22, rt, 5, "l");
-    spawnBullet("basic", 22.1, rt, 5, "l");
-    spawnBullet("basic", 22.1, rm, 5, "l");
+    spawnBullet("basic", 22, rb, 5, "l");
     spawnBullet("basic", 22.5, rt, 5, "l");
     spawnBullet("basic", 22.5, rm, 5, "l");
-    spawnBullet("basic", 22.6, rt, 5, "l");
-    spawnBullet("basic", 22.6, rm, 5, "l");
     spawnBullet("basic", 23.0, rb, 5, "l");
     spawnBullet("basic", 23.0, rm, 5, "l");
-    spawnBullet("basic", 23.1, rb, 5, "l");
-    spawnBullet("basic", 23.1, rm, 5, "l");
+
 
     spawnBullet("basic", 24, lt, 5, "r");
     spawnBullet("basic", 24, lm, 5, "r");
@@ -243,7 +220,7 @@ function bulletScript2(){
         spawnBullet("danger", i, topDanger, 10, "l");
 
     }
-    for (let i = 58; i <64; i+=1.6){
+    for (let i = 58; i <61; i+=1.6){
   
         spawnBullet("danger", i, leftDanger, 10, "u");
         spawnBullet("danger", i, middleXDanger, 10, "u");
@@ -251,5 +228,112 @@ function bulletScript2(){
         spawnBullet("danger", i+0.8, middleXDanger, 10, "u");
 
     }
-    godMode=true;
+    for (let i = 61; i <=64; i+=1.6){
+  
+        spawnBullet("danger", i, topDanger, 10, "l");
+        spawnBullet("danger", i, middleYDanger, 10, "l");
+        spawnBullet("danger", i+0.8, bottomDanger, 10, "l");
+        spawnBullet("danger", i+0.8, middleYDanger, 10, "l");
+
+    }
+    spawnBullet("ferris", 65, [lt[0]-900, lt[1]], 8, "r", true, 0,16,1,2);
+
+    spawnBullet("danger", 71.02, leftDanger, 10, "u");
+    spawnBullet("danger", 71, middleXDanger, 10, "u");
+    spawnBullet("danger", 71, topDanger, 10, "l");
+    spawnBullet("danger", 71, middleYDanger, 10, "l");
+
+    spawnBullet("danger", 71.8, rightDanger, 10, "u");
+    spawnBullet("danger", 71.8, middleXDanger, 10, "u");
+    spawnBullet("danger", 71.8, topDanger, 10, "l");
+    spawnBullet("danger", 71.8, middleYDanger, 10, "l");
+
+    spawnBullet("danger", 72.6, rightDanger, 10, "u");
+    spawnBullet("danger", 72.6, middleXDanger, 10, "u");
+    spawnBullet("danger", 72.6, bottomDanger, 10, "l");
+    spawnBullet("danger", 72.6, middleYDanger, 10, "l");
+
+    spawnBullet("danger", 73.4, leftDanger, 10, "u");
+    spawnBullet("danger", 73.4, middleXDanger, 10, "u");
+    spawnBullet("danger", 73.4, bottomDanger, 10, "l");
+    spawnBullet("danger", 73.4, middleYDanger, 10, "l");
+
+    for(let i = 73.8; i<=75.4; i+=0.2){
+        spawnBullet("basic", i, bl, 5, "u");
+        spawnBullet("basic", i, tr, 5, "d");
+        spawnBullet("basic", i, tl, 5, "d");
+        spawnBullet("basic", i, br, 5, "u");
+    }
+
+
+    spawnBullet("danger", 74.5, topDanger, 10, "l");
+    for(var j = 6; j <=16; j++){
+        spawnBullet("basic", 74.8, lt, j, "r");
+        spawnBullet("basic", 74.8, rt, j, "l");
+
+    }
+    spawnBullet("danger", 76.3, bottomDanger, 10, "l");
+
+    for(var j = 6; j <=16; j++){
+        spawnBullet("basic", 76.4, lb, j, "r");
+        spawnBullet("basic", 76.4, rb, j, "l");
+
+    }
+    spawnBullet("basic", 74.1, lb, 7, "r");
+    spawnBullet("basic", 74.5, rm, 7, "l");
+    spawnBullet("basic", 74.9, lb, 7, "r");
+    spawnBullet("basic", 75.3, rm, 7, "l");
+
+    spawnBullet("basic", 75.7, lt, 7, "r");
+    spawnBullet("basic", 76.1, rm, 7, "l");
+    spawnBullet("basic", 76.5, lt, 7, "r");
+    spawnBullet("basic", 76.9, rm, 7, "l");
+
+
+    for(var j = 6; j <=16; j++){
+        spawnBullet("basic", 77.4, lb, j, "r");
+        spawnBullet("basic", 77.4, rb, j, "l");
+    }
+    for(var j = 6; j <=16; j++){
+        spawnBullet("basic", 78.4, lm, j, "r");
+        spawnBullet("basic", 78.4, rm, j, "l");
+    }
+    for(var j = 6; j <=16; j++){
+        spawnBullet("basic", 79.4, lt, j, "r");
+        spawnBullet("basic", 79.4, rt, j, "l");
+    }
+    for(var j = 6; j <=16; j++){
+        spawnBullet("basic", 80.4, lt, j, "r");
+        spawnBullet("basic", 80.4, rt, j, "l");
+
+        spawnBullet("basic", 80.4, lb, j, "r");
+        spawnBullet("basic", 80.4, rb, j, "l");
+        
+    }
+    for(var i = 80.9; i <=84; i+=0.2){
+        spawnBullet("basic", i, lt, 6, "r");
+        spawnBullet("basic", i, rt, 6, "l");
+        spawnBullet("basic", i, lb, 6, "r");
+        spawnBullet("basic", i, rb, 6, "l");
+    }
+    // for(var i =7; i <= 10.7; i+=0.9){
+    //     spawnBullet("basic", i,tm, 8, "d");
+    //     spawnBullet("basic", i+0.5, bl, 8, "u");
+
+
+    // }
+
+
+
+}
+
+
+function bulletScript3(){
+    spawnBullet("danger", 1, topDanger, 10, "l");
+    spawnBullet("danger", 2, middleYDanger, 10, "l");
+    spawnBullet("danger", 3,bottomDanger, 10, "l");
+
+    spawnBullet("danger", 4, leftDanger, 10, "u");
+    spawnBullet("danger", 5, middleXDanger, 10, "u");
+    spawnBullet("danger", 6,rightDanger, 10, "u");
 }

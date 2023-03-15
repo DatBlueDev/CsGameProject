@@ -6,42 +6,57 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Raleway:wght@500&display=swap" rel="stylesheet">
-        
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
         <meta charset="UTF-8">
         <title>What the heyyyyyl</title>
         <link rel="stylesheet" href="GameStyleSheet.css">
     </head>
 
     <body id="mainBody">
-        <div id = "HomeScreen">
+        <div id = "HomeScreen" class="w3-container">
             <div id = "HomeButtons">
-                <button onclick="showLevels(); " id = "levelButton">Play</button>
-                <button onclick="startGame(2);" id = "howButton">How To Play</button>
+                <img src="gameSprites/Undertale.png" id = "TitleImage" class="w3-animate-opacity"><br><br>
+                <button onclick="showLevels(); " id = "levelButton" class= "w3-animate-top	">Play</button> <br><br><br>
+                <button onclick="showHowToPlay();" id = "howButton" class= "w3-animate-top	">How To Play</button><br><br><br>
+                <button onclick="showAbout();" id = "aboutButton" class= "w3-animate-top	">About Us!</button>
+
             </div>
         
         </div>
         <div id = "Levels">
             <div id = "LevelsContainer">
-                <button onclick="startGame(1); " id = "startButton">Level 1</button>
-                <button onclick="startGame(2);" id = "startButton2">Level 2</button>
+                <button onclick="startGame(1); " id = "startButton">Level 1</button><br><br><br>
+                <button onclick="startGame(2);" id = "startButton2">Level 2</button><br><br><br>
+                <button onclick="startGame(3);" id = "startButton3">Level 3</button>
+
             </div>
         
         </div>
 
-        <div id="GameScene">
+        <div id="GameScene" class ="w3-animate-opacity	">
             <div id = "HealthInfo">
                 <label for="Health">HP: </label>
                 <progress id="Health" value="32" max="100"> 100% </progress>
+                <p id = "HitCounter">Hits Taken: 0</p>
+                <p id = "fps" style="color:white;"></p>
+
             </div>
 
     
         </div>
         <div id="GameOverScene">
-            <h1 id="GameOverText">Game<br>Over!</h1>
-            <h2 id = "TipBar"></h2>
+            <h1 id="GameOverText" class = "w3-animate-top">Game<br>Over!</h1>
+            
+            <h2 id = "TipBar" width="300px;" class = "w3-animate-bottom"></h2>
 
         </div>
-        <img id="playerSprite" width="220"  src='gameSprites/playerSprite.png' alt="playerSprite" class = "hidden">
+
+        <div id="HowToPlayScene">
+            <h2 id="HowToPlayTitle" class = "w3-animate-top">How to Play!</h1>
+            <p></p>
+        </div>
+        <img id="playerSprite" width="220"  src='gameSprites/playerDefault.png' alt="playerSprite" class = "hidden">
 
         <img id="grid" width="220"  src='gameSprites/grid.png' alt="grid" class = "hidden">
 
@@ -51,6 +66,7 @@
         <script src = "gameScript.js"></script>
         <script src = "level1.js"></script>
         <script src = "changeScene.js"></script>
+        <script src = "extraJS.js"></script>
 
     </body>
 </html>
