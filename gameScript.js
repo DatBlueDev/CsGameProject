@@ -28,6 +28,10 @@ var immunityFrames = 30;
 var TitleScreen = document.getElementById("TitleScreen");
 var LevelScreen = document.getElementById("Levels");
 var hitCounterHTML = document.getElementById("HitCounter");
+var loadingText = document.getElementById("LoadingText");
+
+var loadingProgress = document.getElementById("LoadingProgress");
+var startGameButton = document.getElementById("startGameButton");
 
 var GameScene = document.getElementById("GameScene");
 var playerLocation;
@@ -35,15 +39,60 @@ var running = true;
 var godMode=false;
 grid = document.getElementById("grid");
 playerImage = document.getElementById("playerSprite");
+playerImageZ = document.getElementById("playerSpriteZ");
+
 HealthBar = document.getElementById("Health");
-var hurtEffect = new Audio('gameSoundEffects/hurtSoundEffect.mp3');
-var menuHit = new Audio('gameSoundEffects/menuhit.wav');
 var music1 = new Audio('gameMusic/Mittsies_Titanium.mp3');
 var music2 = new Audio('gameMusic/rainyBoots.mp3');
 var music3 = new Audio('gameMusic/DOSTHymnRemix.mp3');
 
+var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3')];
+var gameMusicIsLoaded = [false, false, false, false, false];
+var hoverSoundEffect = new Audio('gameSoundEffects/menuclick.wav');
+var hurtEffect = new Audio('gameSoundEffects/hurtSoundEffect.mp3');
+var menuHit = new Audio('gameSoundEffects/menuhit.wav');
+
 var filterStrength = 20;
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+
+music1.volume = .5;
+music2.volume = .5;
+music3.volume = .5;
+hoverSoundEffect.volume = .5;
+hurtEffect.volume = .5;
+menuHit.volume = .5;
+
+musicLoaded = 0;
+for (var i = 0; i<5; i++){
+    gameMusic[i].oncanplaythrough = function(){
+        musicLoaded+=1;
+        gameMusicIsLoaded[i]=true;
+        loadingProgress.innerHTML = musicLoaded + "/5";
+        if(musicLoaded == gameMusic.length){
+            startGameButton.style.display = "block";
+
+            loadingText.innerHTML = "Finished Loading!";
+            loadingProgress.innerHTML = "Please press start to continue";
+
+        }
+    }
+}
+
+
+slider.oninput = function() {
+    sliderVol=this.value/100;
+    music1.volume = sliderVol;
+    music2.volume = sliderVol;
+    music3.volume = sliderVol;
+    hoverSoundEffect.volume = sliderVol;
+    hurtEffect.volume = sliderVol;
+    menuHit.volume = sliderVol;
+
+}
 var frameTime = 0, lastLoop = new Date, thisLoop;
+
+menuHit.readyState
 async function startGame(level) {
     await wait(10);
     menuHit.play();
@@ -161,6 +210,8 @@ function BulletComponent(width, height, color, x, y, hasCollision = true, bullet
 
 
 function imageComponent(image, width, height, x, y) {
+    this.image = image;
+
     this.width = width;
     this.height = height;
     this.speedX = 0;
@@ -171,7 +222,7 @@ function imageComponent(image, width, height, x, y) {
     this.update = function() {
         ctx = myGameArea.context;
 
-        ctx.drawImage(image, this.x-(this.width/2), this.y-(this.height/2), this.width, this.height);
+        ctx.drawImage(this.image, this.x-(this.width/2), this.y-(this.height/2), this.width, this.height);
         
         
     }
@@ -496,6 +547,7 @@ $(document).keydown(function(event) {
         playerModel.x = Left; 
         playerModel.y = Down
         playerLocation = 7;
+        
     }
     
     if (key === 67){ // C

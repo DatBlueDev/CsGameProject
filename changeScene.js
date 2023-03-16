@@ -1,5 +1,8 @@
 var TitleScreen = document.getElementById("TitleScreen");
+var HomeScreen = document.getElementById("LoadingScreen");
+
 var HomeScreen = document.getElementById("HomeScreen");
+var StartedGame = document.getElementById("StartedGame");
 
 var GameScene = document.getElementById("GameScene");
 var GameOverScene = document.getElementById("GameOverScene");
@@ -38,6 +41,11 @@ function showGameOver(){
 
 }
 function showAbout(){}
+function start(){
+    StartedGame.style.display = "block";
+    LoadingScreen.style.display="none";
+}
+
 function showHowToPlay(){
     HomeScreen.style.display="none";
     HowToScreen.style.display="block";

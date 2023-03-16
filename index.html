@@ -14,49 +14,61 @@
     </head>
 
     <body id="mainBody">
-        <div id = "HomeScreen" class="w3-container">
-            <div id = "HomeButtons">
-                <img src="gameSprites/Undertale.png" id = "TitleImage" class="w3-animate-opacity"><br><br>
-                <button onclick="showLevels(); " id = "levelButton" class= "w3-animate-top	">Play</button> <br><br><br>
-                <button onclick="showHowToPlay();" id = "howButton" class= "w3-animate-top	">How To Play</button><br><br><br>
-                <button onclick="showAbout();" id = "aboutButton" class= "w3-animate-top	">About Us!</button>
+        <div id = "LoadingScreen" class="w3-display-middle">
+            <p id ="LoadingText">Loading Assets...</p>
+            <p id = "LoadingProgress">/5</p>
+            <button onclick="start();" style = "display:none" id = "startGameButton">Start</button><br><br><br>
 
-            </div>
-        
         </div>
-        <div id = "Levels">
-            <div id = "LevelsContainer">
-                <button onclick="startGame(1); " id = "startButton">Level 1</button><br><br><br>
-                <button onclick="startGame(2);" id = "startButton2">Level 2</button><br><br><br>
-                <button onclick="startGame(3);" id = "startButton3">Level 3</button>
-
+        <div id = "StartedGame" style="display:none;">
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
             </div>
-        
-        </div>
+            <div id = "HomeScreen" class="w3-container">
+                <div id = "HomeButtons">
+                    <img src="gameSprites/Undertale.png" id = "TitleImage" class="w3-animate-opacity"><br><br>
+                    <button onclick="showLevels(); " id = "levelButton" class= "w3-animate-top	">Play</button> <br><br><br>
+                    <button onclick="showHowToPlay();" id = "howButton" class= "w3-animate-top	">How To Play</button><br><br><br>
+                    <button onclick="showAbout();" id = "aboutButton" class= "w3-animate-top	">About Us!</button>
 
-        <div id="GameScene" class ="w3-animate-opacity	">
-            <div id = "HealthInfo">
-                <label for="Health">HP: </label>
-                <progress id="Health" value="32" max="100"> 100% </progress>
-                <p id = "HitCounter">Hits Taken: 0</p>
-                <p id = "fps" style="color:white;"></p>
-
-            </div>
-
-    
-        </div>
-        <div id="GameOverScene">
-            <h1 id="GameOverText" class = "w3-animate-top">Game<br>Over!</h1>
+                </div>
             
-            <h2 id = "TipBar" width="300px;" class = "w3-animate-bottom"></h2>
+            </div>
+            <div id = "Levels">
+                <div id = "LevelsContainer">
+                    <button onclick="startGame(1); " id = "startButton">Level 1</button><br><br><br>
+                    <button onclick="startGame(2);" id = "startButton2">Level 2</button><br><br><br>
+                    <button onclick="startGame(3);" id = "startButton3">Level 3</button>
 
-        </div>
+                </div>
+            
+            </div>
 
-        <div id="HowToPlayScene">
-            <h2 id="HowToPlayTitle" class = "w3-animate-top">How to Play!</h1>
-            <p></p>
+            <div id="GameScene" class ="w3-animate-opacity	">
+                <div id = "HealthInfo">
+                    <label for="Health">HP: </label>
+                    <progress id="Health" value="32" max="100"> 100% </progress>
+                    <p id = "HitCounter">Hits Taken: 0</p>
+                    <p id = "fps" style="color:white;"></p>
+
+                </div>
+
+        
+            </div>
+            <div id="GameOverScene">
+                <h1 id="GameOverText" class = "w3-animate-top">Game<br>Over!</h1>
+                
+                <h2 id = "TipBar" width="300px;" class = "w3-animate-bottom"></h2>
+
+            </div>
+
+            <div id="HowToPlayScene">
+                <h2 id="HowToPlayTitle" class = "w3-animate-top">How to Play!</h1>
+                <p></p>
+            </div>
         </div>
         <img id="playerSprite" width="220"  src='gameSprites/playerDefault.png' alt="playerSprite" class = "hidden">
+        <img id="playerSpriteZ" width="220"  src='gameSprites/playerSprite.png' alt="playerSprite" class = "hidden">
 
         <img id="grid" width="220"  src='gameSprites/grid.png' alt="grid" class = "hidden">
 
