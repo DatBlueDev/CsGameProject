@@ -11,6 +11,7 @@ var tipBar = document.getElementById("TipBar");
 var LevelScreen = document.getElementById("Levels");
 var mainBody = document.getElementById("mainBody");
 var HowToScreen = document.getElementById("HowToPlayScene");
+var WinScene = document.getElementById("WinScene");
 
 var gameOverMusic = new Audio('gameMusic/DeathMusic.mp3');
 var tips = ["It can take a while to get used to the controls!", 
@@ -28,6 +29,7 @@ function showLevels(){
 
 }
 function showGameOver(){
+    document.body.style.backgroundImage = "linear-gradient(180deg, black , rgba(255,40,40,0.3))";
     gameOverMusic.play();
     console.log("game over");
     GameScene.remove();
@@ -44,12 +46,25 @@ function showAbout(){}
 function start(){
     StartedGame.style.display = "block";
     LoadingScreen.style.display="none";
+    HowToScreen.style.display="none";
+    WinScene.style.display="none";
+
 }
 
 function showHowToPlay(){
     HomeScreen.style.display="none";
     HowToScreen.style.display="block";
     HowToScreen.style.color="white";
-    
+}
 
+function winScreen(){
+    gameMusic[5].play();
+    console.log("win");
+    GameScene.remove();
+    running= false;
+    for(var i = 0; i<5; i++){
+        gameMusic[i].pause();
+    }
+    WinScene.style.display="block";
+    WinScene.style.color="white";
 }

@@ -32,6 +32,7 @@ var loadingText = document.getElementById("LoadingText");
 
 var loadingProgress = document.getElementById("LoadingProgress");
 var startGameButton = document.getElementById("startGameButton");
+var problemLoading = document.getElementById("ProblemLoading");
 
 var GameScene = document.getElementById("GameScene");
 var playerLocation;
@@ -42,11 +43,9 @@ playerImage = document.getElementById("playerSprite");
 playerImageZ = document.getElementById("playerSpriteZ");
 
 HealthBar = document.getElementById("Health");
-var music1 = new Audio('gameMusic/Mittsies_Titanium.mp3');
-var music2 = new Audio('gameMusic/rainyBoots.mp3');
-var music3 = new Audio('gameMusic/DOSTHymnRemix.mp3');
 
-var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3')];
+
+var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3'), new Audio('gameMusic/applause.ogg')];
 var gameMusicIsLoaded = [false, false, false, false, false];
 var hoverSoundEffect = new Audio('gameSoundEffects/menuclick.wav');
 var hurtEffect = new Audio('gameSoundEffects/hurtSoundEffect.mp3');
@@ -56,15 +55,15 @@ var filterStrength = 20;
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
 
-music1.volume = .5;
-music2.volume = .5;
-music3.volume = .5;
+gameMusic[0].volume = .5;
+gameMusic[1].volume = .5;
+gameMusic[2].volume = .5;
 hoverSoundEffect.volume = .5;
 hurtEffect.volume = .5;
 menuHit.volume = .5;
 
 musicLoaded = 0;
-for (var i = 0; i<5; i++){
+for (var i = 0; i<gameMusic.length; i++){
     gameMusic[i].oncanplaythrough = function(){
         musicLoaded+=1;
         gameMusicIsLoaded[i]=true;
@@ -74,7 +73,7 @@ for (var i = 0; i<5; i++){
 
             loadingText.innerHTML = "Finished Loading!";
             loadingProgress.innerHTML = "Please press start to continue";
-
+            problemLoading.remove();
         }
     }
 }
@@ -82,9 +81,10 @@ for (var i = 0; i<5; i++){
 
 slider.oninput = function() {
     sliderVol=this.value/100;
-    music1.volume = sliderVol;
-    music2.volume = sliderVol;
-    music3.volume = sliderVol;
+    for(var i = 0; i<gameMusic.length; i++){
+        gameMusic[i].volume = sliderVol;
+        console.log(sliderVol);
+    }
     hoverSoundEffect.volume = sliderVol;
     hurtEffect.volume = sliderVol;
     menuHit.volume = sliderVol;
@@ -132,7 +132,7 @@ var myGameArea = {
 var fpsOut = document.getElementById('fps');
 setInterval(function(){
   fpsOut.innerHTML = (1000/frameTime).toFixed(1) + " fps";
-},1000);
+},10);
 function component(width, height, color, x, y) {
     this.width = width;
     this.height = height;
@@ -239,8 +239,9 @@ function imageComponent(image, width, height, x, y) {
 
 function gameOver(){
     if(!godMode){
-        music1.pause();
-        music2.pause();
+        for(var i = 0; i<=gameMusic.length-1; i++){
+            gameMusic[i].pause();
+        }
         showGameOver();
     }
 
@@ -437,7 +438,7 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
         }
 
     }
-    else if ("Ferris"){
+    else if ( type == "ferris"){
 
         let a = [];
         degreesRotation.push(0);
@@ -452,6 +453,11 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
         
 
 
+    }
+    else if (type == "win"){
+        $("#GameScene").fadeOut();
+        await wait (2000);
+        winScreen();
     }
 
 
@@ -481,16 +487,20 @@ function main(){
     rightDanger = [480, 0]
     // spawnBullet("danger", 0, topDanger, 10, "r") ;
     if (gameLevel == 1){
-        music1.play();
+        console.log(gameLevel);
+        gameMusic[gameLevel-1].play();
+        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(100, 100, 100, 0.6) , black)";
+
         bulletScript1();
     }
     else if (gameLevel == 2) {
-        music2.play();
+        gameMusic[gameLevel-1].play();
+        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(100, 100, 255, 0.05) , rgba(40,40,40))";
 
         bulletScript2();
     }
     else if (gameLevel == 3) {
-        music3.play();
+        gameMusic[gameLevel-1].play();
         bulletScript3();
     }
 

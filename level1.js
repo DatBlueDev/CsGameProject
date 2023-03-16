@@ -60,7 +60,7 @@ function bulletScript1(){
     spawnBullet("danger", 31, rightDanger, 10, "u") ;
 
 
-    for (let i = 34; i < 39; i++){
+    for (let i = 34; i < 40; i++){
         spawnBullet("basic", i, shuffle([tr,tm,tl])[0], 10, "d") ;
         spawnBullet("basic", i, shuffle([tr,tm,tl])[0], 10, "d") ;
 
@@ -72,7 +72,7 @@ function bulletScript1(){
             spawnBullet("danger", j, topDanger, 10, "l");
         }
     }
-    for (let i = 39; i <=45; i++){
+    for (let i = 40; i <=45; i++){
 
         spawnBullet("basic", i, shuffle([tr,tm,tl])[0], 10, "d") ;
         spawnBullet("basic", i, shuffle([tr,tm,tl])[0], 10, "d") ;
@@ -86,6 +86,8 @@ function bulletScript1(){
         }
 
     }
+    spawnBullet("win", 50, rb, 6, "l");
+
 
 }
 function bulletScript2(){
@@ -322,7 +324,9 @@ function bulletScript2(){
 
 
     // }
+    
 
+    spawnBullet("win", 100, rb, 6, "l");
 
 
 }
@@ -336,4 +340,7 @@ function bulletScript3(){
     spawnBullet("danger", 4, leftDanger, 10, "u");
     spawnBullet("danger", 5, middleXDanger, 10, "u");
     spawnBullet("danger", 6,rightDanger, 10, "u");
+
+    spawnBullet("win", 1, rb, 6, "l");
+
 }

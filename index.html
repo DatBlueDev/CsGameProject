@@ -16,8 +16,9 @@
     <body id="mainBody">
         <div id = "LoadingScreen" class="w3-display-middle">
             <p id ="LoadingText">Loading Assets...</p>
-            <p id = "LoadingProgress">/5</p>
+            <p id = "LoadingProgress">0/6</p>
             <button onclick="start();" style = "display:none" id = "startGameButton">Start</button><br><br><br>
+            <p id = "ProblemLoading" class="w3-animate-bottom">If the website does not load, try to reload the browser, or check your internet connection.</p>
 
         </div>
         <div id = "StartedGame" style="display:none;">
@@ -26,7 +27,7 @@
             </div>
             <div id = "HomeScreen" class="w3-container">
                 <div id = "HomeButtons">
-                    <img src="gameSprites/Undertale.png" id = "TitleImage" class="w3-animate-opacity"><br><br>
+                    <img src="gameSprites/gridlock.png" alt = "TitleScreen" id = "TitleImage" class="w3-animate-opacity"><br><br>
                     <button onclick="showLevels(); " id = "levelButton" class= "w3-animate-top	">Play</button> <br><br><br>
                     <button onclick="showHowToPlay();" id = "howButton" class= "w3-animate-top	">How To Play</button><br><br><br>
                     <button onclick="showAbout();" id = "aboutButton" class= "w3-animate-top	">About Us!</button>
@@ -35,10 +36,10 @@
             
             </div>
             <div id = "Levels">
-                <div id = "LevelsContainer">
+                <div id = "LevelsContainer" >
                     <button onclick="startGame(1); " id = "startButton">Level 1</button><br><br><br>
                     <button onclick="startGame(2);" id = "startButton2">Level 2</button><br><br><br>
-                    <button onclick="startGame(3);" id = "startButton3">Level 3</button>
+                    <!-- <button onclick="startGame(3);" id = "startButton3">Level 3</button> -->
 
                 </div>
             
@@ -58,12 +59,20 @@
             <div id="GameOverScene">
                 <h1 id="GameOverText" class = "w3-animate-top">Game<br>Over!</h1>
                 
-                <h2 id = "TipBar" width="300px;" class = "w3-animate-bottom"></h2>
+                <h2 id = "TipBar"  class = "w3-animate-bottom"></h2>
 
             </div>
 
             <div id="HowToPlayScene">
-                <h2 id="HowToPlayTitle" class = "w3-animate-top">How to Play!</h1>
+                <h2 id="HowToPlayTitle" class = "w3-animate-top">How to Play!</h2>
+                <p></p>
+            </div>
+            
+            <div id="WinScene">
+                <div class="w3-animate-zoom" id="ZoomAnimationOnWin">
+                    <p id="YouWinTitle" class = "w3-animate-opacity">You Win!</h2>
+
+                </div>
                 <p></p>
             </div>
         </div>
