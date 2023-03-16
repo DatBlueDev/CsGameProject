@@ -27,8 +27,10 @@ canvas {
 }
 html{
     min-height: 100%;
+    
 }
 body{
+    
     min-height:100%;
     background-repeat: no-repeat;
     text-align: center;
@@ -72,6 +74,7 @@ button:hover{
 }
 #TipBar{
     margin-top:5%;
+    padding-bottom:2%;
     font-weight:50;
     font-family: PressStart;
     color:white;
@@ -92,19 +95,48 @@ button:hover{
     display:none;
     justify-content: center;
 }
-canvas{
 
-
-}
 #HowToPlayScene{
     display:none;
     font-family: PressStart;
+    text-align: center;
+}
+
+#HowToPlayTitle{
+    font-size:300%;
+}
+.HelpParts{
+    border: white 5px solid;
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
 
 }
+#Help1{
+    text-align:left;
+}
+#Help2{
+    text-align:right;
+
+}
+#HelpText1{
+    margin-left:5%;
+}
+#HelpText2{
+    margin-right:5%;
+}
+#TitleArt{
+    width:400px;
+    position:absolute;
+    bottom: 0px;
+    right:0px;
+}
+
 label{
     padding-top:20px;
     color:white
 }
+
 #GameOverScene{
     color:white;
     display:none;
@@ -116,13 +148,24 @@ label{
     font-family: PressStart;
 
 }
+ 
 progress::-webkit-progress-value {background-color: rgb(41, 255, 41) !important;}
 progress::-webkit-progress-bar {background-color: rgb(204, 26, 26); width: 100%;}
 progress{background-color: rgb(41, 255, 41) !important;}
 progress::-moz-progress-bar  {background-color: rgb(204, 26, 26); width: 100%;}
 
 #levelButton{
+    animation-fill-mode: both;
     margin-top:-5%;
+    animation-delay:0.2s;
+}
+#howButton{
+    animation-fill-mode: both;
+    animation-delay:0.4s;
+}
+#aboutButton{
+    animation-fill-mode: both;
+    animation-delay:0.6s;
 }
 #HealthInfo{
     position:absolute;
@@ -164,43 +207,46 @@ footer {
     font-size:x-large;
 
 }
-  /* The slider itself */
+
+#reloadButton{
+    animation-delay:2s;
+    animation-duration:4s;
+    animation-fill-mode: both;
+}
   .slider {
     position:absolute;
     bottom:120px;
-    right:0px;
+    left:0px;
     transform: rotate(270deg);
 
-    -webkit-appearance: none;  /* Override default CSS styles */
+    -webkit-appearance: none; 
     appearance: none;
-    width: 200px; /* Full-width */
-    height: 20px; /* Specified height */
-    background: #d3d3d3; /* Grey background */
-    outline: none; /* Remove outline */
-    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    width: 200px;
+    height: 20px; 
+    background: #d3d3d3;
+    outline: none; 
+    opacity: 0.7;
+    -webkit-transition: .2s;
     transition: opacity .2s;
   }
   
-  /* Mouse-over effects */
   .slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
+    opacity: 1; 
   }
   
-  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
   .slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
+    -webkit-appearance: none; 
     appearance: none;
-    width: 20px; /* Set a specific slider handle width */
-    height: 20px; /* Slider handle height */
-    background: #ff41d6; /* Green background */
+    width: 20px; 
+    height: 20px;
+    background: #ff41d6; 
     cursor: pointer; /* Cursor on hover */
   
 }
   
   .slider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #ff41d6; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+    width: 25px; 
+    height: 25px; 
+    background: #ff41d6; 
+    cursor: pointer; 
   }

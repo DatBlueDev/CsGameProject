@@ -9,7 +9,9 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
         <meta charset="UTF-8">
-        <title>What the heyyyyyl</title>
+        <title>GridLock</title>
+        <link rel="icon" type="image/x-icon" href="gameSprites/gameIcon.ico">
+
         <link rel="stylesheet" href="GameStyleSheet.css">
     </head>
 
@@ -28,6 +30,8 @@
             <div id = "HomeScreen" class="w3-container">
                 <div id = "HomeButtons">
                     <img src="gameSprites/gridlock.png" alt = "TitleScreen" id = "TitleImage" class="w3-animate-opacity"><br><br>
+                    <img src="gameSprites/sakuya.png" alt = "MainCharacterArt" id = "TitleArt" class="w3-animate-right"     ><br><br>
+
                     <button onclick="showLevels(); " id = "levelButton" class= "w3-animate-top	">Play</button> <br><br><br>
                     <button onclick="showHowToPlay();" id = "howButton" class= "w3-animate-top	">How To Play</button><br><br><br>
                     <button onclick="showAbout();" id = "aboutButton" class= "w3-animate-top	">About Us!</button>
@@ -37,9 +41,10 @@
             </div>
             <div id = "Levels">
                 <div id = "LevelsContainer" >
-                    <button onclick="startGame(1); " id = "startButton">Level 1</button><br><br><br>
-                    <button onclick="startGame(2);" id = "startButton2">Level 2</button><br><br><br>
+                    <button onclick="startGame(1); " id = "startButton" class= "w3-animate-top">Level 1</button><br><br><br>
+                    <button onclick="startGame(2);" id = "startButton2" class= "w3-animate-top">Level 2</button><br><br><br>
                     <!-- <button onclick="startGame(3);" id = "startButton3">Level 3</button> -->
+                    <button onclick="backFromLevels(); " id = "backLevelButton" class= " w3-animate-bottom">Back</button> <br><br><br>
 
                 </div>
             
@@ -60,11 +65,30 @@
                 <h1 id="GameOverText" class = "w3-animate-top">Game<br>Over!</h1>
                 
                 <h2 id = "TipBar"  class = "w3-animate-bottom"></h2>
-
+                <button onclick="location.reload();" id = "reloadButton" class= "w3-animate-bottom">Play Again</button>
             </div>
 
             <div id="HowToPlayScene">
-                <h2 id="HowToPlayTitle" class = "w3-animate-top">How to Play!</h2>
+                <p id="HowToPlayTitle" class = "w3-animate-top">How to Play!</p>
+                <div id = "HelpContainer">
+                    <div class = "HelpParts" id = "Help1" class = "w3-center w3-animate-fade">
+                        <p id = "HelpText1">You control a character in a 3x3 grid, the controls are shown below. <br> Click each and you will appear at that cell in the grid<p>
+                            <img src = "gameSprites/gridHelp.png" alt = "gridHelp" style="margin-left:40%;">
+                    </div>
+                    <div class = "HelpParts" id = "Help2" class = "w3-center w3-animate-fade">
+                        <p id = "HelpText2">There are bullets that will appear outside of your screen <br>
+                            Your goal is to avoid those bullets until a certain time for the level to end. <br>
+                            Get hit by those bullets and you lose HP, HP regenerates over time.<p>
+                    </div>
+                    <div class = "HelpParts" id = "Help3" class = "w3-center w3-animate-fade">
+                        <p id = "HelpText3">There are two other types of bullets that can spawn, but we'll <br>
+                            let you play the game to find out... Good luck and Have Fun!<p>
+                    </div>
+                    <br><br><br>
+                    <button onclick="backFromHelp(); "  id = "backHelpButton" class= " w3-animate-bottom">Back</button> <br><br><br>
+
+                </div>
+                
                 <p></p>
             </div>
             

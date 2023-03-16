@@ -11,7 +11,7 @@ function bulletScript1(){
 
     spawnBullet("basic", 5.00, bl, 10, "u") ;
     spawnBullet("basic", 5.00, br, 10, "u") ;
-    for (let i = 6.50; i <= 12; i+=0.5){
+    for (let i = 7; i <= 12; i+=0.5){
         spawnBullet("basic", i, bl, 10, "u") ;
         spawnBullet("basic", i, br, 10, "u") ;
     }
@@ -326,7 +326,7 @@ function bulletScript2(){
     // }
     
 
-    spawnBullet("win", 100, rb, 6, "l");
+    spawnBullet("win", 82, rb, 6, "l");
 
 
 }

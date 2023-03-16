@@ -20,8 +20,14 @@ var tips = ["It can take a while to get used to the controls!",
             "If you keep dying at a certain point, try reevaluating your approach or something.",
             "This game takes a moderate amount of memorization and pattern remembering, so it will take multiple tries to beat it.",
             "I can't think of any more useful tips just get good xd",
-            "bad"];
+            "bad",
+            "The player's hitbox is actually not the entire image, but the center; this makes it easier to dodge. bullets very close to you",
+            "YOU EXPECTED A TIP SCREEN, BUT IT WAS ME, KONO DIO DA!",
+            "Lasers have a short time window before it hurts you!",
+            ""];
 function showLevels(){
+    menuHit.play();
+
     HomeScreen.style.display = "none";
     GameOverScene.style.color="none";
 
@@ -29,7 +35,7 @@ function showLevels(){
 
 }
 function showGameOver(){
-    document.body.style.backgroundImage = "linear-gradient(180deg, black , rgba(255,40,40,0.3))";
+    document.body.style.backgroundImage = "linear-gradient(180deg, black , rgba(255,40,40,0.1))";
     gameOverMusic.play();
     console.log("game over");
     GameScene.remove();
@@ -42,29 +48,56 @@ function showGameOver(){
     //GameOverScene.style.display = "block";
 
 }
-function showAbout(){}
+function showAbout(){   
+     menuHit.play();
+}
+function reloadGame(){
+
+}
 function start(){
+    gameMusic[6].play();
     StartedGame.style.display = "block";
     LoadingScreen.style.display="none";
     HowToScreen.style.display="none";
     WinScene.style.display="none";
+    menuHit.play();
 
 }
 
 function showHowToPlay(){
+    menuHit.play();
+
     HomeScreen.style.display="none";
     HowToScreen.style.display="block";
     HowToScreen.style.color="white";
 }
+function backFromLevels(){
+    menuHit.play();
+
+    HomeScreen.style.display = "block";
+    GameOverScene.style.color="none";
+    LevelScreen.style.display = "none";
+}
+function backFromHelp(){
+    menuHit.play();
+
+    HomeScreen.style.display = "block";
+    GameOverScene.style.color="none";
+    HowToScreen.style.display = "none";
+}
 
 function winScreen(){
-    gameMusic[5].play();
-    console.log("win");
-    GameScene.remove();
-    running= false;
-    for(var i = 0; i<5; i++){
-        gameMusic[i].pause();
+
+    if(running==true){
+        gameMusic[5].play();
+        console.log("win");
+        GameScene.remove();
+        running= false;
+        for(var i = 0; i<5; i++){
+            gameMusic[i].pause();
+        }
+        WinScene.style.display="block";
+        WinScene.style.color="white";
     }
-    WinScene.style.display="block";
-    WinScene.style.color="white";
+
 }

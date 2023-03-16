@@ -45,7 +45,7 @@ playerImageZ = document.getElementById("playerSpriteZ");
 HealthBar = document.getElementById("Health");
 
 
-var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3'), new Audio('gameMusic/applause.ogg')];
+var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3'), new Audio('gameMusic/applause.ogg'), new Audio('gameMusic/menuMusic.mp3')];
 var gameMusicIsLoaded = [false, false, false, false, false];
 var hoverSoundEffect = new Audio('gameSoundEffects/menuclick.wav');
 var hurtEffect = new Audio('gameSoundEffects/hurtSoundEffect.mp3');
@@ -67,7 +67,7 @@ for (var i = 0; i<gameMusic.length; i++){
     gameMusic[i].oncanplaythrough = function(){
         musicLoaded+=1;
         gameMusicIsLoaded[i]=true;
-        loadingProgress.innerHTML = musicLoaded + "/5";
+        loadingProgress.innerHTML = musicLoaded + "/" + gameMusic.length;
         if(musicLoaded == gameMusic.length){
             startGameButton.style.display = "block";
 
@@ -96,6 +96,8 @@ menuHit.readyState
 async function startGame(level) {
     await wait(10);
     menuHit.play();
+    gameMusic[6].pause();
+
     LevelScreen.remove();
     await wait(0.4);
     
