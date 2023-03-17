@@ -167,18 +167,15 @@ var myGameArea = {
    
     canvas : g = document.createElement("canvas"),
     start : function() {
-        this.canvas.width = canvasWidth;
         g.setAttribute("id", "gameCanvas");
         
-        playerHeight = 30;
-        playerWidth = 30;
+
         bulletModels = [];
         laserModels = [];
         i = 0;
         bulletHeight = 30;
         bulletWidth = 30;
         hitCounter = 0; 
-
 
         health = 100;
         maxHealth = 100;
@@ -192,16 +189,10 @@ var myGameArea = {
         for (var i = 0; i<gameMusic.length; i++){
             gameMusic[i].currentTime=0;
         }
-
         currentGameNumber +=1;
-        gameMusic[0].volume = .5;
-        gameMusic[1].volume = .5;
-        gameMusic[2].volume = .5;
-        hoverSoundEffect.volume = .5;
-        hurtEffect.volume = .5;
-        menuHit.volume = .5;
-
         musicLoaded = 0;
+
+        this.canvas.width = canvasWidth;
         this.canvas.height = canvasHeight;
         this.context = this.canvas.getContext("2d");
         GameScene.appendChild(this.canvas);
@@ -253,48 +244,47 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
     var yk =bulletLocation[1]; 
 
     this.update = function() {
-        if (gameNumber ==currentGameNumber){
-
-        
+        if (this.gameNumber ==currentGameNumber){   
             ctx = myGameArea.context;
             ctx.fillStyle = color;
             ctx.fillRect(this.x-(this.width/2), this.y-(this.height/2), this.width, this.height);
         }
     }
     this.newPos = function() {
-        if (gameNumber == currentGameNumber){
+        if (this.gameNumber == currentGameNumber){
             this.x += this.speedX;
             this.y += this.speedY;  
         }
       
     }        
-    if (gameNumber != currentGameNumber){
-        this.x=9000000;
-        this.y= 9000000;
+    if (this.gameNumber != currentGameNumber){
+        this.x=9000;
+        this.y= 9000;
     }
     this.rotate = function(degreesRotation) {
 
+        if (this.gameNumber == currentGameNumber){
 
-        if (bulletDirection == "r"){
-            xk  += bulletSpeed;
-        }
-        else if (bulletDirection == "l"){
-            xk  += -bulletSpeed;
-        }
-        else if (bulletDirection == "u"){
-            yk += -bulletSpeed;
-        }
-        else if (bulletDirection == "d"){
-            yk += bulletSpeed;
-        }
-        bulletModels[j].x = xk + (100*radius*(Math.cos(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180)))); 
-        bulletModels[j].y = yk + (100*radius*(Math.sin(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180))));  
-        degreesRotation[ferrisNumber]+=0.05;
-        console.log(degreesRotation);
-        console.log(ferrisNumber);
+            if (bulletDirection == "r"){
+                xk  += bulletSpeed;
+            }
+            else if (bulletDirection == "l"){
+                xk  += -bulletSpeed;
+            }
+            else if (bulletDirection == "u"){
+                yk += -bulletSpeed;
+            }
+            else if (bulletDirection == "d"){
+                yk += bulletSpeed;
+            }
+            bulletModels[j].x = xk + (100*radius*(Math.cos(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180)))); 
+            bulletModels[j].y = yk + (100*radius*(Math.sin(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180))));  
+            degreesRotation[ferrisNumber]+=0.05;
+            console.log(degreesRotation);
+            console.log(ferrisNumber);
 
-
         }
+    }
 
 
     }  
@@ -343,13 +333,14 @@ function win(){
 
 }
 async function updateGameArea() {
-            console.log("test");
+    console.log("test");
 
     var thisFrameTime = (thisLoop=new Date) - lastLoop;
     frameTime+= (thisFrameTime - frameTime) / filterStrength;
     lastLoop = thisLoop;
-    if (running == true){
-        console.log("running");
+    if (running == true &&  (gameNumber == currentGameNumber)){
+        console.log(gameNumber);
+        
         if (health<=maxHealth){
             health+=0.10;
     

@@ -23,7 +23,7 @@ var tips = ["It can take a while to get used to the controls!",
             "The player's hitbox is actually not the entire image, but the center; this makes it easier to dodge. bullets very close to you",
             "YOU EXPECTED A TIP SCREEN, BUT IT WAS ME, KONO DIO DA!",
             "Lasers have a short time window before it hurts you!",
-            ""];
+            ";"];
 function showLevels(){
     menuHit.play();
 
@@ -46,7 +46,7 @@ function showGameOver(){
     gameCanvas.remove();
     GameOverScene.style.display="block";
     GameOverScene.style.color="white";
-    
+    clearInterval(updateGameArea);
     tipBar.innerHTML = shuffle(tips)[0];
     //GameOverScene.style.display = "block";
 
