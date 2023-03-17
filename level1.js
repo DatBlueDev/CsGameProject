@@ -92,7 +92,7 @@ function bulletScript1(){
 }
 function bulletScript2(){
 
-
+    
     for(var i =1.7; i <= 14.2; i+=0.1){
         spawnBullet("basic", i, rb, 10, "l");
 
@@ -369,12 +369,6 @@ function bulletScript3(){
 
     spawnBullet("basic",22.2, br, 5, "u");
     spawnBullet("basic",22.2, bm, 5, "u");
-
-    spawnBullet("danger", 19, middleYDanger, 10, "l");
-    spawnBullet("danger", 19, middleXDanger, 10, "u");
-
-    spawnBullet("win", 100, rb, 6, "l");
-
 }
 function bulletScript4(){
 

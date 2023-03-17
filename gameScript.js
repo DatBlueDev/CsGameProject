@@ -10,7 +10,8 @@ var bulletWidth = 30;
 var hitCounter = 0; 
 var canvasHeight = 800;
 var canvasWidth = 800;
-
+var gameNumber = 0;
+var currentGameNumber = -1;
 var gridModel;
 var gridHeight = 300;
 var gridWidth = 300;
@@ -55,12 +56,12 @@ var filterStrength = 20;
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
 
-gameMusic[0].volume = 1;
-gameMusic[1].volume =1;
-gameMusic[2].volume = 1;
-hoverSoundEffect.volume = 1;
-hurtEffect.volume = 1;
-menuHit.volume = 1;
+gameMusic[0].volume = .5;
+gameMusic[1].volume = .5;
+gameMusic[2].volume = .5;
+hoverSoundEffect.volume = .5;
+hurtEffect.volume = .5;
+menuHit.volume = .5;
 
 musicLoaded = 0;
 for (var i = 0; i<gameMusic.length; i++){
@@ -82,7 +83,7 @@ for (var i = 0; i<gameMusic.length; i++){
 slider.oninput = function() {
     sliderVol=this.value/100;
     for(var i = 0; i<gameMusic.length; i++){
-        gameMusic[i].volume = (sliderVol-0.01)*4;
+        gameMusic[i].volume = sliderVol;
         console.log(sliderVol);
     }
     hoverSoundEffect.volume = sliderVol;
@@ -95,25 +96,56 @@ var frameTime = 0, lastLoop = new Date, thisLoop;
 menuHit.readyState
 async function startGame(level) {
 
-    var bulletModels = [];
-    var laserModels = [];
-    var i = 0;
-    var bulletHeight = 30;
-    var bulletWidth = 30;
-    var hitCounter = 0; 
+var playerHeight = 30;
+var playerWidth = 30;
+var bulletModels = [];
+var laserModels = [];
+var i = 0;
+var bulletHeight = 30;
+var bulletWidth = 30;
+var hitCounter = 0; 
 
-    var health = 100;
-    var maxHealth = 100;
-    var degreesRotation=[];
-    var ferrisNumber = -1;
-    var startTime = Date.now();
-    var immunityFrameTimer = 0;
-    var immunityFrames = 30;
+
+var health = 100;
+var maxHealth = 100;
+var degreesRotation=[];
+var ferrisNumber = -1;
+var startTime = Date.now();
+var immunityFrameTimer = 0;
+
+var LevelScreen = document.getElementById("Levels");
+
+
+var GameScene = document.getElementById("GameScene");
+var playerLocation;
+var running = true;
+var godMode=false;
+grid = document.getElementById("grid");
+playerImage = document.getElementById("playerSprite");
+playerImageZ = document.getElementById("playerSpriteZ");
+
+HealthBar = document.getElementById("Health");
+
+for (var i = 0; i<gameMusic.length; i++){
+    gameMusic[i].currentTime=0;
+}
+var filterStrength = 20;
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+
+gameMusic[0].volume = .5;
+gameMusic[1].volume = .5;
+gameMusic[2].volume = .5;
+hoverSoundEffect.volume = .5;
+hurtEffect.volume = .5;
+menuHit.volume = .5;
+
+musicLoaded = 0;
     await wait(10);
     menuHit.play();
     gameMusic[6].pause();
 
-    LevelScreen.remove();
+    LevelScreen.style.display = "none";
     await wait(0.4);
     
 
@@ -133,9 +165,43 @@ async function startGame(level) {
 
 var myGameArea = {
    
-    canvas : document.createElement("canvas"),
+    canvas : g = document.createElement("canvas"),
     start : function() {
         this.canvas.width = canvasWidth;
+        g.setAttribute("id", "gameCanvas");
+        
+        playerHeight = 30;
+        playerWidth = 30;
+        bulletModels = [];
+        laserModels = [];
+        i = 0;
+        bulletHeight = 30;
+        bulletWidth = 30;
+        hitCounter = 0; 
+
+
+        health = 100;
+        maxHealth = 100;
+        degreesRotation=[];
+        ferrisNumber = -1;
+        startTime = Date.now();
+        immunityFrameTimer = 0;
+        playerLocation;
+        running = true;
+        godMode=false;
+        for (var i = 0; i<gameMusic.length; i++){
+            gameMusic[i].currentTime=0;
+        }
+
+        currentGameNumber +=1;
+        gameMusic[0].volume = .5;
+        gameMusic[1].volume = .5;
+        gameMusic[2].volume = .5;
+        hoverSoundEffect.volume = .5;
+        hurtEffect.volume = .5;
+        menuHit.volume = .5;
+
+        musicLoaded = 0;
         this.canvas.height = canvasHeight;
         this.context = this.canvas.getContext("2d");
         GameScene.appendChild(this.canvas);
@@ -169,7 +235,7 @@ function component(width, height, color, x, y) {
 }
 
 
-function BulletComponent(width, height, color, x, y, hasCollision = true, bulletDirection = "l", bulletsInCircle =5, isFerris = false, bulletLocation=[], j=0, radius=1,rotationSpeed=1,bulletSpeed=1, ferrisNumber) {
+function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = true, bulletDirection = "l", bulletsInCircle =5, isFerris = false, bulletLocation=[], j=0, radius=1,rotationSpeed=1,bulletSpeed=1, ferrisNumber) {
     this.width = width;
     this.height = height;
     this.speedX = 0;
@@ -182,20 +248,30 @@ function BulletComponent(width, height, color, x, y, hasCollision = true, bullet
     this.isFerris = isFerris;
     this.rotationSpeed = rotationSpeed;
     this.ferrisNumber = ferrisNumber;
-
+    this.gameNumber = gameNumber;
     var xk =bulletLocation[0];
     var yk =bulletLocation[1]; 
 
     this.update = function() {
-        ctx = myGameArea.context;
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x-(this.width/2), this.y-(this.height/2), this.width, this.height);
+        if (gameNumber ==currentGameNumber){
+
+        
+            ctx = myGameArea.context;
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x-(this.width/2), this.y-(this.height/2), this.width, this.height);
+        }
     }
     this.newPos = function() {
-        this.x += this.speedX;
-        this.y += this.speedY;        
+        if (gameNumber == currentGameNumber){
+            this.x += this.speedX;
+            this.y += this.speedY;  
+        }
+      
     }        
-    
+    if (gameNumber != currentGameNumber){
+        this.x=9000000;
+        this.y= 9000000;
+    }
     this.rotate = function(degreesRotation) {
 
 
@@ -267,6 +343,8 @@ function win(){
 
 }
 async function updateGameArea() {
+            console.log("test");
+
     var thisFrameTime = (thisLoop=new Date) - lastLoop;
     frameTime+= (thisFrameTime - frameTime) / filterStrength;
     lastLoop = thisLoop;
@@ -384,11 +462,12 @@ function shuffle(array) {
   }
 
 async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1, bulletDirection = "r", hasCollision = true, laserActivationTime=8, bulletsInCircle = 5, radius=1,rotationSpeed=1){ // types = basic, danger, circle
+    var a = gameNumber;
     await wait(ActivationTime*1000);
 
 
     if (type == "basic"){
-        bulletModels.push( new BulletComponent(20, 20, "white", bulletLocation[0], bulletLocation[1]));
+        bulletModels.push( new BulletComponent(a, 20, 20, "white", bulletLocation[0], bulletLocation[1]));
         if (bulletDirection == "r"){
             bulletModels[bulletModels.length-1].speedX = bulletSpeed;
         }
@@ -409,12 +488,12 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
             
             
             if (bulletDirection == "r" || bulletDirection == "l"){
-                laserModels.push( new BulletComponent(1200, laserWidth, "rgba(255,20,20,"+0.02*i+")", 400, (bulletLocation[1]), false));
+                laserModels.push( new BulletComponent(a, 1200, laserWidth, "rgba(255,20,20,"+0.02*i+")", 400, (bulletLocation[1]), false));
                 var bulletState = laserModels.length-1;
 
             }
             if (bulletDirection == "u" || bulletDirection == "d"){
-                laserModels.push( new BulletComponent(laserWidth, 1200, "rgba(255,20,20,"+ 0.02*i+")", bulletLocation[0], 400, false));
+                laserModels.push( new BulletComponent(a, laserWidth, 1200, "rgba(255,20,20,"+ 0.02*i+")", bulletLocation[0], 400, false));
                 var bulletState = laserModels.length-1;
 
             }
@@ -423,11 +502,11 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
             laserModels.splice(bulletState, bulletState);
         }
         if (bulletDirection == "r" || bulletDirection == "l"){
-            laserModels.push( new BulletComponent(1200, 40, "rgba(255,20,20,1)", 380, bulletLocation[1], true, bulletDirection));
+            laserModels.push( new BulletComponent(a, 1200, 40, "rgba(255,20,20,1)", 380, bulletLocation[1], true, bulletDirection));
 
         }
         if (bulletDirection == "u" || bulletDirection == "d"){
-            laserModels.push( new BulletComponent(40, 1200, "rgba(255,20,20,1)", bulletLocation[0], 380, true, bulletDirection));
+            laserModels.push( new BulletComponent(a, 40, 1200, "rgba(255,20,20,1)", bulletLocation[0], 380, true, bulletDirection));
 
         }
         
@@ -439,12 +518,12 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
             bulletState = laserModels.length-1;
 
             if (bulletDirection == "r" || bulletDirection == "l"){
-                laserModels.push( new BulletComponent(1200, laserWidth-i*3, "rgba(255,255,255,"+1+")",400, bulletLocation[1], false));
+                laserModels.push( new BulletComponent(a,1200, laserWidth-i*3, "rgba(255,255,255,"+1+")",400, bulletLocation[1], false));
                 var bulletState = laserModels.length-1;
 
             }
             if (bulletDirection == "u" || bulletDirection == "d"){
-                laserModels.push( new BulletComponent(laserWidth-i*3, 1200, "rgba(255,255,255,"+ 1+")", bulletLocation[0], 400, false));
+                laserModels.push( new BulletComponent(a, laserWidth-i*3, 1200, "rgba(255,255,255,"+ 1+")", bulletLocation[0], 400, false));
                 var bulletState = laserModels.length-1;
 
             }
@@ -463,7 +542,7 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
 
         var b = bulletModels.length-1;
         for(var i = b+1;  i <= bulletsInCircle+b; i+=1){
-            bulletModels.push( new BulletComponent(20, 20, "pink",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed, ferrisNumber));
+            bulletModels.push( new BulletComponent(gameNumber, 20, 20, "pink",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed, ferrisNumber));
 
         }
 

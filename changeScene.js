@@ -7,7 +7,6 @@ var StartedGame = document.getElementById("StartedGame");
 var GameScene = document.getElementById("GameScene");
 var GameOverScene = document.getElementById("GameOverScene");
 var tipBar = document.getElementById("TipBar");
-
 var LevelScreen = document.getElementById("Levels");
 var mainBody = document.getElementById("mainBody");
 var HowToScreen = document.getElementById("HowToPlayScene");
@@ -24,23 +23,27 @@ var tips = ["It can take a while to get used to the controls!",
             "The player's hitbox is actually not the entire image, but the center; this makes it easier to dodge. bullets very close to you",
             "YOU EXPECTED A TIP SCREEN, BUT IT WAS ME, KONO DIO DA!",
             "Lasers have a short time window before it hurts you!",
-            "lol"];
+            ""];
 function showLevels(){
     menuHit.play();
 
     HomeScreen.style.display = "none";
-    GameOverScene.style.color="none";
-
+    
     LevelScreen.style.display = "block";
 
 }
+$(function(){
+    $("#includedContent").load("gameScene.html"); 
+  });
 function showGameOver(){
     document.body.style.backgroundImage = "linear-gradient(180deg, black , rgba(255,40,40,0.1))";
     gameOverMusic.play();
     console.log("game over");
-    GameScene.remove();
+    GameScene.style.display="none";
     running= false;
-
+    var gameCanvas = document.getElementById("gameCanvas"); 
+    gameNumber+=1;
+    gameCanvas.remove();
     GameOverScene.style.display="block";
     GameOverScene.style.color="white";
     
@@ -52,17 +55,29 @@ function showAbout(){
      menuHit.play();
 }
 function reloadGame(){
-    WinScene.style.display="none";
-    GameOverScene.style.display="none";
-    HomeScreen.style.display="block";
-    gameOverMusic.pause;
+    start();
+
 }
 function start(){
+    gameOverMusic.currentTime=0;
+    for(var i = 0; i <gameMusic.length; i++){
+        gameMusic[i].currentTime=0;
+
+    }
+
     gameMusic[6].play();
+    document.body.style.backgroundImage = "linear-gradient(180deg, black , black)";
+    HomeScreen.style.display = "block";
+
     StartedGame.style.display = "block";
     LoadingScreen.style.display="none";
+    LevelScreen.style.display="none";
+
     HowToScreen.style.display="none";
     WinScene.style.display="none";
+    GameOverScene.style.display="none";
+    gameOverMusic.pause();
+
     menuHit.play();
 
 }
