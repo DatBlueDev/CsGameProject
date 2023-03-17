@@ -40,7 +40,7 @@ var playerLocation;
 var running = true;
 var godMode=false;
 grid = document.getElementById("grid");
-playerImage = document.getElementById("playerSprite");
+playerImage = document.getElementById("playerSprite1");
 playerImageZ = document.getElementById("playerSpriteZ");
 
 HealthBar = document.getElementById("Health");
@@ -167,15 +167,18 @@ var myGameArea = {
    
     canvas : g = document.createElement("canvas"),
     start : function() {
+        this.canvas.width = canvasWidth;
         g.setAttribute("id", "gameCanvas");
         
-
+        playerHeight = 30;
+        playerWidth = 30;
         bulletModels = [];
         laserModels = [];
         i = 0;
         bulletHeight = 30;
         bulletWidth = 30;
         hitCounter = 0; 
+
 
         health = 100;
         maxHealth = 100;
@@ -189,10 +192,16 @@ var myGameArea = {
         for (var i = 0; i<gameMusic.length; i++){
             gameMusic[i].currentTime=0;
         }
-        currentGameNumber +=1;
-        musicLoaded = 0;
 
-        this.canvas.width = canvasWidth;
+        currentGameNumber +=1;
+        gameMusic[0].volume = .5;
+        gameMusic[1].volume = .5;
+        gameMusic[2].volume = .5;
+        hoverSoundEffect.volume = .5;
+        hurtEffect.volume = .5;
+        menuHit.volume = .5;
+
+        musicLoaded = 0;
         this.canvas.height = canvasHeight;
         this.context = this.canvas.getContext("2d");
         GameScene.appendChild(this.canvas);
@@ -244,26 +253,28 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
     var yk =bulletLocation[1]; 
 
     this.update = function() {
-        if (this.gameNumber ==currentGameNumber){   
+        if (gameNumber ==currentGameNumber){
+
+        
             ctx = myGameArea.context;
             ctx.fillStyle = color;
             ctx.fillRect(this.x-(this.width/2), this.y-(this.height/2), this.width, this.height);
         }
     }
     this.newPos = function() {
-        if (this.gameNumber == currentGameNumber){
+        if (gameNumber == currentGameNumber){
             this.x += this.speedX;
             this.y += this.speedY;  
         }
       
     }        
-    if (this.gameNumber != currentGameNumber){
-        this.x=9000;
-        this.y= 9000;
+    if (gameNumber != currentGameNumber){
+        this.x=9000000;
+        this.y= 9000000;
     }
     this.rotate = function(degreesRotation) {
 
-        if (this.gameNumber == currentGameNumber){
+        if (gameNumber == currentGameNumber){
 
             if (bulletDirection == "r"){
                 xk  += bulletSpeed;
@@ -282,9 +293,9 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
             degreesRotation[ferrisNumber]+=0.05;
             console.log(degreesRotation);
             console.log(ferrisNumber);
+        }
 
         }
-    }
 
 
     }  
@@ -333,14 +344,13 @@ function win(){
 
 }
 async function updateGameArea() {
-    console.log("test");
+            console.log("test");
 
     var thisFrameTime = (thisLoop=new Date) - lastLoop;
     frameTime+= (thisFrameTime - frameTime) / filterStrength;
     lastLoop = thisLoop;
-    if (running == true &&  (gameNumber == currentGameNumber)){
-        console.log(gameNumber);
-        
+    if (running == true ){
+        console.log("running");
         if (health<=maxHealth){
             health+=0.10;
     
@@ -600,15 +610,15 @@ function main(){
     }
 
 }
-
+Right = ((canvasWidth/2)+(gridWidth/gridConstant) - (playerWidth/2)); 
+Left = ((canvasWidth/2)-(gridWidth/gridConstant) - (playerWidth/2)); 
+Up = ((canvasHeight/2) - (gridHeight/gridConstant) - (playerHeight/2));
+Down = ((canvasHeight/2) + (gridHeight/gridConstant) - (playerHeight/2));
+MiddleY = ((canvasHeight/2)- (playerHeight/gridConstant));
+MiddleX = ((canvasWidth/2) - (playerWidth/gridConstant)); 
 $(document).keydown(function(event) {
     var key = (event.keyCode ? event.keyCode : event.which);
-    Right = ((canvasWidth/2)+(gridWidth/gridConstant) - (playerWidth/2)); 
-    Left = ((canvasWidth/2)-(gridWidth/gridConstant) - (playerWidth/2)); 
-    Up = ((canvasHeight/2) - (gridHeight/gridConstant) - (playerHeight/2));
-    Down = ((canvasHeight/2) + (gridHeight/gridConstant) - (playerHeight/2));
-    MiddleY = ((canvasHeight/2)- (playerHeight/gridConstant));
-    MiddleX = ((canvasWidth/2) - (playerWidth/gridConstant)); 
+
 
     if (key === 65){ // A
         playerModel.x = Left; 
@@ -651,7 +661,6 @@ $(document).keydown(function(event) {
         playerModel.x = Left; 
         playerModel.y = Down
         playerLocation = 7;
-        
     }
     
     if (key === 67){ // C
@@ -666,7 +675,8 @@ $(document).keydown(function(event) {
         playerLocation = 5;
 
     }
-
-
-
 });
+
+var spr=1;
+var switchMode=1;
+

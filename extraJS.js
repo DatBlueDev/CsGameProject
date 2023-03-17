@@ -10,3 +10,9 @@ $("button").mouseenter(function() {
     }
 }
 );
+
+gameMusic[6].addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+}, false);
+
