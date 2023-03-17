@@ -55,12 +55,12 @@ var filterStrength = 20;
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
 
-gameMusic[0].volume = .5;
-gameMusic[1].volume = .5;
-gameMusic[2].volume = .5;
-hoverSoundEffect.volume = .5;
-hurtEffect.volume = .5;
-menuHit.volume = .5;
+gameMusic[0].volume = 1;
+gameMusic[1].volume =1;
+gameMusic[2].volume = 1;
+hoverSoundEffect.volume = 1;
+hurtEffect.volume = 1;
+menuHit.volume = 1;
 
 musicLoaded = 0;
 for (var i = 0; i<gameMusic.length; i++){
@@ -82,7 +82,7 @@ for (var i = 0; i<gameMusic.length; i++){
 slider.oninput = function() {
     sliderVol=this.value/100;
     for(var i = 0; i<gameMusic.length; i++){
-        gameMusic[i].volume = sliderVol;
+        gameMusic[i].volume = (sliderVol-0.01)*4;
         console.log(sliderVol);
     }
     hoverSoundEffect.volume = sliderVol;
@@ -94,6 +94,21 @@ var frameTime = 0, lastLoop = new Date, thisLoop;
 
 menuHit.readyState
 async function startGame(level) {
+
+    var bulletModels = [];
+    var laserModels = [];
+    var i = 0;
+    var bulletHeight = 30;
+    var bulletWidth = 30;
+    var hitCounter = 0; 
+
+    var health = 100;
+    var maxHealth = 100;
+    var degreesRotation=[];
+    var ferrisNumber = -1;
+    var startTime = Date.now();
+    var immunityFrameTimer = 0;
+    var immunityFrames = 30;
     await wait(10);
     menuHit.play();
     gameMusic[6].pause();

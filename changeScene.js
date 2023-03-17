@@ -24,7 +24,7 @@ var tips = ["It can take a while to get used to the controls!",
             "The player's hitbox is actually not the entire image, but the center; this makes it easier to dodge. bullets very close to you",
             "YOU EXPECTED A TIP SCREEN, BUT IT WAS ME, KONO DIO DA!",
             "Lasers have a short time window before it hurts you!",
-            ""];
+            "lol"];
 function showLevels(){
     menuHit.play();
 
@@ -52,7 +52,10 @@ function showAbout(){
      menuHit.play();
 }
 function reloadGame(){
-
+    WinScene.style.display="none";
+    GameOverScene.style.display="none";
+    HomeScreen.style.display="block";
+    gameOverMusic.pause;
 }
 function start(){
     gameMusic[6].play();
