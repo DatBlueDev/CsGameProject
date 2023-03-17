@@ -333,14 +333,236 @@ function bulletScript2(){
 
 
 function bulletScript3(){
-    spawnBullet("danger", 1, topDanger, 10, "l");
-    spawnBullet("danger", 2, middleYDanger, 10, "l");
-    spawnBullet("danger", 3,bottomDanger, 10, "l");
+    spawnBullet("basic",0.2, rm, 5, "l");
+    spawnBullet("basic",1.5, lb, 5, "r");
+    spawnBullet("basic",2.8, rt, 5, "l");
 
-    spawnBullet("danger", 4, leftDanger, 10, "u");
-    spawnBullet("danger", 5, middleXDanger, 10, "u");
-    spawnBullet("danger", 6,rightDanger, 10, "u");
+    spawnBullet("basic",2.8, rt, 5, "l");
+    spawnBullet("basic",6, rb, 5, "l");
+    spawnBullet("basic",6, rm, 5, "l");
 
-    spawnBullet("win", 1, rb, 6, "l");
+    spawnBullet("basic",7.5, lt, 5, "r");
+    spawnBullet("basic",7.5, lm, 5, "r");
+
+    spawnBullet("basic",9, bl, 5, "u");
+    spawnBullet("basic",9, br, 5, "u");
+
+    spawnBullet("basic",9, rt, 5, "l");
+    spawnBullet("basic",9, rb, 5, "l");
+
+    spawnBullet("basic",13, bl, 5, "u");
+    spawnBullet("basic",13.4, rt, 5, "l");
+    spawnBullet("basic",13.8, tr, 5, "d");
+    spawnBullet("basic",13.8, lb, 5, "r");
+    spawnBullet("basic",14.8, lm, 5, "r");
+    spawnBullet("basic",14.8, rm, 5, "l");
+    spawnBullet("danger", 15.8, middleYDanger, 10, "l");
+
+    spawnBullet("basic",19.4, rm, 5, "l");
+    spawnBullet("basic",19.4, rt, 5, "l");
+
+    spawnBullet("basic",20, tl, 5, "d");
+    spawnBullet("basic",20, tm, 5, "d");
+
+    spawnBullet("basic",21.6, lm, 5, "r");
+    spawnBullet("basic",21.6, lb, 5, "r");
+
+    spawnBullet("basic",22.2, br, 5, "u");
+    spawnBullet("basic",22.2, bm, 5, "u");
+}
+function bulletScript4(){
+
+
+    spawnBullet("basic",0.22, rt, 14, "l")
+    spawnBullet("basic",0.32, rt, 14, "l")
+    spawnBullet("basic",0.42, rt, 14, "l")
+
+    spawnBullet("basic",0.64, rm, 14, "l")
+    spawnBullet("basic",0.74, rm, 14, "l")
+    spawnBullet("basic",0.84, rm, 14, "l")
+
+    spawnBullet("basic",1.06, rb, 14, "l")
+    spawnBullet("basic",1.16, rb, 14, "l")
+    spawnBullet("basic",1.26, rb, 14, "l")
+
+    spawnBullet("basic",1.4, rt, 14, "l")
+    spawnBullet("basic",1.6, rm, 14, "l")
+    spawnBullet("basic",1.8, rb, 14, "l")
+
+    spawnBullet("basic",2.22-0.15, lt, 14, "r")
+    spawnBullet("basic",2.32-0.15, lt, 14, "r")
+    spawnBullet("basic",2.42-0.15, lt, 14, "r")
+
+    spawnBullet("basic",2.64-0.15, lm, 14, "r")
+    spawnBullet("basic",2.74-0.15, lm, 14, "r")
+    spawnBullet("basic",2.84-0.15, lm, 14, "r")
+
+    spawnBullet("basic",3.06-0.15, lb, 14, "r")
+    spawnBullet("basic",3.16-0.15, lb, 14, "r")
+    spawnBullet("basic",3.26-0.15, lb, 14, "r")
+
+    spawnBullet("basic",3.4-0.15, lt, 14, "r")
+    spawnBullet("basic",3.6-0.15, lm, 14, "r")
+    spawnBullet("basic",3.8-0.15, lb, 14, "r")
+
+    spawnBullet("basic",4.22-0.3, tl, 14, "d")
+    spawnBullet("basic",4.32-0.3, tl, 14, "d")
+    spawnBullet("basic",4.42-0.3, tl, 14, "d")
+
+    spawnBullet("basic",4.64-0.3, tm, 14, "d")
+    spawnBullet("basic",4.74-0.3, tm, 14, "d")
+    spawnBullet("basic",4.84-0.3, tm, 14, "d")
+
+    spawnBullet("basic",5.06-0.3, tr, 14, "d")
+    spawnBullet("basic",5.16-0.3, tr, 14, "d")
+    spawnBullet("basic",5.26-0.3, tr, 14, "d")
+
+    spawnBullet("basic",5.4-0.3, tl, 14, "d")
+    spawnBullet("basic",5.6-0.3, tm, 14, "d")
+    spawnBullet("basic",5.8-0.3, tr, 14, "d")
+
+    spawnBullet("basic",6.22 -0.45, bl, 14, "u")
+    spawnBullet("basic",6.32-0.45, bl, 14, "u")
+    spawnBullet("basic",6.42-0.45, bl, 14, "u")
+
+    spawnBullet("basic",6.64-0.45, bm, 14, "u")
+    spawnBullet("basic",6.74-0.45, bm, 14, "u")
+    spawnBullet("basic",6.84-0.45, bm, 14, "u")
+
+    spawnBullet("basic",7.06-0.45, br, 14, "u")
+    spawnBullet("basic",7.16-0.45, br, 14, "u")
+    spawnBullet("basic",7.26-0.45, br, 14, "u")
+
+    spawnBullet("basic",7.4-0.45, bl, 14, "u")
+    spawnBullet("basic",7.6-0.45, bm, 14, "u")
+    spawnBullet("basic",7.8-0.45, br, 14, "u")
+
+    spawnBullet("basic",8.22-0.6, rt, 14, "l")
+    spawnBullet("basic",8.32-0.6, rt, 14, "l")
+    spawnBullet("basic",8.42-0.6, rt, 14, "l")
+
+    spawnBullet("basic",8.64-0.6, rm, 14, "l")
+    spawnBullet("basic",8.74-0.6, rm, 14, "l")
+    spawnBullet("basic",8.84-0.6, rm, 14, "l")
+
+    spawnBullet("basic",9.06-0.6, rb, 14, "l")
+    spawnBullet("basic",9.16-0.6, rb, 14, "l")
+    spawnBullet("basic",9.26-0.6, rb, 14, "l")
+
+    spawnBullet("basic",9.4-0.6, rt, 14, "l")
+    spawnBullet("basic",9.6-0.6, rm, 14, "l")
+    spawnBullet("basic",9.8-0.6, rb, 14, "l")
+
+    spawnBullet("basic",8.22-0.6, lt, 14, "r")
+    spawnBullet("basic",8.32-0.6, lt, 14, "r")
+    spawnBullet("basic",8.42-0.6, lt, 14, "r")
+
+    spawnBullet("basic",8.64-0.6, lm, 14, "r")
+    spawnBullet("basic",8.74-0.6, lm, 14, "r")
+    spawnBullet("basic",8.84-0.6, lm, 14, "r")
+
+    spawnBullet("basic",9.06-0.6, lb, 14, "r")
+    spawnBullet("basic",9.16-0.6, lb, 14, "r")
+    spawnBullet("basic",9.26-0.6, lb, 14, "r")
+
+    spawnBullet("basic",9.4-0.6, lt, 14, "r")
+    spawnBullet("basic",9.6-0.6, lm, 14, "r")
+    spawnBullet("basic",9.8-0.6, lb, 14, "r")
+
+    spawnBullet("basic",10.22-0.75, tl, 14, "d")
+    spawnBullet("basic",10.32-0.75, tl, 14, "d")
+    spawnBullet("basic",10.42-0.75, tl, 14, "d")
+
+    spawnBullet("basic",10.64-0.75, tm, 14, "d")
+    spawnBullet("basic",10.74-0.75, tm, 14, "d")
+    spawnBullet("basic",10.84-0.75, tm, 14, "d")
+
+    spawnBullet("basic",11.06-0.75, tr, 14, "d")
+    spawnBullet("basic",11.16-0.75, tr, 14, "d")
+    spawnBullet("basic",11.26-0.75, tr, 14, "d")
+
+    spawnBullet("basic",11.4-0.75, tl, 14, "d")
+    spawnBullet("basic",11.6-0.75, tm, 14, "d")
+    spawnBullet("basic",11.8-0.75, tr, 14, "d")
+
+    spawnBullet("basic",10.22-0.75, bl, 14, "u")
+    spawnBullet("basic",10.32-0.75, bl, 14, "u")
+    spawnBullet("basic",10.42-0.75, bl, 14, "u")
+
+    spawnBullet("basic",10.64-0.75, bm, 14, "u")
+    spawnBullet("basic",10.74-0.75, bm, 14, "u")
+    spawnBullet("basic",10.84-0.75, bm, 14, "u")
+
+    spawnBullet("basic",11.06-0.75, br, 14, "u")
+    spawnBullet("basic",11.16-0.75, br, 14, "u")
+    spawnBullet("basic",11.26-0.75, br, 14, "u")
+
+    spawnBullet("basic",11.4-0.75, bl, 14, "u")
+    spawnBullet("basic",11.6-0.75, bm, 14, "u")
+    spawnBullet("basic",11.8-0.75, br, 14, "u")
+
+    spawnBullet("basic",12.22-0.9, rt, 14, "l")
+    spawnBullet("basic",12.32-0.9, rt, 14, "l")
+    spawnBullet("basic",12.42-0.9, rt, 14, "l")
+
+    spawnBullet("basic",12.64-0.9, rm, 14, "l")
+    spawnBullet("basic",12.74-0.9, rm, 14, "l")
+    spawnBullet("basic",12.84-0.9, rm, 14, "l")
+
+    spawnBullet("basic",13.06-0.9, rb, 14, "l")
+    spawnBullet("basic",13.16-0.9, rb, 14, "l")
+    spawnBullet("basic",13.26-0.9, rb, 14, "l")
+
+    spawnBullet("basic",13.4-0.9, rt, 14, "l")
+    spawnBullet("basic",13.6-0.9, rm, 14, "l")
+    spawnBullet("basic",13.8-0.9, rb, 14, "l")
+
+    spawnBullet("basic",12.22-0.9, lt, 14, "r")
+    spawnBullet("basic",12.32-0.9, lt, 14, "r")
+    spawnBullet("basic",12.42-0.9, lt, 14, "r")
+
+    spawnBullet("basic",12.64-0.9, lm, 14, "r")
+    spawnBullet("basic",12.74-0.9, lm, 14, "r")
+    spawnBullet("basic",12.84-0.9, lm, 14, "r")
+
+    spawnBullet("basic",13.06-0.9, lb, 14, "r")
+    spawnBullet("basic",13.16-0.9, lb, 14, "r")
+    spawnBullet("basic",13.26-0.9, lb, 14, "r")
+
+    spawnBullet("basic",13.4-0.9, lt, 14, "r")
+    spawnBullet("basic",13.6-0.9, lm, 14, "r")
+    spawnBullet("basic",13.8-0.9, lb, 14, "r")
+
+    spawnBullet("basic",14.22-1.05, tl, 14, "d")
+    spawnBullet("basic",14.32-1.05, tl, 14, "d")
+    spawnBullet("basic",14.42-1.05, tl, 14, "d")
+
+    spawnBullet("basic",14.64-1.05, tm, 14, "d")
+    spawnBullet("basic",14.74-1.05, tm, 14, "d")
+    spawnBullet("basic",14.84-1.05, tm, 14, "d")
+
+    spawnBullet("basic",15.06-1.05, tr, 14, "d")
+    spawnBullet("basic",15.16-1.05, tr, 14, "d")
+    spawnBullet("basic",15.26-1.05, tr, 14, "d")
+
+    spawnBullet("basic",15.4-1.05, tl, 14, "d")
+    spawnBullet("basic",15.6-1.05, tm, 14, "d")
+    spawnBullet("basic",15.8-1.05, tr, 14, "d")
+
+    spawnBullet("basic",14.22-1.05, bl, 14, "u")
+    spawnBullet("basic",14.32-1.05, bl, 14, "u")
+    spawnBullet("basic",14.42-1.05, bl, 14, "u")
+
+    spawnBullet("basic",14.64-1.05, bm, 14, "u")
+    spawnBullet("basic",14.74-1.05, bm, 14, "u")
+    spawnBullet("basic",14.84-1.05, bm, 14, "u")
+
+    spawnBullet("basic",15.06-1.05, br, 14, "u")
+    spawnBullet("basic",15.16-1.05, br, 14, "u")
+    spawnBullet("basic",15.26-1.05, br, 14, "u")
+
+    spawnBullet("basic",15.4-1.05, bl, 14, "u")
+    spawnBullet("basic",15.6-1.05, bm, 14, "u")
+    spawnBullet("basic",15.8-1.05, br, 14, "u")
 
 }

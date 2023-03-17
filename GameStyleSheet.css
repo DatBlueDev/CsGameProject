@@ -63,7 +63,7 @@ button{
 
 }
 #ProblemLoading{
-    animation-delay: 5000ms;
+    animation-delay: 10s;
     animation-fill-mode: both;
 }
 #HitCounter{

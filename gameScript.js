@@ -503,9 +503,16 @@ function main(){
     }
     else if (gameLevel == 3) {
         gameMusic[gameLevel-1].play();
+        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(100, 100, 255, 0.6) , rgba(255, 100, 100, 0.4))";
+
         bulletScript3();
     }
+    else if (gameLevel == 4) {
+        gameMusic[gameLevel].play();
+        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(255, 102, 0, 0.3) , rgba(255, 0, 0, 0.4))";
 
+        bulletScript4();
+    }
 
 }
 
