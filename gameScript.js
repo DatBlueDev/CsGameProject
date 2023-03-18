@@ -241,7 +241,7 @@ function component(width, height, color, x, y) {
         this.y += this.speedY;        
     }    
 }
-
+sameGame=true;
 
 function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = true, bulletDirection = "l", bulletsInCircle =5, isFerris = false, bulletLocation=[], j=0, radius=1,rotationSpeed=1,bulletSpeed=1, ferrisNumber) {
     this.width = width;
@@ -279,10 +279,14 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
     if (gameNumber != currentGameNumber){
         this.x=9000000;
         this.y= 9000000;
+        sameGame=false;
+    }
+    if (sameGame == false){
+
     }
     this.rotate = function(degreesRotation) {
 
-        if (gameNumber == currentGameNumber){
+        if (gameNumber == currentGameNumber && sameGame==true){
 
             if (bulletDirection == "r"){
                 xk  += bulletSpeed;
@@ -348,8 +352,10 @@ function gameOver(){
     }
 
 }
-function win(){
-
+async function win(){
+    $("#GameScene").fadeOut();
+    await wait (2000);
+    winScreen();
 }
 async function updateGameArea() {
             console.log("test");
@@ -571,12 +577,7 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
         }
     }
     else if (type == "win"){
-        if (gameNumber == currentGameNumber){
-
-            $("#GameScene").fadeOut();
-            await wait (2000);
-            winScreen();
-        }
+        win();
     }
 
 
