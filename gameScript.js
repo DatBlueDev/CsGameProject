@@ -45,6 +45,14 @@ playerImageZ = document.getElementById("playerSpriteZ");
 
 HealthBar = document.getElementById("Health");
 
+playerImages = [document.getElementById("playerSprite1"),document.getElementById("playerSprite2"), document.getElementById("playerSprite3"),
+                document.getElementById("playerSprite4"), document.getElementById("playerSprite5"), document.getElementById("playerSprite6"),
+                document.getElementById("playerSprite7"), document.getElementById("playerSprite8")];
+
+
+playerLeft = document.getElementById("playerLeft8");
+playerRight = document.getElementById("playerRight8");
+
 
 var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3'), new Audio('gameMusic/applause.ogg'), new Audio('gameMusic/menuMusic.mp3')];
 var gameMusicIsLoaded = [false, false, false, false, false];
@@ -155,7 +163,7 @@ musicLoaded = 0;
 
     GameScene.style.display = "block";
 
-    playerModel = new imageComponent(playerImage, 40, 54, 400-(playerHeight/2), 400-(playerWidth/2));
+    playerModel = new imageComponent(playerImages[0], 40, 54, 400-(playerHeight/2), 400-(playerWidth/2));
     gridModel = new imageComponent(grid, gridHeight, gridWidth, ((canvasHeight/2))-10, (canvasWidth/2)-10);
 
 
@@ -616,20 +624,31 @@ Up = ((canvasHeight/2) - (gridHeight/gridConstant) - (playerHeight/2));
 Down = ((canvasHeight/2) + (gridHeight/gridConstant) - (playerHeight/2));
 MiddleY = ((canvasHeight/2)- (playerHeight/gridConstant));
 MiddleX = ((canvasWidth/2) - (playerWidth/gridConstant)); 
+var shouldSpriteChange = true;
+var initModelX;
+var switchLeft;
 $(document).keydown(function(event) {
     var key = (event.keyCode ? event.keyCode : event.which);
 
+    if(key != 87 && key!= 83 && key !=88){
+        shouldSpriteChange = false;
+
+    }
+    initModelX = playerModel.x;
+    initModelY = playerModel.y;
 
     if (key === 65){ // A
         playerModel.x = Left; 
         playerModel.y = MiddleY;
         playerLocation = 4;
+        switchSpritesLeft();
     }
     
     if (key === 68){ // D
         playerModel.x = Right; 
         playerModel.y = MiddleY;
         playerLocation = 6;
+        switchSpritesRight();
 
     }
     
@@ -649,34 +668,66 @@ $(document).keydown(function(event) {
         playerModel.x = Left; 
         playerModel.y = Up;
         playerLocation = 1;
+        
+        switchSpritesLeft();
     }
 
     if (key === 69){ // E
         playerModel.x = Right; 
         playerModel.y = Up;
         playerLocation = 3;
+        switchSpritesRight();
     }
     
     if (key === 90){ // Z
         playerModel.x = Left; 
         playerModel.y = Down
         playerLocation = 7;
+        switchSpritesLeft();
     }
     
     if (key === 67){ // C
         playerModel.x = Right; 
         playerModel.y = Down;
         playerLocation = 9;
+        switchSpritesRight();
+
     }
 
     if (key === 83){ // S
         playerModel.x = MiddleX; 
         playerModel.y = MiddleY;
         playerLocation = 5;
-
     }
-});
+    
 
-var spr=1;
-var switchMode=1;
+});
+$(document).keyup(function(event) {
+    shouldSpriteChange=true;
+    console.log("keyUp");
+    clearInterval(switchLeft);
+})
+var k = 0
+setInterval(switchSprites, 200)
+function switchSprites(){
+    try{
+        if(shouldSpriteChange){
+            playerModel.image = playerImages[k];
+            k+=1;
+            if (k==7){
+                k=0;
+            }
+        }
+    }
+    catch(err){
+        console.log("not yet loaded");
+    }
+}
+function switchSpritesLeft(){
+    playerModel.image = playerLeft;
+}
+function switchSpritesRight(){
+    playerModel.image = playerRight;
+}
+
 
