@@ -91,7 +91,7 @@ for (var i = 0; i<gameMusic.length; i++){
 slider.oninput = function() {
     sliderVol=this.value/100;
     for(var i = 0; i<gameMusic.length; i++){
-        gameMusic[i].volume = sliderVol;
+        gameMusic[i].volume = sliderVol-0.01;
         console.log(sliderVol);
     }
     hoverSoundEffect.volume = sliderVol;
@@ -555,14 +555,28 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
 
         }
 
-        
 
 
     }
+    else if ( type == "troll"){
+
+        let a = [];
+        degreesRotation.push(0);
+        ferrisNumber +=1;
+
+        var b = bulletModels.length-1;
+        for(var i = b+1;  i <= bulletsInCircle+b; i+=1){
+            bulletModels.push( new BulletComponent(gameNumber, 20, 20, "pink",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed, ferrisNumber));
+
+        }
+    }
     else if (type == "win"){
-        $("#GameScene").fadeOut();
-        await wait (2000);
-        winScreen();
+        if (gameNumber == currentGameNumber){
+
+            $("#GameScene").fadeOut();
+            await wait (2000);
+            winScreen();
+        }
     }
 
 
@@ -618,9 +632,9 @@ function main(){
     }
 
 }
-Right = ((canvasWidth/2)+(gridWidth/gridConstant) - (playerWidth/2)); 
-Left = ((canvasWidth/2)-(gridWidth/gridConstant) - (playerWidth/2)); 
-Up = ((canvasHeight/2) - (gridHeight/gridConstant) - (playerHeight/2));
+Right = ((canvasWidth/2)+(gridWidth/gridConstant) - (playerWidth/2))+5; 
+Left = ((canvasWidth/2)-(gridWidth/gridConstant) - (playerWidth/2))+5; 
+Up = ((canvasHeight/2) - (gridHeight/gridConstant) - (playerHeight/2))+5;
 Down = ((canvasHeight/2) + (gridHeight/gridConstant) - (playerHeight/2));
 MiddleY = ((canvasHeight/2)- (playerHeight/gridConstant));
 MiddleX = ((canvasWidth/2) - (playerWidth/gridConstant)); 
@@ -637,14 +651,14 @@ $(document).keydown(function(event) {
     initModelX = playerModel.x;
     initModelY = playerModel.y;
 
-    if (key === 65){ // A
+    if (key === 65 || key === 100){ // A
         playerModel.x = Left; 
         playerModel.y = MiddleY;
         playerLocation = 4;
         switchSpritesLeft();
     }
     
-    if (key === 68){ // D
+    if (key === 68 || key === 102){ // D
         playerModel.x = Right; 
         playerModel.y = MiddleY;
         playerLocation = 6;
@@ -652,19 +666,19 @@ $(document).keydown(function(event) {
 
     }
     
-    if (key === 87){ // W
+    if (key === 87 || key === 104){ // W
         playerModel.x = MiddleX; 
         playerModel.y = Up;
         playerLocation = 2;
     }
     
-    if (key === 88){ // X
+    if (key === 88 || key === 98){ // X
         playerModel.x = MiddleX; 
         playerModel.y = Down;
         playerLocation = 8;
     }
 
-    if (key === 81){ // Q
+    if (key === 81 || key === 103){ // Q
         playerModel.x = Left; 
         playerModel.y = Up;
         playerLocation = 1;
@@ -672,21 +686,21 @@ $(document).keydown(function(event) {
         switchSpritesLeft();
     }
 
-    if (key === 69){ // E
+    if (key === 69 || key === 105){ // E
         playerModel.x = Right; 
         playerModel.y = Up;
         playerLocation = 3;
         switchSpritesRight();
     }
     
-    if (key === 90){ // Z
+    if (key === 90 || key === 97){ // Z
         playerModel.x = Left; 
         playerModel.y = Down
         playerLocation = 7;
         switchSpritesLeft();
     }
     
-    if (key === 67){ // C
+    if (key === 67 || key === 99){ // C
         playerModel.x = Right; 
         playerModel.y = Down;
         playerLocation = 9;
@@ -694,10 +708,15 @@ $(document).keydown(function(event) {
 
     }
 
-    if (key === 83){ // S
+    if (key === 83 || key === 101){ // S
         playerModel.x = MiddleX; 
         playerModel.y = MiddleY;
         playerLocation = 5;
+    }
+
+    if (key === 14 ){ // S
+
+        bulletModels=[];
     }
     
 
@@ -723,11 +742,13 @@ function switchSprites(){
         console.log("not yet loaded");
     }
 }
-function switchSpritesLeft(){
+async function switchSpritesLeft(){
     playerModel.image = playerLeft;
+
 }
-function switchSpritesRight(){
+async function switchSpritesRight(){
     playerModel.image = playerRight;
+
 }
 
 

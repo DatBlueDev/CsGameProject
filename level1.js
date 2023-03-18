@@ -369,6 +369,44 @@ function bulletScript3(){
 
     spawnBullet("basic",22.2, br, 5, "u");
     spawnBullet("basic",22.2, bm, 5, "u");
+
+    spawnBullet("basic",25.2, rb, 7, "l");
+    spawnBullet("basic",25.8, rb, 7, "l");
+    spawnBullet("basic",26.8, lm, 7, "r");
+    spawnBullet("basic",27.4, lm, 7, "r");
+    spawnBullet("basic",28.4, rt, 7, "l");
+    spawnBullet("basic",29, rt  , 7, "l");
+
+    spawnBullet("ferris", 32, [rb[0]+200, rb[1]], 5, "l", true, 0,7,1,7);
+    spawnBullet("ferris", 35, [lt[0]-200, lt[1]], 5, "r", true, 0,7,1,7);
+
+    spawnBullet("ferris", 38, [bl[0], bl[1]+200], 5, "u", true, 0,7,1,7);
+    spawnBullet("ferris", 41, [tr[0], tr[1]-200], 5, "d", true, 0,7,1,7);
+
+    spawnBullet("basic",45, bm, 5, "u");
+    spawnBullet("danger", 45.9, middleXDanger, 10, "u");
+    spawnBullet("basic",45, tm, 5, "d");
+
+    spawnBullet("basic",45, lm, 5, "r");
+    spawnBullet("danger",46.1, middleYDanger, 10, "l");
+    spawnBullet("basic",45, rm, 5, "l");
+
+    spawnBullet("basic",48, lt, 5, "r");
+    spawnBullet("basic",48, rt, 5, "r");
+    spawnBullet("danger",48.3, TopDanger, 10, "l");
+    spawnBullet("danger",48.3, BottomYDanger, 10, "l");
+
+    spawnBullet("basic",48.3, rm, 5, "l");
+    spawnBullet("basic",48, rm, 5, "l");
+
+    // spawnBullet("basic",48, lt, 5, "r");
+    // spawnBullet("basic",48, rt, 5, "r");
+    // spawnBullet("danger",48.3, middleYDanger, 10, "l");
+    // spawnBullet("basic",48.3, rm, 5, "l");
+    // spawnBullet("basic",48, rm, 5, "l");
+
+    
+
 }
 function bulletScript4(){
 
@@ -564,5 +602,56 @@ function bulletScript4(){
     spawnBullet("basic",15.4-1.05, bl, 14, "u")
     spawnBullet("basic",15.6-1.05, bm, 14, "u")
     spawnBullet("basic",15.8-1.05, br, 14, "u")
+
+    spawnBullet("ferris", 15.6, [lt[0]-200, lt[1]], 7, "r", true, 0,10,1,7);
+    spawnBullet("ferris", 15.6, [lt[0]-200, lt[1]], 7, "r", true, 0,7,0.6,-15);
+
+    spawnBullet("ferris", 16.4, [rb[0]+200, rb[1]], 7, "l", true, 0,10,1,7);
+    spawnBullet("ferris", 16.4, [rb[0]+200, rb[1]], 7, "l", true, 0,7,0.6,-15);
+
+    spawnBullet("ferris", 17.2, [tr[0], tr[1]-200], 7, "d", true, 0,10,1,7);
+    spawnBullet("ferris", 17.2, [tr[0], tr[1]-200], 7, "d", true, 0,7,0.6,-15);
+
+    spawnBullet("ferris", 18, [bl[0], bl[1]+200], 7, "u", true, 0,10,1,7);
+    spawnBullet("ferris", 18 , [bl[0], bl[1]+200], 7, "u", true, 0,7,0.6,-15);
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 18.8, lb, j, "r");
+    }
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 19.4, rm, j, "l");
+    }
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 20.2, lt, j, "r");
+    }
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 21.6, bl, j, "u");
+    }
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 22.1, bm, j, "u");
+    }
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 22.6, br, j, "u");
+    }
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 23.1, bm, j, "u");
+    }
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 23.6, bl, j, "u");
+    }
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 24.1, bm, j, "u");
+    }
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 24.6, br, j, "u");
+    }
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 25.1, bm, j, "u");
+    }
+    for(var j = 9; j <=16; j++){
+        spawnBullet("basic", 25.6, bl, j, "u");
+    }
+    spawnBullet("basic", 26.1, rt, 15, "l");
+    spawnBullet("basic", 26.5, lm, 15, "r");
+    spawnBullet("basic", 26.9, rb, 15, "l");
 
 }
