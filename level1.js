@@ -93,284 +93,332 @@ function bulletScript1(){
 function bulletScript2(){
 
     
-    // for(var i =1.7; i <= 14.2; i+=0.1){
-    //     spawnBullet("basic", i, rb, 10, "l");
+    for(var i =1.7; i <= 14.2; i+=0.1){
+        spawnBullet("basic", i, rb, 10, "l");
 
-    // }    
-    // for(var i =3.4; i <= 14.2; i+=0.1){
-    //     spawnBullet("basic", i, lt, 10, "r");
+    }    
+    for(var i =3.4; i <= 14.2; i+=0.1){
+        spawnBullet("basic", i, lt, 10, "r");
 
-    // }
+    }
 
-    // spawnBullet("danger", 4, leftDanger, 10, "u");
-    // spawnBullet("danger", 4+0.5*1, middleXDanger, 10, "u");
-    // spawnBullet("danger", 4+0.5*2, rightDanger, 10, "u");
-    // spawnBullet("danger", 4+0.5*3, middleXDanger, 10, "u");
-    // spawnBullet("danger", 4+0.5*4, leftDanger, 10, "u");
-    // spawnBullet("danger", 4+0.5*5, middleXDanger, 10, "u");
-    // spawnBullet("danger", 4+0.5*6, rightDanger, 10, "u");
+    spawnBullet("danger", 4, leftDanger, 10, "u");
+    spawnBullet("danger", 4+0.5*1, middleXDanger, 10, "u");
+    spawnBullet("danger", 4+0.5*2, rightDanger, 10, "u");
+    spawnBullet("danger", 4+0.5*3, middleXDanger, 10, "u");
+    spawnBullet("danger", 4+0.5*4, leftDanger, 10, "u");
+    spawnBullet("danger", 4+0.5*5, middleXDanger, 10, "u");
+    spawnBullet("danger", 4+0.5*6, rightDanger, 10, "u");
 
-    // for(var i =7; i <= 11; i+=0.1){
-    //     spawnBullet("basic", i, tr, 10, "d");
+    for(var i =7; i <= 11; i+=0.1){
+        spawnBullet("basic", i, tr, 10, "d");
 
-    // }    
-    // for(var i =7; i <= 10.7; i+=0.9){
-    //     spawnBullet("basic", i,tm, 8, "d");
+    }    
+    for(var i =7; i <= 10.7; i+=0.9){
+        spawnBullet("basic", i,tm, 8, "d");
 
-    // }
+    }
 
-    // for(var i =7; i <= 10.7; i+=0.9){
-    //     spawnBullet("basic", i+0.5, bl, 8, "u");
+    for(var i =7; i <= 10.7; i+=0.9){
+        spawnBullet("basic", i+0.5, bl, 8, "u");
 
-    // }
+    }
     
-    // spawnBullet("danger", 11, rightDanger, 10, "u");
-    // spawnBullet("danger", 11+0.5*1, middleXDanger, 10, "u");
-    // spawnBullet("danger", 11+0.5*2, leftDanger, 10, "u");
-    // spawnBullet("danger", 11+0.5*3, middleXDanger, 10, "u");
-    // spawnBullet("danger", 11+0.5*4, rightDanger, 10, "u");
-    // spawnBullet("danger", 11+0.5*5, middleXDanger, 10, "u");
-    // spawnBullet("danger", 11+0.5*6, leftDanger, 10, "u");
+    spawnBullet("danger", 11, rightDanger, 10, "u");
+    spawnBullet("danger", 11+0.5*1, middleXDanger, 10, "u");
+    spawnBullet("danger", 11+0.5*2, leftDanger, 10, "u");
+    spawnBullet("danger", 11+0.5*3, middleXDanger, 10, "u");
+    spawnBullet("danger", 11+0.5*4, rightDanger, 10, "u");
+    spawnBullet("danger", 11+0.5*5, middleXDanger, 10, "u");
+    spawnBullet("danger", 11+0.5*6, leftDanger, 10, "u");
 
-    // spawnBullet("ferris", 14.1, [rb[0]+400, rb[1]], 7, "l", true, 0,9,1,7);
-    // spawnBullet("ferris", 14.1, [tl[0], tl[1]-400], 7, "d", true, 0,9,1,7);
+    spawnBullet("ferris", 14.1, [rb[0]+400, rb[1]], 7, "l", true, 0,9,1,7);
+    spawnBullet("ferris", 14.1, [tl[0], tl[1]-400], 7, "d", true, 0,9,1,7);
 
-    // spawnBullet("ferris", 14.1, [lt[0]-900, lt[1]], 7, "r", true, 0,9,1,7);
-    // spawnBullet("ferris", 14.1, [br[0], br[1]+900], 7, "u", true, 0,9,1,7);
+    spawnBullet("ferris", 14.1, [lt[0]-900, lt[1]], 7, "r", true, 0,9,1,7);
+    spawnBullet("ferris", 14.1, [br[0], br[1]+900], 7, "u", true, 0,9,1,7);
 
-    // spawnBullet("basic", 18, rt, 5, "l");
-    // spawnBullet("basic", 18, rm, 5, "l");
-    // spawnBullet("basic", 18.5, rt, 5, "l");
-    // spawnBullet("basic", 18.5, rb, 5, "l");
-    // spawnBullet("basic", 19, rb, 5, "l");
-    // spawnBullet("basic", 19, rm, 5, "l");
-    // spawnBullet("basic", 19.5, rt, 5, "l");
-    // spawnBullet("basic", 19.5, rb, 5, "l");
-    // spawnBullet("basic", 20, rt, 5, "l");
-    // spawnBullet("basic", 20, rm, 5, "l");
-    // spawnBullet("basic", 20.5, rb, 5, "l");
-    // spawnBullet("basic", 20.5, rm, 5, "l");
-    // spawnBullet("basic", 21, rt, 5, "l");
-    // spawnBullet("basic", 21, rm, 5, "l");
-    // spawnBullet("basic", 21.5, rb, 5, "l");
-    // spawnBullet("basic", 21.5, rm, 5, "l");
-    // spawnBullet("basic", 22, rt, 5, "l");
-    // spawnBullet("basic", 22, rb, 5, "l");
-    // spawnBullet("basic", 22.5, rt, 5, "l");
-    // spawnBullet("basic", 22.5, rm, 5, "l");
-    // spawnBullet("basic", 23.0, rb, 5, "l");
-    // spawnBullet("basic", 23.0, rm, 5, "l");
-
-
-    // spawnBullet("basic", 24, lt, 5, "r");
-    // spawnBullet("basic", 24, lm, 5, "r");
-    // spawnBullet("basic", 24.1, lt, 5, "r");
-    // spawnBullet("basic", 24.1, lm, 5, "r");
-    // spawnBullet("basic", 24.5, lt, 5, "r");
-    // spawnBullet("basic", 24.5, lb, 5, "r");
-    // spawnBullet("basic", 24.6, lt, 5, "r");
-    // spawnBullet("basic", 24.6, lb, 5, "r");
-    // spawnBullet("basic", 25, lb, 5, "r");
-    // spawnBullet("basic", 25, lm, 5, "r");
-    // spawnBullet("basic", 25.1, lb, 5, "r");
-    // spawnBullet("basic", 25.1, lm, 5, "r");
-    // spawnBullet("basic", 25.5, lt, 5, "r");
-    // spawnBullet("basic", 25.5, lb, 5, "r");
-    // spawnBullet("basic", 25.6, lt, 5, "r");
-    // spawnBullet("basic", 25.6, lb, 5, "r");
-    // spawnBullet("basic", 26, lt, 5, "r");
-    // spawnBullet("basic", 26, lm, 5, "r");
-    // spawnBullet("basic", 26.1, lt, 5, "r");
-    // spawnBullet("basic", 26.1, lm, 5, "r");
-    // spawnBullet("basic", 26.5, lb, 5, "r");
-    // spawnBullet("basic", 26.5, lm, 5, "r");
-    // spawnBullet("basic", 26.6, lb, 5, "r");
-    // spawnBullet("basic", 26.6, lm, 5, "r");
-
-    // spawnBullet("basic", 27, lt, 5, "r");
-    // spawnBullet("basic", 27, lm, 5, "r");
-    // spawnBullet("basic", 27.1, lt, 5, "r");
-    // spawnBullet("basic", 27.1, lm, 5, "r");
-    // spawnBullet("basic", 27.5, lb, 5, "r");
-    // spawnBullet("basic", 27.5, lm, 5, "r");
-    // spawnBullet("basic", 27.6, lb, 5, "r");
-    // spawnBullet("basic", 27.6, lm, 5, "r");
-    // spawnBullet("basic", 28, lt, 5, "r");
-    // spawnBullet("basic", 28, lt, 5, "r");
-    // spawnBullet("basic", 28.1, lt, 5, "r");
-    // spawnBullet("basic", 28.1, lm, 5, "r");
-    // spawnBullet("basic", 28.5, lt, 5, "r");
-    // spawnBullet("basic", 28.5, lm, 5, "r");
-    // spawnBullet("basic", 28.6, lt, 5, "r");
-    // spawnBullet("basic", 28.6, lm, 5, "r");
-    // spawnBullet("basic", 29.0, lb, 5, "r");
-    // spawnBullet("basic", 29.0, lm, 5, "r");
-    // spawnBullet("basic", 29.1, lb, 5, "r");
-    // spawnBullet("basic", 29.1, lm, 5, "r");
+    spawnBullet("basic", 18, rt, 5, "l");
+    spawnBullet("basic", 18, rm, 5, "l");
+    spawnBullet("basic", 18.5, rt, 5, "l");
+    spawnBullet("basic", 18.5, rb, 5, "l");
+    spawnBullet("basic", 19, rb, 5, "l");
+    spawnBullet("basic", 19, rm, 5, "l");
+    spawnBullet("basic", 19.5, rt, 5, "l");
+    spawnBullet("basic", 19.5, rb, 5, "l");
+    spawnBullet("basic", 20, rt, 5, "l");
+    spawnBullet("basic", 20, rm, 5, "l");
+    spawnBullet("basic", 20.5, rb, 5, "l");
+    spawnBullet("basic", 20.5, rm, 5, "l");
+    spawnBullet("basic", 21, rt, 5, "l");
+    spawnBullet("basic", 21, rm, 5, "l");
+    spawnBullet("basic", 21.5, rb, 5, "l");
+    spawnBullet("basic", 21.5, rm, 5, "l");
+    spawnBullet("basic", 22, rt, 5, "l");
+    spawnBullet("basic", 22, rb, 5, "l");
+    spawnBullet("basic", 22.5, rt, 5, "l");
+    spawnBullet("basic", 22.5, rm, 5, "l");
+    spawnBullet("basic", 23.0, rb, 5, "l");
+    spawnBullet("basic", 23.0, rm, 5, "l");
 
 
-    // for (let i = 31; i <43; i+=1.5){
-    //     spawnBullet("basic", i, tl, 5, "d");
-    //     spawnBullet("basic", i, tm, 5, "d");
-    //     spawnBullet("basic", i, tr, 5, "d");
+    spawnBullet("basic", 24, lt, 5, "r");
+    spawnBullet("basic", 24, lm, 5, "r");
+    spawnBullet("basic", 24.1, lt, 5, "r");
+    spawnBullet("basic", 24.1, lm, 5, "r");
+    spawnBullet("basic", 24.5, lt, 5, "r");
+    spawnBullet("basic", 24.5, lb, 5, "r");
+    spawnBullet("basic", 24.6, lt, 5, "r");
+    spawnBullet("basic", 24.6, lb, 5, "r");
+    spawnBullet("basic", 25, lb, 5, "r");
+    spawnBullet("basic", 25, lm, 5, "r");
+    spawnBullet("basic", 25.1, lb, 5, "r");
+    spawnBullet("basic", 25.1, lm, 5, "r");
+    spawnBullet("basic", 25.5, lt, 5, "r");
+    spawnBullet("basic", 25.5, lb, 5, "r");
+    spawnBullet("basic", 25.6, lt, 5, "r");
+    spawnBullet("basic", 25.6, lb, 5, "r");
+    spawnBullet("basic", 26, lt, 5, "r");
+    spawnBullet("basic", 26, lm, 5, "r");
+    spawnBullet("basic", 26.1, lt, 5, "r");
+    spawnBullet("basic", 26.1, lm, 5, "r");
+    spawnBullet("basic", 26.5, lb, 5, "r");
+    spawnBullet("basic", 26.5, lm, 5, "r");
+    spawnBullet("basic", 26.6, lb, 5, "r");
+    spawnBullet("basic", 26.6, lm, 5, "r");
 
-    // }
-    // for (let i = 44; i <56; i++){
-    //     spawnBullet("basic", i, bl, 7, "u");
-    //     spawnBullet("basic", i, bm, 7, "u");
-    //     spawnBullet("basic", i, br, 7, "u");
-    //     spawnBullet("danger", i, topDanger, 10, "l");
+    spawnBullet("basic", 27, lt, 5, "r");
+    spawnBullet("basic", 27, lm, 5, "r");
+    spawnBullet("basic", 27.1, lt, 5, "r");
+    spawnBullet("basic", 27.1, lm, 5, "r");
+    spawnBullet("basic", 27.5, lb, 5, "r");
+    spawnBullet("basic", 27.5, lm, 5, "r");
+    spawnBullet("basic", 27.6, lb, 5, "r");
+    spawnBullet("basic", 27.6, lm, 5, "r");
+    spawnBullet("basic", 28, lt, 5, "r");
+    spawnBullet("basic", 28, lt, 5, "r");
+    spawnBullet("basic", 28.1, lt, 5, "r");
+    spawnBullet("basic", 28.1, lm, 5, "r");
+    spawnBullet("basic", 28.5, lt, 5, "r");
+    spawnBullet("basic", 28.5, lm, 5, "r");
+    spawnBullet("basic", 28.6, lt, 5, "r");
+    spawnBullet("basic", 28.6, lm, 5, "r");
+    spawnBullet("basic", 29.0, lb, 5, "r");
+    spawnBullet("basic", 29.0, lm, 5, "r");
+    spawnBullet("basic", 29.1, lb, 5, "r");
+    spawnBullet("basic", 29.1, lm, 5, "r");
 
-    // }
-    // for (let i = 58; i <61; i+=1.6){
+
+    for (let i = 31; i <43; i+=1.5){
+        spawnBullet("basic", i, tl, 5, "d");
+        spawnBullet("basic", i, tm, 5, "d");
+        spawnBullet("basic", i, tr, 5, "d");
+
+    }
+    for (let i = 44; i <56; i++){
+        spawnBullet("basic", i, bl, 7, "u");
+        spawnBullet("basic", i, bm, 7, "u");
+        spawnBullet("basic", i, br, 7, "u");
+        spawnBullet("danger", i, topDanger, 10, "l");
+
+    }
+    for (let i = 58; i <61; i+=1.6){
   
-    //     spawnBullet("danger", i, leftDanger, 10, "u");
-    //     spawnBullet("danger", i, middleXDanger, 10, "u");
-    //     spawnBullet("danger", i+0.8, rightDanger, 10, "u");
-    //     spawnBullet("danger", i+0.8, middleXDanger, 10, "u");
+        spawnBullet("danger", i, leftDanger, 10, "u");
+        spawnBullet("danger", i, middleXDanger, 10, "u");
+        spawnBullet("danger", i+0.8, rightDanger, 10, "u");
+        spawnBullet("danger", i+0.8, middleXDanger, 10, "u");
 
-    // }
-    // for (let i = 61; i <=64; i+=1.6){
+    }
+    for (let i = 61; i <=64; i+=1.6){
   
-    //     spawnBullet("danger", i, topDanger, 10, "l");
-    //     spawnBullet("danger", i, middleYDanger, 10, "l");
-    //     spawnBullet("danger", i+0.8, bottomDanger, 10, "l");
-    //     spawnBullet("danger", i+0.8, middleYDanger, 10, "l");
+        spawnBullet("danger", i, topDanger, 10, "l");
+        spawnBullet("danger", i, middleYDanger, 10, "l");
+        spawnBullet("danger", i+0.8, bottomDanger, 10, "l");
+        spawnBullet("danger", i+0.8, middleYDanger, 10, "l");
 
-    // }
-    // spawnBullet("ferris", 65, [lt[0]-900, lt[1]], 8, "r", true, 0,16,1,2);
+    }
+    spawnBullet("ferris", 65, [lt[0]-900, lt[1]], 8, "r", true, 0,16,1,2);
 
-    // spawnBullet("danger", 71.02, leftDanger, 10, "u");
-    // spawnBullet("danger", 71, middleXDanger, 10, "u");
-    // spawnBullet("danger", 71, topDanger, 10, "l");
-    // spawnBullet("danger", 71, middleYDanger, 10, "l");
+    spawnBullet("danger", 71.02, leftDanger, 10, "u");
+    spawnBullet("danger", 71, middleXDanger, 10, "u");
+    spawnBullet("danger", 71, topDanger, 10, "l");
+    spawnBullet("danger", 71, middleYDanger, 10, "l");
 
-    // spawnBullet("danger", 71.8, rightDanger, 10, "u");
-    // spawnBullet("danger", 71.8, middleXDanger, 10, "u");
-    // spawnBullet("danger", 71.8, topDanger, 10, "l");
-    // spawnBullet("danger", 71.8, middleYDanger, 10, "l");
+    spawnBullet("danger", 71.8, rightDanger, 10, "u");
+    spawnBullet("danger", 71.8, middleXDanger, 10, "u");
+    spawnBullet("danger", 71.8, topDanger, 10, "l");
+    spawnBullet("danger", 71.8, middleYDanger, 10, "l");
 
-    // spawnBullet("danger", 72.6, rightDanger, 10, "u");
-    // spawnBullet("danger", 72.6, middleXDanger, 10, "u");
-    // spawnBullet("danger", 72.6, bottomDanger, 10, "l");
-    // spawnBullet("danger", 72.6, middleYDanger, 10, "l");
+    spawnBullet("danger", 72.6, rightDanger, 10, "u");
+    spawnBullet("danger", 72.6, middleXDanger, 10, "u");
+    spawnBullet("danger", 72.6, bottomDanger, 10, "l");
+    spawnBullet("danger", 72.6, middleYDanger, 10, "l");
 
-    // spawnBullet("danger", 73.4, leftDanger, 10, "u");
-    // spawnBullet("danger", 73.4, middleXDanger, 10, "u");
-    // spawnBullet("danger", 73.4, bottomDanger, 10, "l");
-    // spawnBullet("danger", 73.4, middleYDanger, 10, "l");
+    spawnBullet("danger", 73.4, leftDanger, 10, "u");
+    spawnBullet("danger", 73.4, middleXDanger, 10, "u");
+    spawnBullet("danger", 73.4, bottomDanger, 10, "l");
+    spawnBullet("danger", 73.4, middleYDanger, 10, "l");
 
-    // for(let i = 73.8; i<=75.4; i+=0.2){
-    //     spawnBullet("basic", i, bl, 5, "u");
-    //     spawnBullet("basic", i, tr, 5, "d");
-    //     spawnBullet("basic", i, tl, 5, "d");
-    //     spawnBullet("basic", i, br, 5, "u");
-    // }
-
-
-    // spawnBullet("danger", 74.5, topDanger, 10, "l");
-    // for(var j = 6; j <=16; j++){
-    //     spawnBullet("basic", 74.8, lt, j, "r");
-    //     spawnBullet("basic", 74.8, rt, j, "l");
-
-    // }
-    // spawnBullet("danger", 76.3, bottomDanger, 10, "l");
-
-    // for(var j = 6; j <=16; j++){
-    //     spawnBullet("basic", 76.4, lb, j, "r");
-    //     spawnBullet("basic", 76.4, rb, j, "l");
-
-    // }
-    // spawnBullet("basic", 74.1, lb, 7, "r");
-    // spawnBullet("basic", 74.5, rm, 7, "l");
-    // spawnBullet("basic", 74.9, lb, 7, "r");
-    // spawnBullet("basic", 75.3, rm, 7, "l");
-
-    // spawnBullet("basic", 75.7, lt, 7, "r");
-    // spawnBullet("basic", 76.1, rm, 7, "l");
-    // spawnBullet("basic", 76.5, lt, 7, "r");
-    // spawnBullet("basic", 76.9, rm, 7, "l");
+    for(let i = 73.8; i<=75.4; i+=0.2){
+        spawnBullet("basic", i, bl, 5, "u");
+        spawnBullet("basic", i, tr, 5, "d");
+        spawnBullet("basic", i, tl, 5, "d");
+        spawnBullet("basic", i, br, 5, "u");
+    }
 
 
-    startTime = 77.4;
-    gameMusic[gameLevel-1].currentTime=startTime;
+    spawnBullet("danger", 74.5, topDanger, 10, "l");
     for(var j = 6; j <=16; j++){
-        spawnBullet("basic", 77.4-startTime, lb, j, "r");
-        spawnBullet("basic", 77.4-startTime, rb, j, "l");
+        spawnBullet("basic", 74.8, lt, j, "r");
+        spawnBullet("basic", 74.8, rt, j, "l");
+
+    }
+    spawnBullet("danger", 76.3, bottomDanger, 10, "l");
+
+    for(var j = 6; j <=16; j++){
+        spawnBullet("basic", 76.4, lb, j, "r");
+        spawnBullet("basic", 76.4, rb, j, "l");
+
+    }
+    spawnBullet("basic", 74.1, lb, 7, "r");
+    spawnBullet("basic", 74.5, rm, 7, "l");
+    spawnBullet("basic", 74.9, lb, 7, "r");
+    spawnBullet("basic", 75.3, rm, 7, "l");
+
+    spawnBullet("basic", 75.7, lt, 7, "r");
+    spawnBullet("basic", 76.1, rm, 7, "l");
+    spawnBullet("basic", 76.5, lt, 7, "r");
+    spawnBullet("basic", 76.9, rm, 7, "l");
+
+
+
+    for(var j = 6; j <=16; j++){
+        spawnBullet("basic", 77.4, lb, j, "r");
+        spawnBullet("basic", 77.4, rb, j, "l");
     }
     for(var j = 6; j <=16; j++){
-        spawnBullet("basic", 78.4-startTime, lm, j, "r");
-        spawnBullet("basic", 78.4-startTime, rm, j, "l");
+        spawnBullet("basic", 78.4, lm, j, "r");
+        spawnBullet("basic", 78.4, rm, j, "l");
     }
     for(var j = 6; j <=16; j++){
-        spawnBullet("basic", 79.4-startTime, lt, j, "r");
-        spawnBullet("basic", 79.4-startTime, rt, j, "l");
+        spawnBullet("basic", 79.4, lt, j, "r");
+        spawnBullet("basic", 79.4, rt, j, "l");
     }
     for(var j = 6; j <=16; j++){
-        spawnBullet("basic", 80.4-startTime, lt, j, "r");
-        spawnBullet("basic", 80.4-startTime, rt, j, "l");
+        spawnBullet("basic", 80.4, lt, j, "r");
+        spawnBullet("basic", 80.4, rt, j, "l");
 
-        spawnBullet("basic", 80.4-startTime, lb, j, "r");
-        spawnBullet("basic", 80.4-startTime, rb, j, "l");
+        spawnBullet("basic", 80.4, lb, j, "r");
+        spawnBullet("basic", 80.4, rb, j, "l");
         
     }
     for(var i = 80.9; i <=84; i+=0.2){
-        spawnBullet("basic", i-startTime, lt, 6, "r");
-        spawnBullet("basic", i-startTime, rt, 6, "l");
-        spawnBullet("basic", i-startTime, lb, 6, "r");
-        spawnBullet("basic", i-startTime, rb, 6, "l");
+        spawnBullet("basic", i, lt, 6, "r");
+        spawnBullet("basic", i, rt, 6, "l");
+        spawnBullet("basic", i, lb, 6, "r");
+        spawnBullet("basic", i, rb, 6, "l");
     }
 
     for(var i =80.9; i <= 82.2; i+=0.9){
-        spawnBullet("basic", i-startTime,tm, 10, "d");
+        spawnBullet("basic", i,tm, 10, "d");
 
     }
 
     for(var i =80.9; i <= 82.2; i+=0.9){
-        spawnBullet("basic", i+0.5-startTime, bl, 10, "u");
+        spawnBullet("basic", i+0.5, bl, 10, "u");
 
     }
     for(var i =82.2; i <= 84.7; i+=0.9){
-        spawnBullet("basic", i-startTime, tr, 10, "d");
+        spawnBullet("basic", i, tr, 10, "d");
 
     }
 
     for(var i =82.2; i <= 84; i+=0.9){
-        spawnBullet("basic", i+0.5-startTime, bm, 10    , "u");
+        spawnBullet("basic", i+0.5, bm, 10    , "u");
 
     }
     
     for(var j = 6; j <=16; j++){
-        spawnBullet("basic", 81-startTime, tr, j, "d");
-        spawnBullet("basic", 81-startTime, br, j, "u");
+        spawnBullet("basic", 81, tr, j, "d");
+        spawnBullet("basic", 81, br, j, "u");
 
     }
     for(var j = 6; j <=16; j++){
-        spawnBullet("basic", 83-startTime, tl, j, "d");
-        spawnBullet("basic", 83-startTime, bl, j, "u");
+        spawnBullet("basic", 83, tl, j, "d");
+        spawnBullet("basic", 83, bl, j, "u");
 
     }
-    spawnBullet("ferris", 84.5-startTime, [lt[0]-200, lt[1]], 9, "r", true, 0,5,0.8,11);
-    spawnBullet("ferris", 85-startTime, [tr[0], tr[1]-200], 9, "d", true, 0,5,0.8,11);
-    spawnBullet("ferris", 85.5-startTime, [rb[0]+200, rb[1]], 9, "l", true, 0,5,0.8,11);
-    spawnBullet("ferris", 86-startTime, [bl[0], bl[1]+200], 9, "u", true, 0,5,0.8,11);
-    spawnBullet("ferris", 86.5-startTime, [lt[0]-200, lt[1]], 9, "r", true, 0,5,0.8,11);
-    spawnBullet("ferris", 87.5-startTime, [rm[0]+200, rm[1]], 5, "l", true, 0,15,1.5,6);
 
-    spawnBullet("basic", 91.2-startTime, rt, 14, "l");
-    spawnBullet("basic", 91.2-startTime, rm, 14, "l");
+    spawnBullet("ferris", 84.5, [lt[0]-200, lt[1]], 9, "r", true, 0,5,0.8,11);
+    spawnBullet("ferris", 85, [tr[0], tr[1]-200], 9, "d", true, 0,5,0.8,11);
+    spawnBullet("ferris", 85.5, [rb[0]+200, rb[1]], 9, "l", true, 0,5,0.8,11);
+    spawnBullet("ferris", 86, [bl[0], bl[1]+200], 9, "u", true, 0,5,0.8,11);
+    spawnBullet("ferris", 86.5, [lt[0]-200, lt[1]], 9, "r", true, 0,5,0.8,11);
+    spawnBullet("ferris", 87.5, [rm[0]+200, rm[1]], 5, "l", true, 0,15,1.5,6);
 
-    spawnBullet("basic", 91.7-startTime, lb, 14, "r");
-    spawnBullet("basic", 91.7-startTime, lm, 14, "r");
+    spawnBullet("basic", 91.2, rt, 14, "l");
+    spawnBullet("basic", 91.2, rm, 14, "l");
 
-    spawnBullet("basic", 92.2-startTime, rt, 14, "l");
-    spawnBullet("basic", 92.2-startTime, rm, 14, "l");
+    spawnBullet("basic", 91.7, lb, 14, "r");
+    spawnBullet("basic", 91.7, lm, 14, "r");
 
-    spawnBullet("basic", 92.7-startTime, lb, 14, "r");
-    spawnBullet("basic", 92.7-startTime, lm, 14, "r");
+    spawnBullet("basic", 92.2, rt, 14, "l");
+    spawnBullet("basic", 92.2, rm, 14, "l");
 
-    spawnBullet("basic", 93.2-startTime, rt, 14, "l");
-    spawnBullet("basic", 93.2-startTime, rm, 14, "l");
+    spawnBullet("basic", 92.7, lb, 14, "r");
+    spawnBullet("basic", 92.7, lm, 14, "r");
+
+    spawnBullet("basic", 93.2, rt, 14, "l");
+    spawnBullet("basic", 93.2, rm, 14, "l");
+//
+    spawnBullet("basic", 94.4, tr, 14, "d");
+    spawnBullet("basic", 94.4, tm, 14, "d");
+
+    spawnBullet("basic", 94.9, rm, 14, "l");
+    spawnBullet("basic", 94.9, rb, 14, "l");
+
+    spawnBullet("basic", 95.4, bl, 14, "u");
+    spawnBullet("basic", 95.4, bm, 14, "u");
+
+    spawnBullet("basic", 95.9, lt, 14, "r");
+    spawnBullet("basic", 95.9, lm, 14, "r");
+
+    spawnBullet("basic", 96.4, rb, 14, "l");
+    spawnBullet("basic", 96.4, rt, 14, "l");
+
+    spawnBullet("basic", 96.9, rm, 14, "l");
+    spawnBullet("basic", 96.9, lm, 14, "r");
+
+
+    spawnBullet("danger", 97.5, rightDanger, 10, "u");
+    spawnBullet("danger", 98, middleXDanger, 10, "u");
+    spawnBullet("danger", 98.5, leftDanger, 10, "u");
+    spawnBullet("danger", 99, middleXDanger, 10, "u");
+    spawnBullet("danger", 99.5, rightDanger, 10, "u");
+    spawnBullet("danger", 100, middleXDanger, 10, "u");
+    spawnBullet("danger", 100.5, leftDanger, 10, "u");
+    spawnBullet("danger", 101, middleXDanger, 10, "u");
+    spawnBullet("danger", 101.5, rightDanger, 10, "u");
+    spawnBullet("danger", 102, middleXDanger, 10, "u");
+    spawnBullet("danger", 102.5, leftDanger, 10, "u");
+    spawnBullet("danger", 103, middleXDanger, 10, "u");
+    spawnBullet("danger", 103.5, rightDanger, 10, "u");
+    spawnBullet("danger", 104, middleXDanger, 10, "u");
+
+    spawnBullet("danger", 104.5, bottomDanger, 10, "l");
+    spawnBullet("danger", 105, middleYDanger, 10, "l");
+    spawnBullet("danger", 105.5, topDanger, 10, "l");
+    spawnBullet("danger", 106, middleYDanger, 10, "l");
+    spawnBullet("danger", 106.5, bottomDanger, 10, "l");
+    spawnBullet("danger", 107, middleYDanger, 10, "l");
+    spawnBullet("danger", 107.5, topDanger, 10, "l");
+    spawnBullet("danger", 108, middleYDanger, 10, "l");
+    spawnBullet("danger", 108.5, bottomDanger, 10, "l");
+    spawnBullet("danger", 109, middleYDanger, 10, "l");
+
+    spawnBullet("win", 112, middleYDanger, 10, "l");
+
     godMode=true;
 
 }
@@ -429,103 +477,103 @@ function bulletScript3(){
     startTime = 0;
 
     var part2=26; 
-    spawnBullet("basic",45-startTime , bm, 5, "u");
-    spawnBullet("danger", 45.9-startTime , middleXDanger, 10, "u");
-    spawnBullet("basic",45-startTime , tm, 5, "d");
+    spawnBullet("basic",45 , bm, 5, "u");
+    spawnBullet("danger", 45.9 , middleXDanger, 10, "u");
+    spawnBullet("basic",45 , tm, 5, "d");
 
-    spawnBullet("basic",45-startTime , lm, 5, "r");
-    spawnBullet("danger",46.1-startTime , middleYDanger, 10, "l");
-    spawnBullet("basic",45-startTime , rm, 5, "l");
+    spawnBullet("basic",45 , lm, 5, "r");
+    spawnBullet("danger",46.1 , middleYDanger, 10, "l");
+    spawnBullet("basic",45 , rm, 5, "l");
 
-    spawnBullet("basic",48-startTime , lt, 5, "r");
-    spawnBullet("basic",48-startTime , rt, 5, "l");
-    spawnBullet("basic",48-startTime , lm, 5, "r");
-    spawnBullet("basic",48-startTime , rm, 5, "l");
+    spawnBullet("basic",48 , lt, 5, "r");
+    spawnBullet("basic",48 , rt, 5, "l");
+    spawnBullet("basic",48 , lm, 5, "r");
+    spawnBullet("basic",48 , rm, 5, "l");
 
-    spawnBullet("basic",49.3-startTime , lb, 5, "r");
-    spawnBullet("basic",49.3-startTime , rb, 5, "l");
-    spawnBullet("basic",49.3-startTime , lm, 5, "r");
-    spawnBullet("basic",49.3-startTime , rm, 5, "l");
+    spawnBullet("basic",49.3 , lb, 5, "r");
+    spawnBullet("basic",49.3 , rb, 5, "l");
+    spawnBullet("basic",49.3 , lm, 5, "r");
+    spawnBullet("basic",49.3 , rm, 5, "l");
 
-    spawnBullet("basic",51.33-startTime , rb, 5, "l");
-    spawnBullet("basic",51.66-startTime , rm, 5, "l");
-    spawnBullet("basic",52-startTime , rt, 5, "l");
-    spawnBullet("basic",52.33-startTime , rm, 5, "l");
-    spawnBullet("basic",52.66-startTime , rb, 5, "l");
+    spawnBullet("basic",51.33 , rb, 5, "l");
+    spawnBullet("basic",51.66 , rm, 5, "l");
+    spawnBullet("basic",52 , rt, 5, "l");
+    spawnBullet("basic",52.33 , rm, 5, "l");
+    spawnBullet("basic",52.66 , rb, 5, "l");
 
-    spawnBullet("basic",54-startTime , tl, 5, "d");
-    spawnBullet("basic",54-startTime , bl, 5, "u");
-    spawnBullet("basic",54-startTime , tr, 5, "d");
-    spawnBullet("basic",54-startTime , br, 5, "u");
+    spawnBullet("basic",54 , tl, 5, "d");
+    spawnBullet("basic",54 , bl, 5, "u");
+    spawnBullet("basic",54 , tr, 5, "d");
+    spawnBullet("basic",54 , br, 5, "u");
 
-    spawnBullet("basic",55.3-startTime , tr, 5, "d");
-    spawnBullet("basic",55.3-startTime , br, 5, "u");
-    spawnBullet("basic",55.3-startTime , tm, 5, "d");
-    spawnBullet("basic",55.3-startTime , bm, 5, "u");
-    spawnBullet("ferris", 56-startTime, [tl[0], tl[1]-200], 4, "d", true, 0,11,1,4);
+    spawnBullet("basic",55.3 , tr, 5, "d");
+    spawnBullet("basic",55.3 , br, 5, "u");
+    spawnBullet("basic",55.3 , tm, 5, "d");
+    spawnBullet("basic",55.3 , bm, 5, "u");
+    spawnBullet("ferris", 56, [tl[0], tl[1]-200], 4, "d", true, 0,11,1,4);
 
-    spawnBullet("basic",60.3-startTime , br, 5, "u");
-    spawnBullet("basic",60.3-startTime , bm, 5, "u");
-    spawnBullet("basic",61.4-startTime , bl, 5, "u");
-    spawnBullet("basic",61.4-startTime , bm, 5, "u");
+    spawnBullet("basic",60.3 , br, 5, "u");
+    spawnBullet("basic",60.3 , bm, 5, "u");
+    spawnBullet("basic",61.4 , bl, 5, "u");
+    spawnBullet("basic",61.4 , bm, 5, "u");
 
-    spawnBullet("basic",63.5-startTime , rb, 5, "l");
-    spawnBullet("basic",63.5-startTime , rm, 5, "l");
-    spawnBullet("basic",64.6-startTime , lt, 5, "r");
-    spawnBullet("basic",64.6-startTime , lm, 5, "r");
-    spawnBullet("basic",66.33-startTime , rb, 5, "l");
-    spawnBullet("basic",66.66-startTime , rm, 5, "l");
-    spawnBullet("basic",67-startTime , rt, 5, "l");
-    spawnBullet("basic",67.33-startTime , rm, 5, "l");
-    spawnBullet("basic",67.66-startTime , rb, 5, "l");
+    spawnBullet("basic",63.5 , rb, 5, "l");
+    spawnBullet("basic",63.5 , rm, 5, "l");
+    spawnBullet("basic",64.6 , lt, 5, "r");
+    spawnBullet("basic",64.6 , lm, 5, "r");
+    spawnBullet("basic",66.33 , rb, 5, "l");
+    spawnBullet("basic",66.66 , rm, 5, "l");
+    spawnBullet("basic",67 , rt, 5, "l");
+    spawnBullet("basic",67.33 , rm, 5, "l");
+    spawnBullet("basic",67.66 , rb, 5, "l");
 
-    spawnBullet("ferris", 68.5-startTime, [tr[0], tr[1]-200], 4, "d", true, 0,11,1,4);
+    spawnBullet("ferris", 68.5, [tr[0], tr[1]-200], 4, "d", true, 0,11,1,4);
 
 
 
-    spawnBullet("basic",48-startTime+part2 , rt, 5, "l");
-    spawnBullet("basic",48-startTime+part2 , lt, 5, "r");
-    spawnBullet("basic",48-startTime+part2 , rm, 5, "l");
-    spawnBullet("basic",48-startTime+part2 , lm, 5, "r");
+    spawnBullet("basic",48+part2 , rt, 5, "l");
+    spawnBullet("basic",48+part2 , lt, 5, "r");
+    spawnBullet("basic",48+part2 , rm, 5, "l");
+    spawnBullet("basic",48+part2 , lm, 5, "r");
 
-    spawnBullet("basic",49.3-startTime+part2 , rb, 5, "l");
-    spawnBullet("basic",49.3-startTime+part2 ,lb, 5, "r");
-    spawnBullet("basic",49.3-startTime +part2, rm, 5, "l");
-    spawnBullet("basic",49.3-startTime +part2, lm, 5, "r");
+    spawnBullet("basic",49.3+part2 , rb, 5, "l");
+    spawnBullet("basic",49.3+part2 ,lb, 5, "r");
+    spawnBullet("basic",49.3 +part2, rm, 5, "l");
+    spawnBullet("basic",49.3 +part2, lm, 5, "r");
 
-    spawnBullet("basic",51.33-startTime+part2 , lb, 5, "r");
-    spawnBullet("basic",51.66-startTime+part2 , lm, 5, "r");
-    spawnBullet("basic",52-startTime +part2, lt, 5, "r");
-    spawnBullet("basic",52.33-startTime+part2 ,lm, 5, "r");
-    spawnBullet("basic",52.66-startTime+part2 , lb, 5, "r");
+    spawnBullet("basic",51.33+part2 , lb, 5, "r");
+    spawnBullet("basic",51.66+part2 , lm, 5, "r");
+    spawnBullet("basic",52 +part2, lt, 5, "r");
+    spawnBullet("basic",52.33+part2 ,lm, 5, "r");
+    spawnBullet("basic",52.66+part2 , lb, 5, "r");
 
-    spawnBullet("basic",54-startTime+part2 , tr, 5, "d");
-    spawnBullet("basic",54-startTime+part2 , br, 5, "u");
-    spawnBullet("basic",54-startTime+part2 , tl, 5, "d");
-    spawnBullet("basic",54-startTime +part2, bl, 5, "u");
+    spawnBullet("basic",54+part2 , tr, 5, "d");
+    spawnBullet("basic",54+part2 , br, 5, "u");
+    spawnBullet("basic",54+part2 , tl, 5, "d");
+    spawnBullet("basic",54 +part2, bl, 5, "u");
 
-    spawnBullet("basic",55.3-startTime +part2, tl, 5, "d");
-    spawnBullet("basic",55.3-startTime +part2, bl, 5, "u");
-    spawnBullet("basic",55.3-startTime+part2 , tm, 5, "d");
-    spawnBullet("basic",55.3-startTime+part2 , bm, 5, "u");
-    spawnBullet("ferris", 56-startTime+part2, [tr[0], tr[1]-200], 4, "d", true, 0,11,1,4);
+    spawnBullet("basic",55.3 +part2, tl, 5, "d");
+    spawnBullet("basic",55.3 +part2, bl, 5, "u");
+    spawnBullet("basic",55.3+part2 , tm, 5, "d");
+    spawnBullet("basic",55.3+part2 , bm, 5, "u");
+    spawnBullet("ferris", 56+part2, [tr[0], tr[1]-200], 4, "d", true, 0,11,1,4);
 
-    spawnBullet("basic",60.3-startTime+part2 , bl, 5, "u");
-    spawnBullet("basic",60.3-startTime+part2 , bm, 5, "u");
-    spawnBullet("basic",61.4-startTime+part2 , br, 5, "u");
-    spawnBullet("basic",61.4-startTime+part2 , bm, 5, "u");
+    spawnBullet("basic",60.3+part2 , bl, 5, "u");
+    spawnBullet("basic",60.3+part2 , bm, 5, "u");
+    spawnBullet("basic",61.4+part2 , br, 5, "u");
+    spawnBullet("basic",61.4+part2 , bm, 5, "u");
 
-    spawnBullet("basic",63.5-startTime+part2 , lb, 5, "r");
-    spawnBullet("basic",63.5-startTime+part2 , lm, 5, "r");
-    spawnBullet("basic",64.6-startTime+part2 , rt, 5, "l");
-    spawnBullet("basic",64.6-startTime+part2 , rm, 5, "l");
-    spawnBullet("basic",66.33-startTime+part2 , lb, 5, "r");
-    spawnBullet("basic",66.66-startTime+part2 , lm, 5, "r");
-    spawnBullet("basic",67-startTime+part2 , lt, 5, "r");
-    spawnBullet("basic",67.33-startTime +part2, lm, 5, "r");
-    spawnBullet("basic",67.66-startTime+part2 , lb, 5, "r");
+    spawnBullet("basic",63.5+part2 , lb, 5, "r");
+    spawnBullet("basic",63.5+part2 , lm, 5, "r");
+    spawnBullet("basic",64.6+part2 , rt, 5, "l");
+    spawnBullet("basic",64.6+part2 , rm, 5, "l");
+    spawnBullet("basic",66.33+part2 , lb, 5, "r");
+    spawnBullet("basic",66.66+part2 , lm, 5, "r");
+    spawnBullet("basic",67+part2 , lt, 5, "r");
+    spawnBullet("basic",67.33 +part2, lm, 5, "r");
+    spawnBullet("basic",67.66+part2 , lb, 5, "r");
 
-    spawnBullet("ferris", 68.5-startTime+part2, [tl[0], tl[1]-200], 4, "d", true, 0,11,1,4);
+    spawnBullet("ferris", 68.5+part2, [tl[0], tl[1]-200], 4, "d", true, 0,11,1,4);
 
     spawnBullet("win",100 , lb, 5, "r");
 
