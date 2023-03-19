@@ -51,7 +51,8 @@ html{
     
 }
 body{
-    
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
     min-height:100%;
     background-repeat: no-repeat;
     text-align: center;
@@ -256,7 +257,9 @@ footer {
   .slider:hover {
     opacity: 1; 
   }
-  
+  .effect{
+      background-color: orange;
+  }
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none; 
     appearance: none;
@@ -273,3 +276,7 @@ footer {
     background: #ff41d6; 
     cursor: pointer; 
   }
+.w3-animate-show{
+    animation: show 0.8s;
+    animation-fill-mode:forwards;
+}

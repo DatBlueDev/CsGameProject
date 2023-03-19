@@ -81,7 +81,7 @@ for (var i = 0; i<gameMusic.length; i++){
             startGameButton.style.display = "block";
 
             loadingText.innerHTML = "Finished Loading!";
-            loadingProgress.innerHTML = "Please press start to continue";
+            loadingProgress.innerHTML = "Please wear headphones for the full experience";
             problemLoading.remove();
         }
     }
