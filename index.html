@@ -40,11 +40,12 @@
             
             </div>
             <div id = "Levels">
-                <div id = "LevelsContainer" >
-                    <button onclick="startGame(1); " id = "startButton" class= "w3-animate-top">Level 1</button><br><br><br>
-                    <button onclick="startGame(2);" id = "startButton2" class= "w3-animate-top">Level 2</button><br><br><br>
-                    <button onclick="startGame(3);" id = "startButton3" class= "w3-animate-top">Level 3</button><br><br><br>
-                    <button onclick="startGame(4);" id = "startButton4" class= "w3-animate-top">Level 4</button><br><br><br>
+                <div id = "LevelsContainer" style="text-align:center;" >
+                    <img src = "gameSprites/levels.png"> <br><br><br><br>
+                    <button onclick="startGame(3); " id = "startButton" class = "Easy" class= "w3-animate-top">Level 1</button><br><br><br>
+                    <button onclick="startGame(1);" id = "startButton2" class = "Medium" class= "w3-animate-top">Level 2</button><br><br><br>
+                    <button onclick="startGame(2);" id = "startButton3" class= "Hard" class="w3-animate-top">Level 3</button><br><br><br>
+                    <button onclick="startGame(4);" id = "startButton4" class= "Impossible" class="w3-animate-top">Level 4</button><br><br><br>
 
                     <button onclick="backFromLevels(); " id = "backLevelButton" class= " w3-animate-bottom">Back</button> <br><br><br>
 
@@ -52,7 +53,7 @@
             
             </div>
 
-            <div id="GameScene"  class ="w3-animate-opacity	">
+            <div id="GameScene"  class ="w3-animate-opacity	" style="text-align:center;">
                 <div id = "HealthInfo">
                     <label for="Health">HP: </label>
                     <progress id="Health" value="32" max="100"> 100% </progress>
@@ -61,7 +62,8 @@
 
                 </div>
 
-        
+                <button onclick="reloadGame(1);" id = "inGameBackButton" class= "w3-bottom">Back</button>
+
             </div>
             <div id="GameOverScene">
                 <h1 id="GameOverText" class = "w3-animate-top">Game<br>Over!</h1>
@@ -96,7 +98,7 @@
             
             <div id="WinScene">
                 <div class="w3-animate-zoom" id="ZoomAnimationOnWin">
-                    <p id="YouWinTitle" class = "w3-animate-opacity">You Win!</h2>
+                    <p id="YouWinTitle" class = "w3-animate-opacity">You Win!</h2> <br><br>
                     <button onclick="reloadGame();" id = "reloadButton" class= "w3-animate-bottom">Play Again</button>
 
                 </div>

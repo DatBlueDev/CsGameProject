@@ -9,17 +9,38 @@ canvas {
 #startGameButton{
     width:100%;
 }
-#Easy{
-    background-color:#66ff66;
+.Easy{
+    background-color:#b1ffb1;
+    border: solid rgb(255, 174, 108)  5px;
 }
-#Medium{
-    background-color:#fbff26;
+.Medium{
+    background-color:#feffcb;
+    border: solid rgb(255, 174, 108) 5px;
+
 }
-#Hard{
-    background-color:#ec260c;
+.Hard{
+    background-color:#ff9084;
+    border: solid red 5px;
+
 }
-#Impossible{
-    background-color:#6d009c;
+.Impossible{
+    background-color:#60008a;
+    color:white;
+    border: solid red 5px;
+
+}
+#inGameBackButton{
+    width:250px;
+    background-color: rgba(255,255,255,0.6);
+    position:absolute;
+    bottom:10px;
+    right:10px;
+}
+#LevelsTitle{
+    font-size:300%;
+    color:red;
+    background-color:white;
+    width:20%;
 }
 .Difficulties{
     width:400px;

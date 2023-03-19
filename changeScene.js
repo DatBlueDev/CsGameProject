@@ -57,16 +57,12 @@ function showGameOver(){
 function showAbout(){   
      menuHit.play();
 }
-function reloadGame(){
-    start();
+function reloadGame(a = 0){
+    location.reload();
 
 }
 function start(){
-    if(!firstTime) {
-        // first time loaded!
-        localStorage.setItem("first_time","1");
-        console.log("testing");
-    }
+
     gameOverMusic.currentTime=0;
     for(var i = 0; i <gameMusic.length; i++){
         gameMusic[i].currentTime=0;

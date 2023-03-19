@@ -54,7 +54,7 @@ playerLeft = document.getElementById("playerLeft8");
 playerRight = document.getElementById("playerRight8");
 
 
-var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3'), new Audio('gameMusic/applause.ogg'), new Audio('gameMusic/menuMusic.mp3')];
+var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3'), new Audio('gameMusic/winMusic2.mp3'), new Audio('gameMusic/menuMusic.mp3')];
 var gameMusicIsLoaded = [false, false, false, false, false];
 var hoverSoundEffect = new Audio('gameSoundEffects/menuclick.wav');
 var hurtEffect = new Audio('gameSoundEffects/hurtSoundEffect.mp3');
@@ -241,7 +241,6 @@ function component(width, height, color, x, y) {
         this.y += this.speedY;        
     }    
 }
-sameGame=true;
 
 function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = true, bulletDirection = "l", bulletsInCircle =5, isFerris = false, bulletLocation=[], j=0, radius=1,rotationSpeed=1,bulletSpeed=1, ferrisNumber) {
     this.width = width;
@@ -257,6 +256,7 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
     this.rotationSpeed = rotationSpeed;
     this.ferrisNumber = ferrisNumber;
     this.gameNumber = gameNumber;
+    this.sameGame = true;
     var xk =bulletLocation[0];
     var yk =bulletLocation[1]; 
 
@@ -276,17 +276,21 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
         }
       
     }        
+    var fgdsg =0 ;
+    
     if (gameNumber != currentGameNumber){
         this.x=9000000;
         this.y= 9000000;
-        sameGame=false;
-    }
-    if (sameGame == false){
+        this.sameGame=false;
+        fgdsg = 9000000;
+    }else{sameGame=true;}
 
-    }
+    // if (sameGame == false){
+
+    // }
     this.rotate = function(degreesRotation) {
 
-        if (gameNumber == currentGameNumber && sameGame==true){
+        if (gameNumber == currentGameNumber){
 
             if (bulletDirection == "r"){
                 xk  += bulletSpeed;
@@ -300,8 +304,8 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
             else if (bulletDirection == "d"){
                 yk += bulletSpeed;
             }
-            bulletModels[j].x = xk + (100*radius*(Math.cos(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180)))); 
-            bulletModels[j].y = yk + (100*radius*(Math.sin(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180))));  
+            bulletModels[j].x = fgdsg + xk + (100*radius*(Math.cos(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180)))); 
+            bulletModels[j].y =  fgdsg + yk + (100*radius*(Math.sin(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180))));  
             degreesRotation[ferrisNumber]+=0.05;
             console.log(degreesRotation);
             console.log(ferrisNumber);
@@ -353,9 +357,12 @@ function gameOver(){
 
 }
 async function win(){
-    $("#GameScene").fadeOut();
-    await wait (2000);
-    winScreen();
+    if (sameGame){
+        $("#GameScene").fadeOut();
+        await wait (2000);
+        winScreen();
+    }
+
 }
 async function updateGameArea() {
             console.log("test");
@@ -615,7 +622,7 @@ function main(){
     }
     else if (gameLevel == 2) {
         gameMusic[gameLevel-1].play();
-        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(100, 100, 255, 0.05) , rgba(40,40,40))";
+        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(100, 100, 255, 0.2) , rgba(0,0,0))";
 
         bulletScript2();
     }
@@ -644,82 +651,86 @@ var initModelX;
 var switchLeft;
 $(document).keydown(function(event) {
     var key = (event.keyCode ? event.keyCode : event.which);
-
-    if(key != 87 && key!= 83 && key !=88){
-        shouldSpriteChange = false;
-
-    }
-    initModelX = playerModel.x;
-    initModelY = playerModel.y;
-
-    if (key === 65 || key === 100){ // A
-        playerModel.x = Left; 
-        playerModel.y = MiddleY;
-        playerLocation = 4;
-        switchSpritesLeft();
-    }
+    try{
+        if(key != 87 && key!= 83 && key !=88){
+            shouldSpriteChange = false;
     
-    if (key === 68 || key === 102){ // D
-        playerModel.x = Right; 
-        playerModel.y = MiddleY;
-        playerLocation = 6;
-        switchSpritesRight();
-
-    }
+        }
+        initModelX = playerModel.x;
+        initModelY = playerModel.y;
     
-    if (key === 87 || key === 104){ // W
-        playerModel.x = MiddleX; 
-        playerModel.y = Up;
-        playerLocation = 2;
-    }
-    
-    if (key === 88 || key === 98){ // X
-        playerModel.x = MiddleX; 
-        playerModel.y = Down;
-        playerLocation = 8;
-    }
-
-    if (key === 81 || key === 103){ // Q
-        playerModel.x = Left; 
-        playerModel.y = Up;
-        playerLocation = 1;
+        if (key === 65 || key === 100){ // A
+            playerModel.x = Left; 
+            playerModel.y = MiddleY;
+            playerLocation = 4;
+            switchSpritesLeft();
+        }
         
-        switchSpritesLeft();
-    }
-
-    if (key === 69 || key === 105){ // E
-        playerModel.x = Right; 
-        playerModel.y = Up;
-        playerLocation = 3;
-        switchSpritesRight();
-    }
+        if (key === 68 || key === 102){ // D
+            playerModel.x = Right; 
+            playerModel.y = MiddleY;
+            playerLocation = 6;
+            switchSpritesRight();
     
-    if (key === 90 || key === 97){ // Z
-        playerModel.x = Left; 
-        playerModel.y = Down
-        playerLocation = 7;
-        switchSpritesLeft();
-    }
+        }
+        
+        if (key === 87 || key === 104){ // W
+            playerModel.x = MiddleX; 
+            playerModel.y = Up;
+            playerLocation = 2;
+        }
+        
+        if (key === 88 || key === 98){ // X
+            playerModel.x = MiddleX; 
+            playerModel.y = Down;
+            playerLocation = 8;
+        }
     
-    if (key === 67 || key === 99){ // C
-        playerModel.x = Right; 
-        playerModel.y = Down;
-        playerLocation = 9;
-        switchSpritesRight();
-
-    }
-
-    if (key === 83 || key === 101){ // S
-        playerModel.x = MiddleX; 
-        playerModel.y = MiddleY;
-        playerLocation = 5;
-    }
-
-    if (key === 14 ){ // S
-
-        bulletModels=[];
-    }
+        if (key === 81 || key === 103){ // Q
+            playerModel.x = Left; 
+            playerModel.y = Up;
+            playerLocation = 1;
+            
+            switchSpritesLeft();
+        }
     
+        if (key === 69 || key === 105){ // E
+            playerModel.x = Right; 
+            playerModel.y = Up;
+            playerLocation = 3;
+            switchSpritesRight();
+        }
+        
+        if (key === 90 || key === 97){ // Z
+            playerModel.x = Left; 
+            playerModel.y = Down
+            playerLocation = 7;
+            switchSpritesLeft();
+        }
+        
+        if (key === 67 || key === 99){ // C
+            playerModel.x = Right; 
+            playerModel.y = Down;
+            playerLocation = 9;
+            switchSpritesRight();
+    
+        }
+    
+        if (key === 83 || key === 101){ // S
+            playerModel.x = MiddleX; 
+            playerModel.y = MiddleY;
+            playerLocation = 5;
+        }
+    
+        if (key === 14 ){ // S
+    
+            bulletModels=[];
+        }
+        
+    }
+    catch(err){
+        console.log("not yet loaded");
+    }
 
 });
 $(document).keyup(function(event) {
