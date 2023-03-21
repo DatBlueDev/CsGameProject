@@ -29,7 +29,7 @@
             </div>
             <div id = "HomeScreen" class="Home" class="w3-container">
                 <div id = "HomeButtons">
-                    <img src="gameSprites/gridLock.gif" alt = "TitleScreen" id = "TitleImage" class="w3-animate-opacity"><br><br>
+                    <img src="gameSprites/gridlock.png" alt = "TitleScreen" id = "TitleImage" class="w3-animate-opacity"><br><br>
                     <img src="gameSprites/sakuya.png" alt = "MainCharacterArt" id = "TitleArt" class="w3-animate-right"     ><br><br>
 
                     <button onclick="showLevels(); " id = "levelButton" class= "w3-animate-top	">Play</button> <br><br><br>
@@ -40,20 +40,19 @@
             
             </div>
             <div id = "Levels">
-                <div id = "LevelsContainer" style="text-align:center;" >
-                    <img src = "gameSprites/levels.png"> <br><br><br><br>
-                    <button onclick="startGame(3); " id = "startButton" class = "Easy" class= "w3-animate-top">Level 1</button><br><br><br>
-                    <button onclick="startGame(1);" id = "startButton2" class = "Medium" class= "w3-animate-top">Level 2</button><br><br><br>
-                    <button onclick="startGame(2);" id = "startButton3" class= "Hard" class="w3-animate-top">Level 3</button><br><br><br>
-                    <button onclick="startGame(4);" id = "startButton4" class= "Impossible" class="w3-animate-top">Level 4</button><br><br><br>
+                <div id = "LevelsContainer" >
+                    <button onclick="startGame(1); " id = "startButton" class= "w3-animate-top">Level 1</button><br><br><br>
+                    <button onclick="startGame(2);" id = "startButton2" class= "w3-animate-top">Level 2</button><br><br><br>
+                    <button onclick="startGame(3);" id = "startButton3" class= "w3-animate-top">Level 3</button><br><br><br>
+                    <button onclick="startGame(4);" id = "startButton4" class= "w3-animate-top">Level 4</button><br><br><br>
 
-                    <button onclick="backFromLevels(); " id = "backLevelButton" class= " w3-animate-bottom" class="w3-display-bottommiddle">Back</button> <br><br><br>
+                    <button onclick="backFromLevels(); " id = "backLevelButton" class= " w3-animate-bottom">Back</button> <br><br><br>
 
                 </div>
             
             </div>
 
-            <div id="GameScene"  class ="w3-animate-opacity	" style="text-align:center;">
+            <div id="GameScene"  class ="w3-animate-opacity	">
                 <div id = "HealthInfo">
                     <label for="Health">HP: </label>
                     <progress id="Health" value="32" max="100"> 100% </progress>
@@ -62,8 +61,7 @@
 
                 </div>
 
-                <button onclick="reloadGame(1);" id = "inGameBackButton" class= "w3-bottom">Back</button>
-
+        
             </div>
             <div id="GameOverScene">
                 <h1 id="GameOverText" class = "w3-animate-top">Game<br>Over!</h1>
@@ -98,24 +96,17 @@
             
             <div id="WinScene">
                 <div class="w3-animate-zoom" id="ZoomAnimationOnWin">
-                    <p id="YouWinTitle" class = "w3-animate-opacity">You Win!</h2> <br><br>
-                    <button onclick="reloadGame();" id = "reloadButton" class= "w3-animate-bottom">Play Again</button>
+                    <p id="YouWinTitle" class = "w3-animate-opacity">You Win!</h2>
 
                 </div>
                 <p></p>
             </div>
         </div>
-        <img id="playerSprite1" width="220"  src='gameSprites/playerSprites/playerDefault.png' alt="playerSprite" class = "hidden">
-        <img id="playerSprite2" width="220"  src='gameSprites/playerSprites/playerDefault2.png' alt="playerSprite" class = "hidden">
-        <img id="playerSprite3" width="220"  src='gameSprites/playerSprites/playerDefault3.png' alt="playerSprite" class = "hidden">
-        <img id="playerSprite4" width="220"  src='gameSprites/playerSprites/playerDefault4.png' alt="playerSprite" class = "hidden">
-        <img id="playerSprite5" width="220"  src='gameSprites/playerSprites/playerDefault5.png' alt="playerSprite" class = "hidden">
-        <img id="playerSprite6" width="220"  src='gameSprites/playerSprites/playerDefault6.png' alt="playerSprite" class = "hidden">
-        <img id="playerSprite7" width="220"  src='gameSprites/playerSprites/playerDefault7.png' alt="playerSprite" class = "hidden">
-        <img id="playerSprite8" width="220"  src='gameSprites/playerSprites/playerDefault8.png' alt="playerSprite" class = "hidden">
- 
-        <img id="playerLeft8" width="220"  src='gameSprites/playerSprites/playerLeft8.png' alt="playerSprite" class = "hidden">
-        <img id="playerRight8" width="220"  src='gameSprites/playerSprites/playerRight8.png' alt="playerSprite" class = "hidden">
+        <img id="playerSprite" width="220"  src='gameSprites/playerDefault.png' alt="playerSprite" class = "hidden">
+        <img id="playerSprite2" width="220"  src='gameSprites/playerDefault2.png' alt="playerSprite" class = "hidden">
+        <img id="playerSprite3" width="220"  src='gameSprites/playerDefault3.png' alt="playerSprite" class = "hidden">
+
+        <img id="playerSpriteZ" width="220"  src='gameSprites/playerSprite.png' alt="playerSprite" class = "hidden">
 
         <img id="grid" width="220"  src='gameSprites/grid.png' alt="grid" class = "hidden">
 

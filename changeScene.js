@@ -11,7 +11,6 @@ var LevelScreen = document.getElementById("Levels");
 var mainBody = document.getElementById("mainBody");
 var HowToScreen = document.getElementById("HowToPlayScene");
 var WinScene = document.getElementById("WinScene");
-var firstTime = localStorage.getItem("first_time");
 
 var gameOverMusic = new Audio('gameMusic/DeathMusic.mp3');
 var tips = ["It can take a while to get used to the controls!", 
@@ -37,7 +36,7 @@ $(function(){
     $("#includedContent").load("gameScene.html"); 
   });
 function showGameOver(){
-    document.body.style.backgroundImage = "linear-gradient(180deg, rgba(3,2,4) , rgba(255,40,40,0.1))";
+    document.body.style.backgroundImage = "linear-gradient(180deg, black , rgba(255,40,40,0.1))";
     gameOverMusic.play();
     console.log("game over");
     GameScene.style.display="none";
@@ -57,12 +56,11 @@ function showGameOver(){
 function showAbout(){   
      menuHit.play();
 }
-function reloadGame(a = 0){
-    location.reload();
+function reloadGame(){
+    start();
 
 }
 function start(){
-
     gameOverMusic.currentTime=0;
     for(var i = 0; i <gameMusic.length; i++){
         gameMusic[i].currentTime=0;
@@ -70,7 +68,7 @@ function start(){
     }
 
     gameMusic[6].play();
-    document.body.style.backgroundImage = "linear-gradient(180deg, rgba(3,2,4) , rgba(255,40,40,0.1))";
+    document.body.style.backgroundImage = "linear-gradient(180deg, black , black)";
     HomeScreen.style.display = "block";
 
     StartedGame.style.display = "block";
@@ -110,25 +108,16 @@ function backFromHelp(){
 
 function winScreen(){
 
-
     if(running==true){
-    document.body.style.backgroundImage = "linear-gradient(180deg, black , rgba(255,40,40,0.1))";
-    console.log("game over");
-    GameScene.style.display="none";
-    running= false;
-    var gameCanvas = document.getElementById("gameCanvas"); 
-    gameNumber+=1;
-    clearInterval(myGameArea.interval );
-
-    gameMusic[5].play();
-    for(var i = 0; i<5; i++){
-        gameMusic[i].pause();
+        gameMusic[5].play();
+        console.log("win");
+        GameScene.remove();
+        running= false;
+        for(var i = 0; i<5; i++){
+            gameMusic[i].pause();
+        }
+        WinScene.style.display="block";
+        WinScene.style.color="white";
     }
-
-    WinScene.style.display="block";
-    WinScene.style.color="white";
-    }
-    
-    
 
 }

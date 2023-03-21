@@ -9,38 +9,17 @@ canvas {
 #startGameButton{
     width:100%;
 }
-.Easy{
-    background-color:#b1ffb1;
-    border: solid rgb(255, 174, 108)  5px;
+#Easy{
+    background-color:#66ff66;
 }
-.Medium{
-    background-color:#feffcb;
-    border: solid rgb(255, 174, 108) 5px;
-
+#Medium{
+    background-color:#fbff26;
 }
-.Hard{
-    background-color:#ff9084;
-    border: solid red 5px;
-
+#Hard{
+    background-color:#ec260c;
 }
-.Impossible{
-    background-color:#60008a;
-    color:white;
-    border: solid red 5px;
-
-}
-#inGameBackButton{
-    width:250px;
-    background-color: rgba(255,255,255,0.6);
-    position:absolute;
-    bottom:10px;
-    right:10px;
-}
-#LevelsTitle{
-    font-size:300%;
-    color:red;
-    background-color:white;
-    width:20%;
+#Impossible{
+    background-color:#6d009c;
 }
 .Difficulties{
     width:400px;
@@ -51,19 +30,18 @@ html{
     
 }
 body{
-    overflow-y: hidden; /* Hide vertical scrollbar */
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    
     min-height:100%;
     background-repeat: no-repeat;
     text-align: center;
-    background-color: rgba(3,2,4);
+    background-color: black;
     margin-top:3%;
     font-family: PressStart;
 }
 #TitleImage{
     width:50%;
     animation-duration:2s;    
-    margin-top: 3%;
+    margin-top:6%;
 
     padding-bottom:10%;
 }
@@ -78,9 +56,8 @@ body{
 }
 button{
     font-size:30px;
-    height:60px;
-    min-width: 20%;
-    width:auto;
+    height:50px;
+    width:20%;
     background-color: white;
     font-family: PressStart;
 
@@ -257,9 +234,7 @@ footer {
   .slider:hover {
     opacity: 1; 
   }
-  .effect{
-      background-color: orange;
-  }
+  
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none; 
     appearance: none;
@@ -276,7 +251,3 @@ footer {
     background: #ff41d6; 
     cursor: pointer; 
   }
-.w3-animate-show{
-    animation: show 0.8s;
-    animation-fill-mode:forwards;
-}
