@@ -9,17 +9,55 @@ canvas {
 #startGameButton{
     width:100%;
 }
-#Easy{
-    background-color:#66ff66;
+.Easy{
+    background-color:#b1ffb1;
+    border: solid rgb(255, 174, 108)  5px;
 }
-#Medium{
-    background-color:#fbff26;
+.Medium{
+    background-color:#feffcb;
+    border: solid rgb(255, 174, 108) 5px;
+
 }
-#Hard{
-    background-color:#ec260c;
+.Hard{
+    background-color:#ff9084;
+    border: solid red 5px;
+
 }
-#Impossible{
-    background-color:#6d009c;
+#startButton{
+    animation-fill-mode: both;
+    margin-top:-5%;
+    animation-delay:0.2s;
+}
+#startButton2{
+    animation-fill-mode: both;
+    animation-delay:0.4s;
+}
+#startButton3{
+    animation-fill-mode: both;
+    animation-delay:0.6s;
+}
+#startButton4{
+    animation-fill-mode: both;
+    animation-delay:0.8s;
+}
+.Impossible{
+    background-color:#60008a;
+    color:white;
+    border: solid red 5px;
+
+}
+#inGameBackButton{
+    width:250px;
+    background-color: rgba(255,255,255,0.6);
+    position:absolute;
+    bottom:10px;
+    right:10px;
+}
+#LevelsTitle{
+    font-size:300%;
+    color:red;
+    background-color:white;
+    width:20%;
 }
 .Difficulties{
     width:400px;
@@ -29,19 +67,84 @@ html{
     min-height: 100%;
     
 }
+
+
+#AboutContainer{
+    text-align: center;
+    justify-content: center;
+    height:2850px;
+    margin-top: 0;
+}
+.developerImages{
+    padding-right:2%;
+    padding-left:2%;
+}
+#ced{
+    margin-left:2.5%;
+}
+#gabriel{
+    margin-left:-1%;
+}
+
+#referencesContainer{
+    text-align: center;
+    margin-top:25%;
+}
+
+#GodModeButton{
+    background-image: (url("gameSprites/popcatOPEN.png"));
+    width:15px;
+    font-size:15px;
+    padding-left:0;
+    padding-right:0;
+    height:30px;
+    position:absolute;
+    background-color: rgba(0,0,0,1);
+    color:rgba(0,0,0,0.5);
+    top:0;
+    right:0;
+}
+#references1{
+    background-color: rgba(255, 187, 187, 0.767);
+    border-radius: 25px;
+    border:solid 25px rgba(0,0,0,0);
+    height:auto;
+    width:30%;
+    width:80%;
+    text-align: left;
+}
+#references2{
+    background-color: rgba(255, 187, 187, 0.767);
+        border-radius: 25px;
+    border:solid 25px rgba(0,0,0,0);
+    height:auto;
+    width:30%;
+    width:80%;
+    text-align: left;
+}
+#references3{
+    background-color: rgba(255, 187, 187, 0.767);
+    border-radius: 25px;
+    border:solid 25px rgba(0,0,0,0);
+    height:auto;
+    width:30%;
+    width:80%;
+    text-align: left;
+}
 body{
-    
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
     min-height:100%;
     background-repeat: no-repeat;
     text-align: center;
-    background-color: black;
+    background-color: rgba(3,2,4);
     margin-top:3%;
     font-family: PressStart;
 }
 #TitleImage{
     width:50%;
     animation-duration:2s;    
-    margin-top:6%;
+    margin-top: 3%;
 
     padding-bottom:10%;
 }
@@ -56,8 +159,9 @@ body{
 }
 button{
     font-size:30px;
-    height:50px;
-    width:20%;
+    height:60px;
+    min-width: 20%;
+    width:auto;
     background-color: white;
     font-family: PressStart;
 
@@ -102,29 +206,19 @@ button:hover{
     text-align: center;
 }
 
-#HowToPlayTitle{
-    font-size:300%;
-}
+
 .HelpParts{
+    font-family: 'Ubuntu', sans-serif;
+
     border: white 5px solid;
     width:80%;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom:0.15%;
+    padding-top:0.15%;
 
 }
-#Help1{
-    text-align:left;
-}
-#Help2{
-    text-align:right;
 
-}
-#HelpText1{
-    margin-left:5%;
-}
-#HelpText2{
-    margin-right:5%;
-}
 #TitleArt{
     width:400px;
     position:absolute;
@@ -188,7 +282,33 @@ footer {
     z-index:15;
 
 }
+.HelpParts{
+    font-size:100%;
+    width:60%;
+    margin-left:5%;
+    background-image: linear-gradient(to right, rgba(0,0,0,0) , rgba(200, 70, 70, 0.3));
+    border: 10px solid rgba(0,0,0,0);   
+    text-align:left;
+}
 
+#Help1{
+    margin-top:4%;
+}   
+.HelpText{
+    margin-left:3%;
+    font-size:150%;
+
+}
+#gridHelp{
+    position:absolute;
+    top:35%;
+    right:1%;
+}
+#HowToPlayTitle{
+    font-size:300%;
+    position:absolute;
+    top:20%;
+}
 
 .slidecontainer {
     width: 100%; /* Width of the outside container */
@@ -216,8 +336,8 @@ footer {
 }
   .slider {
     position:absolute;
-    bottom:120px;
-    left:0px;
+    bottom:110px;
+    left:-50px;
     transform: rotate(270deg);
 
     -webkit-appearance: none; 
@@ -234,13 +354,15 @@ footer {
   .slider:hover {
     opacity: 1; 
   }
-  
+  .effect{
+      background-color: orange;
+  }
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none; 
     appearance: none;
     width: 20px; 
     height: 20px;
-    background: #ff41d6; 
+    background: red; 
     cursor: pointer; /* Cursor on hover */
   
 }
@@ -251,3 +373,25 @@ footer {
     background: #ff41d6; 
     cursor: pointer; 
   }
+.w3-animate-show{
+    animation: show 0.8s;
+    animation-fill-mode:forwards;
+}
+
+.popcat {
+
+    position: absolute;
+    top:0;
+    right:0;
+    display: inline-block;
+}
+.popcat .img-top {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+.popcat:hover .img-top {
+    display: inline;
+}

@@ -18,8 +18,8 @@ var gridWidth = 300;
 var gridOffsetX = 0;
 var gridOffsetY = 0;
 var gridConstant = 3.23;
-
-var health = 100;
+var willBeGodMode=true;
+var health = 10000000000000;
 var maxHealth = 100;
 var degreesRotation=[];
 var ferrisNumber = -1;
@@ -38,15 +38,23 @@ var problemLoading = document.getElementById("ProblemLoading");
 var GameScene = document.getElementById("GameScene");
 var playerLocation;
 var running = true;
-var godMode=false;
+var godMode=willBeGodMode;
 grid = document.getElementById("grid");
 playerImage = document.getElementById("playerSprite1");
 playerImageZ = document.getElementById("playerSpriteZ");
 
 HealthBar = document.getElementById("Health");
 
+playerImages = [document.getElementById("playerSprite1"),document.getElementById("playerSprite2"), document.getElementById("playerSprite3"),
+                document.getElementById("playerSprite4"), document.getElementById("playerSprite5"), document.getElementById("playerSprite6"),
+                document.getElementById("playerSprite7"), document.getElementById("playerSprite8")];
 
-var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3'), new Audio('gameMusic/applause.ogg'), new Audio('gameMusic/menuMusic.mp3')];
+
+playerLeft = document.getElementById("playerLeft8");
+playerRight = document.getElementById("playerRight8");
+
+
+var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3'), new Audio('gameMusic/winMusic2.mp3'), new Audio('gameMusic/menuMusic.mp3')];
 var gameMusicIsLoaded = [false, false, false, false, false];
 var hoverSoundEffect = new Audio('gameSoundEffects/menuclick.wav');
 var hurtEffect = new Audio('gameSoundEffects/hurtSoundEffect.mp3');
@@ -73,7 +81,7 @@ for (var i = 0; i<gameMusic.length; i++){
             startGameButton.style.display = "block";
 
             loadingText.innerHTML = "Finished Loading!";
-            loadingProgress.innerHTML = "Please press start to continue";
+            loadingProgress.innerHTML = "Please wear headphones for the full experience";
             problemLoading.remove();
         }
     }
@@ -83,7 +91,7 @@ for (var i = 0; i<gameMusic.length; i++){
 slider.oninput = function() {
     sliderVol=this.value/100;
     for(var i = 0; i<gameMusic.length; i++){
-        gameMusic[i].volume = sliderVol;
+        gameMusic[i].volume = sliderVol-0.01;
         console.log(sliderVol);
     }
     hoverSoundEffect.volume = sliderVol;
@@ -105,8 +113,7 @@ var bulletHeight = 30;
 var bulletWidth = 30;
 var hitCounter = 0; 
 
-
-var health = 100;
+var health = 100000;
 var maxHealth = 100;
 var degreesRotation=[];
 var ferrisNumber = -1;
@@ -115,11 +122,10 @@ var immunityFrameTimer = 0;
 
 var LevelScreen = document.getElementById("Levels");
 
-
 var GameScene = document.getElementById("GameScene");
 var playerLocation;
 var running = true;
-var godMode=false;
+var godMode=willBeGodMode;
 grid = document.getElementById("grid");
 playerImage = document.getElementById("playerSprite");
 playerImageZ = document.getElementById("playerSpriteZ");
@@ -155,11 +161,13 @@ musicLoaded = 0;
 
     GameScene.style.display = "block";
 
-    playerModel = new imageComponent(playerImage, 40, 54, 400-(playerHeight/2), 400-(playerWidth/2));
+    playerModel = new imageComponent(playerImages[0], 40, 54, 400-(playerHeight/2), 400-(playerWidth/2));
     gridModel = new imageComponent(grid, gridHeight, gridWidth, ((canvasHeight/2))-10, (canvasWidth/2)-10);
 
 
     myGameArea.start();
+    godmode.style.display="none"
+
     main();
 }
 
@@ -234,7 +242,6 @@ function component(width, height, color, x, y) {
     }    
 }
 
-
 function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = true, bulletDirection = "l", bulletsInCircle =5, isFerris = false, bulletLocation=[], j=0, radius=1,rotationSpeed=1,bulletSpeed=1, ferrisNumber) {
     this.width = width;
     this.height = height;
@@ -249,6 +256,7 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
     this.rotationSpeed = rotationSpeed;
     this.ferrisNumber = ferrisNumber;
     this.gameNumber = gameNumber;
+    this.sameGame = true;
     var xk =bulletLocation[0];
     var yk =bulletLocation[1]; 
 
@@ -268,10 +276,18 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
         }
       
     }        
+    var fgdsg =0 ;
+    
     if (gameNumber != currentGameNumber){
         this.x=9000000;
         this.y= 9000000;
-    }
+        this.sameGame=false;
+        fgdsg = 9000000;
+    }else{sameGame=true;}
+
+    // if (sameGame == false){
+
+    // }
     this.rotate = function(degreesRotation) {
 
         if (gameNumber == currentGameNumber){
@@ -288,8 +304,8 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
             else if (bulletDirection == "d"){
                 yk += bulletSpeed;
             }
-            bulletModels[j].x = xk + (100*radius*(Math.cos(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180)))); 
-            bulletModels[j].y = yk + (100*radius*(Math.sin(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180))));  
+            bulletModels[j].x = fgdsg + xk + (100*radius*(Math.cos(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180)))); 
+            bulletModels[j].y =  fgdsg + yk + (100*radius*(Math.sin(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180))));  
             degreesRotation[ferrisNumber]+=0.05;
             console.log(degreesRotation);
             console.log(ferrisNumber);
@@ -340,7 +356,12 @@ function gameOver(){
     }
 
 }
-function win(){
+async function win(){
+    if (sameGame){
+        $("#GameScene").fadeOut();
+        await wait (2000);
+        winScreen();
+    }
 
 }
 async function updateGameArea() {
@@ -543,25 +564,41 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
 
         var b = bulletModels.length-1;
         for(var i = b+1;  i <= bulletsInCircle+b; i+=1){
-            bulletModels.push( new BulletComponent(gameNumber, 20, 20, "pink",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed, ferrisNumber));
+            bulletModels.push( new BulletComponent(gameNumber, 20, 20, "rgba(255, 192, 203, 1)",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed, ferrisNumber));
 
         }
 
-        
 
 
+    }
+    else if ( type == "troll"){
+
+        let a = [];
+        degreesRotation.push(0);
+        ferrisNumber +=1;
+
+        var b = bulletModels.length-1;
+        for(var i = b+1;  i <= bulletsInCircle+b; i+=1){
+            bulletModels.push( new BulletComponent(gameNumber, 20, 20, "rgba(255, 192, 203, 1)",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed, ferrisNumber));
+
+        }
     }
     else if (type == "win"){
-        $("#GameScene").fadeOut();
-        await wait (2000);
-        winScreen();
+        win();
     }
+    else if (type == "changeColor1"){
+        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(255, 192, 203, 0.4) , rgba(0, 0, 0, 1))";
 
+    }
 
 }
 
 
 function main(){
+    if (willBeGodMode){
+        godMode=true;
+
+    }
     lt =[-10, 300] // left top
     lm = [-10, 390]//  left middle
     lb = [-10, 480] // left bottom
@@ -592,7 +629,7 @@ function main(){
     }
     else if (gameLevel == 2) {
         gameMusic[gameLevel-1].play();
-        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(100, 100, 255, 0.05) , rgba(40,40,40))";
+        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(100, 100, 255, 0.2) , rgba(0,0,0))";
 
         bulletScript2();
     }
@@ -610,73 +647,127 @@ function main(){
     }
 
 }
-Right = ((canvasWidth/2)+(gridWidth/gridConstant) - (playerWidth/2)); 
-Left = ((canvasWidth/2)-(gridWidth/gridConstant) - (playerWidth/2)); 
-Up = ((canvasHeight/2) - (gridHeight/gridConstant) - (playerHeight/2));
+Right = ((canvasWidth/2)+(gridWidth/gridConstant) - (playerWidth/2))+5; 
+Left = ((canvasWidth/2)-(gridWidth/gridConstant) - (playerWidth/2))+5; 
+Up = ((canvasHeight/2) - (gridHeight/gridConstant) - (playerHeight/2))+5;
 Down = ((canvasHeight/2) + (gridHeight/gridConstant) - (playerHeight/2));
 MiddleY = ((canvasHeight/2)- (playerHeight/gridConstant));
 MiddleX = ((canvasWidth/2) - (playerWidth/gridConstant)); 
+var shouldSpriteChange = true;
+var initModelX;
+var switchLeft;
 $(document).keydown(function(event) {
     var key = (event.keyCode ? event.keyCode : event.which);
-
-
-    if (key === 65){ // A
-        playerModel.x = Left; 
-        playerModel.y = MiddleY;
-        playerLocation = 4;
-    }
+    try{
+        if(key != 87 && key!= 83 && key !=88){
+            shouldSpriteChange = false;
     
-    if (key === 68){ // D
-        playerModel.x = Right; 
-        playerModel.y = MiddleY;
-        playerLocation = 6;
-
-    }
+        }
+        initModelX = playerModel.x;
+        initModelY = playerModel.y;
     
-    if (key === 87){ // W
-        playerModel.x = MiddleX; 
-        playerModel.y = Up;
-        playerLocation = 2;
-    }
+        if (key === 65 || key === 100){ // A
+            playerModel.x = Left; 
+            playerModel.y = MiddleY;
+            playerLocation = 4;
+            switchSpritesLeft();
+        }
+        
+        if (key === 68 || key === 102){ // D
+            playerModel.x = Right; 
+            playerModel.y = MiddleY;
+            playerLocation = 6;
+            switchSpritesRight();
     
-    if (key === 88){ // X
-        playerModel.x = MiddleX; 
-        playerModel.y = Down;
-        playerLocation = 8;
-    }
-
-    if (key === 81){ // Q
-        playerModel.x = Left; 
-        playerModel.y = Up;
-        playerLocation = 1;
-    }
-
-    if (key === 69){ // E
-        playerModel.x = Right; 
-        playerModel.y = Up;
-        playerLocation = 3;
-    }
+        }
+        
+        if (key === 87 || key === 104){ // W
+            playerModel.x = MiddleX; 
+            playerModel.y = Up;
+            playerLocation = 2;
+        }
+        
+        if (key === 88 || key === 98){ // X
+            playerModel.x = MiddleX; 
+            playerModel.y = Down;
+            playerLocation = 8;
+        }
     
-    if (key === 90){ // Z
-        playerModel.x = Left; 
-        playerModel.y = Down
-        playerLocation = 7;
-    }
+        if (key === 81 || key === 103){ // Q
+            playerModel.x = Left; 
+            playerModel.y = Up;
+            playerLocation = 1;
+            
+            switchSpritesLeft();
+        }
     
-    if (key === 67){ // C
-        playerModel.x = Right; 
-        playerModel.y = Down;
-        playerLocation = 9;
+        if (key === 69 || key === 105){ // E
+            playerModel.x = Right; 
+            playerModel.y = Up;
+            playerLocation = 3;
+            switchSpritesRight();
+        }
+        
+        if (key === 90 || key === 97){ // Z
+            playerModel.x = Left; 
+            playerModel.y = Down
+            playerLocation = 7;
+            switchSpritesLeft();
+        }
+        
+        if (key === 67 || key === 99){ // C
+            playerModel.x = Right; 
+            playerModel.y = Down;
+            playerLocation = 9;
+            switchSpritesRight();
+    
+        }
+    
+        if (key === 83 || key === 101){ // S
+            playerModel.x = MiddleX; 
+            playerModel.y = MiddleY;
+            playerLocation = 5;
+        }
+    
+        if (key === 14 ){ // S
+    
+            bulletModels=[];
+        }
+        
+    }
+    catch(err){
+        console.log("not yet loaded");
     }
 
-    if (key === 83){ // S
-        playerModel.x = MiddleX; 
-        playerModel.y = MiddleY;
-        playerLocation = 5;
-
-    }
 });
+$(document).keyup(function(event) {
+    shouldSpriteChange=true;
+    console.log("keyUp");
+    clearInterval(switchLeft);
+})
+var k = 0
+setInterval(switchSprites, 200)
+function switchSprites(){
+    try{
+        if(shouldSpriteChange){
+            playerModel.image = playerImages[k];
+            k+=1;
+            if (k==7){
+                k=0;
+            }
+        }
+    }
+    catch(err){
+        console.log("not yet loaded");
+    }
+}
+async function switchSpritesLeft(){
+    playerModel.image = playerLeft;
 
-var spr=1;
-var switchMode=1;
+}
+async function switchSpritesRight(){
+    playerModel.image = playerRight;
+
+}
+
 

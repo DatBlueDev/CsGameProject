@@ -11,6 +11,10 @@ var LevelScreen = document.getElementById("Levels");
 var mainBody = document.getElementById("mainBody");
 var HowToScreen = document.getElementById("HowToPlayScene");
 var WinScene = document.getElementById("WinScene");
+var aboutScene = document.getElementById("AboutScene");
+
+var firstTime = localStorage.getItem("first_time");
+var godmode = document.getElementById("GodModeButton");
 
 var gameOverMusic = new Audio('gameMusic/DeathMusic.mp3');
 var tips = ["It can take a while to get used to the controls!", 
@@ -19,11 +23,11 @@ var tips = ["It can take a while to get used to the controls!",
             "If you keep dying at a certain point, try reevaluating your approach or something.",
             "This game takes a moderate amount of memorization and pattern remembering, so it will take multiple tries to beat it.",
             "I can't think of any more useful tips just get good xd",
-            "bad",
-            "The player's hitbox is actually not the entire image, but the center; this makes it easier to dodge. bullets very close to you",
+            "drink water maybe it'll help",
+            "The player's hitbox is actually not the entire image, but the center; this makes it easier to dodge bullets very close to you",
             "YOU EXPECTED A TIP SCREEN, BUT IT WAS ME, KONO DIO DA!",
             "Lasers have a short time window before it hurts you!",
-            ""];
+            "Instead of focsing on your player character, focus on the bullets and where it will go!",];
 function showLevels(){
     menuHit.play();
 
@@ -36,13 +40,13 @@ $(function(){
     $("#includedContent").load("gameScene.html"); 
   });
 function showGameOver(){
-    document.body.style.backgroundImage = "linear-gradient(180deg, black , rgba(255,40,40,0.1))";
+    document.body.style.backgroundImage = "linear-gradient(180deg, rgba(3,2,4) , rgba(255,40,40,0.1))";
     gameOverMusic.play();
     console.log("game over");
     GameScene.style.display="none";
     running= false;
-    var gameCanvas = document.getElementById("gameCanvas"); 
-    gameNumber+=1;
+    // var gameCanvas = document.getElementById("gameCanvas"); 
+    // gameNumber+=1;
     clearInterval(myGameArea.interval );
     
     gameCanvas.remove();
@@ -54,26 +58,30 @@ function showGameOver(){
 
 }
 function showAbout(){   
+    HomeScreen.style.display = "none";
+
+    aboutScene.style.display="block";
      menuHit.play();
 }
-function reloadGame(){
-    start();
+function reloadGame(a = 0){
+    location.reload();
 
 }
 function start(){
+
     gameOverMusic.currentTime=0;
     for(var i = 0; i <gameMusic.length; i++){
         gameMusic[i].currentTime=0;
 
     }
-
     gameMusic[6].play();
-    document.body.style.backgroundImage = "linear-gradient(180deg, black , black)";
+    document.body.style.backgroundImage = "linear-gradient(180deg, rgba(3,2,4) , rgba(255,40,40,0.1))";
     HomeScreen.style.display = "block";
 
     StartedGame.style.display = "block";
     LoadingScreen.style.display="none";
     LevelScreen.style.display="none";
+    aboutScene.style.display="none";
 
     HowToScreen.style.display="none";
     WinScene.style.display="none";
@@ -98,6 +106,13 @@ function backFromLevels(){
     GameOverScene.style.color="none";
     LevelScreen.style.display = "none";
 }
+function backFromAbout(){
+    menuHit.play();
+
+    HomeScreen.style.display = "block";
+    aboutScene.style.display="none";
+    LevelScreen.style.display = "none";
+}
 function backFromHelp(){
     menuHit.play();
 
@@ -108,16 +123,25 @@ function backFromHelp(){
 
 function winScreen(){
 
+
     if(running==true){
-        gameMusic[5].play();
-        console.log("win");
-        GameScene.remove();
-        running= false;
-        for(var i = 0; i<5; i++){
-            gameMusic[i].pause();
-        }
-        WinScene.style.display="block";
-        WinScene.style.color="white";
+    document.body.style.backgroundImage = "linear-gradient(180deg, black , rgba(40, 255, 40,0.1))";
+    console.log("game over");
+    GameScene.style.display="none";
+    running= false;
+    var gameCanvas = document.getElementById("gameCanvas"); 
+    gameNumber+=1;
+    clearInterval(myGameArea.interval );
+
+    gameMusic[5].play();
+    for(var i = 0; i<5; i++){
+        gameMusic[i].pause();
     }
+
+    WinScene.style.display="block";
+    WinScene.style.color="white";
+    }
+    
+    
 
 }
