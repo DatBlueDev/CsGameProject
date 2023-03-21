@@ -307,8 +307,7 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
             bulletModels[j].x = fgdsg + xk + (100*radius*(Math.cos(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180)))); 
             bulletModels[j].y =  fgdsg + yk + (100*radius*(Math.sin(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180))));  
             degreesRotation[ferrisNumber]+=0.05;
-            console.log(degreesRotation);
-            console.log(ferrisNumber);
+
         }
 
         }
@@ -365,13 +364,11 @@ async function win(){
 
 }
 async function updateGameArea() {
-            console.log("test");
 
     var thisFrameTime = (thisLoop=new Date) - lastLoop;
     frameTime+= (thisFrameTime - frameTime) / filterStrength;
     lastLoop = thisLoop;
     if (running == true ){
-        console.log("running");
         if (health<=maxHealth){
             health+=0.10;
     
@@ -621,7 +618,6 @@ function main(){
     rightDanger = [480, 0]
     // spawnBullet("danger", 0, topDanger, 10, "r") ;
     if (gameLevel == 1){
-        console.log(gameLevel);
         gameMusic[gameLevel-1].play();
         document.body.style.backgroundImage = "linear-gradient(180deg, rgba(100, 100, 100, 0.6) , black)";
 
@@ -742,7 +738,6 @@ $(document).keydown(function(event) {
 });
 $(document).keyup(function(event) {
     shouldSpriteChange=true;
-    console.log("keyUp");
     clearInterval(switchLeft);
 })
 var k = 0

@@ -220,7 +220,7 @@ button:hover{
 }
 
 #TitleArt{
-    width:400px;
+    width:500px;
     position:absolute;
     bottom: 0px;
     right:0px;
@@ -302,7 +302,7 @@ footer {
 #gridHelp{
     position:absolute;
     top:35%;
-    right:1%;
+    right:3%;
 }
 #HowToPlayTitle{
     font-size:300%;
