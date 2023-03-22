@@ -9,6 +9,8 @@ var GameOverScene = document.getElementById("GameOverScene");
 var tipBar = document.getElementById("TipBar");
 var LevelScreen = document.getElementById("Levels");
 var mainBody = document.getElementById("mainBody");
+var htmlA = document.getElementById("html");
+
 var HowToScreen = document.getElementById("HowToPlayScene");
 var WinScene = document.getElementById("WinScene");
 var aboutScene = document.getElementById("AboutScene");
@@ -32,7 +34,8 @@ function showLevels(){
     menuHit.play();
 
     HomeScreen.style.display = "none";
-    
+    htmlA.style.overflow = "auto";
+
     LevelScreen.style.display = "block";
 
 }
@@ -59,6 +62,7 @@ function showGameOver(){
 }
 function showAbout(){   
     HomeScreen.style.display = "none";
+    htmlA.style.overflow = "auto";
 
     aboutScene.style.display="block";
      menuHit.play();
@@ -68,14 +72,15 @@ function reloadGame(a = 0){
 
 }
 function start(){
-
+    var Character = 0;
+    htmlA.style.overflow = "hidden";
     gameOverMusic.currentTime=0;
     for(var i = 0; i <gameMusic.length; i++){
         gameMusic[i].currentTime=0;
 
     }
     gameMusic[6].play();
-    document.body.style.backgroundImage = "linear-gradient(180deg, rgba(3,2,4) , rgba(255,40,40,0.1))";
+    document.body.style.backgroundImage = "linear-gradient(180deg, rgba(3,2,4) , rgba(255,40,40,0.2))";
     HomeScreen.style.display = "block";
 
     StartedGame.style.display = "block";
@@ -94,6 +99,7 @@ function start(){
 
 function showHowToPlay(){
     menuHit.play();
+    htmlA.style.overflow = "auto";
 
     HomeScreen.style.display="none";
     HowToScreen.style.display="block";
@@ -101,6 +107,7 @@ function showHowToPlay(){
 }
 function backFromLevels(){
     menuHit.play();
+    htmlA.style.overflow = "hidden";
 
     HomeScreen.style.display = "block";
     GameOverScene.style.color="none";
@@ -108,6 +115,7 @@ function backFromLevels(){
 }
 function backFromAbout(){
     menuHit.play();
+    htmlA.style.overflow = "hidden";
 
     HomeScreen.style.display = "block";
     aboutScene.style.display="none";
@@ -115,6 +123,7 @@ function backFromAbout(){
 }
 function backFromHelp(){
     menuHit.play();
+    htmlA.style.overflow = "hidden";
 
     HomeScreen.style.display = "block";
     GameOverScene.style.color="none";
