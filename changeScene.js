@@ -9,12 +9,15 @@ var GameOverScene = document.getElementById("GameOverScene");
 var tipBar = document.getElementById("TipBar");
 var LevelScreen = document.getElementById("Levels");
 var mainBody = document.getElementById("mainBody");
+var htmlA = document.getElementById("html");
+
 var HowToScreen = document.getElementById("HowToPlayScene");
 var WinScene = document.getElementById("WinScene");
 var aboutScene = document.getElementById("AboutScene");
 
 var firstTime = localStorage.getItem("first_time");
 var godmode = document.getElementById("GodModeButton");
+var sliderthingy = document.getElementById("sliderthingy");
 
 var gameOverMusic = new Audio('gameMusic/DeathMusic.mp3');
 var tips = ["It can take a while to get used to the controls!", 
@@ -32,8 +35,10 @@ function showLevels(){
     menuHit.play();
 
     HomeScreen.style.display = "none";
-    
+    htmlA.style.overflow = "auto";
+
     LevelScreen.style.display = "block";
+    sliderthingy.style.display = "none";
 
 }
 $(function(){
@@ -59,6 +64,8 @@ function showGameOver(){
 }
 function showAbout(){   
     HomeScreen.style.display = "none";
+    htmlA.style.overflow = "auto";
+    sliderthingy.style.display = "none";
 
     aboutScene.style.display="block";
      menuHit.play();
@@ -68,14 +75,17 @@ function reloadGame(a = 0){
 
 }
 function start(){
+    var Character = 0;
+    sliderthingy.style.display = "block";
 
+    htmlA.style.overflow = "hidden";
     gameOverMusic.currentTime=0;
     for(var i = 0; i <gameMusic.length; i++){
         gameMusic[i].currentTime=0;
 
     }
     gameMusic[6].play();
-    document.body.style.backgroundImage = "linear-gradient(180deg, rgba(3,2,4) , rgba(255,40,40,0.1))";
+    document.body.style.backgroundImage = "linear-gradient(180deg, rgba(3,2,4) , rgba(255,40,40,0.2))";
     HomeScreen.style.display = "block";
 
     StartedGame.style.display = "block";
@@ -94,6 +104,8 @@ function start(){
 
 function showHowToPlay(){
     menuHit.play();
+    htmlA.style.overflow = "auto";
+    sliderthingy.style.display = "none";
 
     HomeScreen.style.display="none";
     HowToScreen.style.display="block";
@@ -101,6 +113,8 @@ function showHowToPlay(){
 }
 function backFromLevels(){
     menuHit.play();
+    htmlA.style.overflow = "hidden";
+    sliderthingy.style.display = "block";
 
     HomeScreen.style.display = "block";
     GameOverScene.style.color="none";
@@ -108,6 +122,8 @@ function backFromLevels(){
 }
 function backFromAbout(){
     menuHit.play();
+    htmlA.style.overflow = "hidden";
+    sliderthingy.style.display = "block";
 
     HomeScreen.style.display = "block";
     aboutScene.style.display="none";
@@ -115,6 +131,8 @@ function backFromAbout(){
 }
 function backFromHelp(){
     menuHit.play();
+    htmlA.style.overflow = "hidden";
+    sliderthingy.style.display = "block";
 
     HomeScreen.style.display = "block";
     GameOverScene.style.color="none";
@@ -125,7 +143,7 @@ function winScreen(){
 
 
     if(running==true){
-    document.body.style.backgroundImage = "linear-gradient(180deg, black , rgba(40, 255, 40,0.1))";
+    document.body.style.backgroundImage = "linear-gradient(180deg, rgba(40, 40, 40,0.5) , rgba(40, 150, 40,0.35))";
     console.log("game over");
     GameScene.style.display="none";
     running= false;

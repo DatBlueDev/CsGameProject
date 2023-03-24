@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang = "en">
+<html lang = "en" id="html">
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,13 +32,15 @@
             </div> -->
             <button type="button" onclick="toggleGodMode();" id="GodModeButton">godmode</button>
 
-            <div class="slidecontainer">
+            <div style = "display:hidden;"class="slidecontainer" id = "sliderthingy">
+                <p style="font-size: 25px; color:white; margin-bottom:5%; margin-left:0.7%;" >Vol:</p>
                 <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
             </div>
             <div id = "HomeScreen" class="Home w3-container">
                 <div id = "HomeButtons">
-                    <img src="gameSprites/gridLock.gif" alt = "TitleScreen" id = "TitleImage" class="w3-animate-opacity"><br><br>
-                    <img src="gameSprites/hakurei.png" alt = "MainCharacterArt" id = "TitleArt" class="w3-animate-right"     ><br><br>
+                    <img src="gameSprites/gridLock.gif" alt = "TitleScreen" id = "TitleImage" class="w3-animate-opacity"> <br>
+                    <p style="color:white; font-size:12px; margin-top:-8%;margin-bottom:8%;">To change the theme, click the anime girl on the right.</p><br>
+                    <img src="gameSprites/hakurei.png" alt = "MainCharacterArt" id = "TitleArt" class="w3-animate-right"   onclick="switchCharacters();"  ><br><br>
 
                     <button onclick="showLevels(); " id = "levelButton" class= "w3-animate-top	">Play</button> <br><br><br>
                     <button onclick="showHowToPlay();" id = "howButton" class= "w3-animate-top	">How To Play</button><br><br><br>
@@ -49,11 +51,12 @@
             </div>
             <div id = "Levels" style="height:100vh;" >
                 <div id = "LevelsContainer" style="text-align:center;" >
-                    <img src = "gameSprites/levels.png" alt = "levels pngt"> <br><br><br><br>
+                    <img id = "levelsTitle" src = "gameSprites/levels.png" alt = "levels pngt"> <br><br><br><br>
                     <button onclick="startGame(3); " id = "startButton" class = "Easy w3-animate-top">Level 1</button><br><br><br>
                     <button onclick="startGame(1);" id = "startButton2" class = "Medium w3-animate-top">Level 2</button><br><br><br>
                     <button onclick="startGame(2);" id = "startButton3" class= "Hard w3-animate-top">Level 3</button><br><br><br>
                     <button onclick="startGame(4);" id = "startButton4" class= "Impossible w3-animate-top">Level 4</button><br><br><br>
+                    <button onclick="startGame(5);" id = "startButton5" class= "Impossible w3-animate-top">Level 5</button><br><br><br>
 
                     <button onclick="backFromLevels(); " id = "backLevelButton" class= "w3-animate-bottom">Back</button> <br><br><br>
 
@@ -190,6 +193,17 @@
 
                         </div>
                         <br>
+                        
+                        <div id = "playTesters" class= " w3-animate-bottom w3-display-middle">
+                            <p style="font-size: 32px">Play Testers:</p>
+                            <p> 
+                                Bendigo (The King of 9 Cells of Gridlock)<br>
+                                BETA Division<br>
+                                Willow<br>
+                                Baby Des <br>
+
+                        </div>
+                        <br>
                         <div id = "messageDatBlue" class= " w3-animate-bottom w3-display-middle">
                             <p>Heyo I'm DatBlueDev, if you send a complete video of doing a back-to-back no-hit run for all levels <br>
                             I will give you 200 pesos. Send the video at Blue#7665 on Discord, first one to complete it gets the prize.
@@ -206,6 +220,7 @@
                 <p></p>
             </div>
             <div id="WinScene">
+
                 <div class="w3-animate-zoom" id="ZoomAnimationOnWin">
                     <p id="YouWinTitle" class = "w3-animate-opacity">You Win!</p> <br><br>
                     <button onclick="reloadGame();" id = "reloadButtonWN" class= "w3-animate-bottom">Play Again</button>
@@ -226,6 +241,17 @@
         <img id="playerLeft8" width="220"  src='gameSprites/playerSprites/playerLeft8.png' alt="playerSprite" class = "hidden">
         <img id="playerRight8" width="220"  src='gameSprites/playerSprites/playerRight8.png' alt="playerSprite" class = "hidden">
 
+        <img id="playerSprite1B" width="220"  src='gameSprites/playerSprites2/playerDefault.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite2B" width="220"  src='gameSprites/playerSprites2/playerDefault2.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite3B" width="220"  src='gameSprites/playerSprites2/playerDefault3.png' alt="playerSprite" class = "sakuya hidden"">
+        <img id="playerSprite4B" width="220"  src='gameSprites/playerSprites2/playerDefault4.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite5B" width="220"  src='gameSprites/playerSprites2/playerDefault5.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite6B" width="220"  src='gameSprites/playerSprites2/playerDefault6.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite7B" width="220"  src='gameSprites/playerSprites2/playerDefault7.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite8B" width="220"  src='gameSprites/playerSprites2/playerDefault8.png' alt="playerSprite" class = "sakuya hidden">
+ 
+        <img id="playerLeft8B" width="220"  src='gameSprites/playerSprites2/playerLeft8.png' alt="playerSprite" class = "hidden">
+        <img id="playerRight8B" width="220"  src='gameSprites/playerSprites2/playerRight8.png' alt="playerSprite" class = "hidden">
         <img id="grid" width="220"  src='gameSprites/grid.png' alt="grid" class = "hidden">
 
 

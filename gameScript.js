@@ -44,14 +44,26 @@ playerImage = document.getElementById("playerSprite1");
 playerImageZ = document.getElementById("playerSpriteZ");
 
 HealthBar = document.getElementById("Health");
-
-playerImages = [document.getElementById("playerSprite1"),document.getElementById("playerSprite2"), document.getElementById("playerSprite3"),
-                document.getElementById("playerSprite4"), document.getElementById("playerSprite5"), document.getElementById("playerSprite6"),
-                document.getElementById("playerSprite7"), document.getElementById("playerSprite8")];
-
-
-playerLeft = document.getElementById("playerLeft8");
+var Character = 0;
+if (Character == 0){
+    playerImages = [document.getElementById("playerSprite1"),document.getElementById("playerSprite2"), document.getElementById("playerSprite3"),
+    document.getElementById("playerSprite4"), document.getElementById("playerSprite5"), document.getElementById("playerSprite6"),
+    document.getElementById("playerSprite7"), document.getElementById("playerSprite8")];
+    playerLeft = document.getElementById("playerLeft8");
 playerRight = document.getElementById("playerRight8");
+}
+else { 
+    playerImages = [document.getElementById("playerSprite1B"),document.getElementById("playerSprite2B"), document.getElementById("playerSprite3B"),
+                document.getElementById("playerSprite4B"), document.getElementById("playerSprite5B"), document.getElementById("playerSprite6B"),
+                document.getElementById("playerSprite7B"), document.getElementById("playerSprite8B")];
+
+    playerLeft = document.getElementById("playerLeft8B");
+    playerRight = document.getElementById("playerRight8B");
+}
+
+
+
+
 
 
 var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3'), new Audio('gameMusic/winMusic2.mp3'), new Audio('gameMusic/menuMusic.mp3')];
@@ -85,6 +97,10 @@ for (var i = 0; i<gameMusic.length; i++){
             problemLoading.remove();
         }
     }
+    
+    window.addEventListener("load", event => {
+
+    });
 }
 
 
@@ -103,7 +119,24 @@ var frameTime = 0, lastLoop = new Date, thisLoop;
 
 menuHit.readyState
 async function startGame(level) {
-
+    htmlA.style.overflowX = "hidden";
+    if (Character == 0){
+        playerImages = [document.getElementById("playerSprite1"),document.getElementById("playerSprite2"), document.getElementById("playerSprite3"),
+        document.getElementById("playerSprite4"), document.getElementById("playerSprite5"), document.getElementById("playerSprite6"),
+        document.getElementById("playerSprite7"), document.getElementById("playerSprite8")];
+        playerLeft = document.getElementById("playerLeft8");
+    playerRight = document.getElementById("playerRight8");
+    }
+    else { 
+        playerImages = [document.getElementById("playerSprite1B"),document.getElementById("playerSprite2B"), document.getElementById("playerSprite3B"),
+                    document.getElementById("playerSprite4B"), document.getElementById("playerSprite5B"), document.getElementById("playerSprite6B"),
+                    document.getElementById("playerSprite7B"), document.getElementById("playerSprite8B")];
+    
+        playerLeft = document.getElementById("playerLeft8B");
+        playerRight = document.getElementById("playerRight8B");
+    }
+    
+    
 var playerHeight = 30;
 var playerWidth = 30;
 var bulletModels = [];
@@ -584,8 +617,10 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
         win();
     }
     else if (type == "changeColor1"){
-        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(255, 192, 203, 0.4) , rgba(0, 0, 0, 1))";
-
+        for(var i = 0; i<=70; i+=6){
+            document.body.style.backgroundImage = "linear-gradient(180deg, rgba("+ ((i*2)+100) + "," + ((i/4)+100) + "," +((i/4)+100)+",0.5) , rgba(0,0,0,0.6) )";
+            await wait(0.02);
+        }
     }
 
 }
@@ -640,6 +675,13 @@ function main(){
         document.body.style.backgroundImage = "linear-gradient(180deg, rgba(255, 102, 0, 0.3) , rgba(255, 0, 0, 0.4))";
 
         bulletScript4();
+    }
+
+    else if (gameLevel == 5) {
+        gameMusic[gameLevel-2].play();
+        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(220, 0, 255, 0.3) , rgba(40, 0, 255, 0.1))";
+
+        bulletScript5();
     }
 
 }
