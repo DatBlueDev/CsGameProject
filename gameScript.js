@@ -18,8 +18,8 @@ var gridWidth = 300;
 var gridOffsetX = 0;
 var gridOffsetY = 0;
 var gridConstant = 3.23;
-
-var health = 100;
+var willBeGodMode=true;
+var health = 10000000000000;
 var maxHealth = 100;
 var degreesRotation=[];
 var ferrisNumber = -1;
@@ -38,20 +38,32 @@ var problemLoading = document.getElementById("ProblemLoading");
 var GameScene = document.getElementById("GameScene");
 var playerLocation;
 var running = true;
-var godMode=false;
+var godMode=willBeGodMode;
 grid = document.getElementById("grid");
 playerImage = document.getElementById("playerSprite1");
 playerImageZ = document.getElementById("playerSpriteZ");
 
 HealthBar = document.getElementById("Health");
-
-playerImages = [document.getElementById("playerSprite1"),document.getElementById("playerSprite2"), document.getElementById("playerSprite3"),
-                document.getElementById("playerSprite4"), document.getElementById("playerSprite5"), document.getElementById("playerSprite6"),
-                document.getElementById("playerSprite7"), document.getElementById("playerSprite8")];
-
-
-playerLeft = document.getElementById("playerLeft8");
+var Character = 0;
+if (Character == 0){
+    playerImages = [document.getElementById("playerSprite1"),document.getElementById("playerSprite2"), document.getElementById("playerSprite3"),
+    document.getElementById("playerSprite4"), document.getElementById("playerSprite5"), document.getElementById("playerSprite6"),
+    document.getElementById("playerSprite7"), document.getElementById("playerSprite8")];
+    playerLeft = document.getElementById("playerLeft8");
 playerRight = document.getElementById("playerRight8");
+}
+else { 
+    playerImages = [document.getElementById("playerSprite1B"),document.getElementById("playerSprite2B"), document.getElementById("playerSprite3B"),
+                document.getElementById("playerSprite4B"), document.getElementById("playerSprite5B"), document.getElementById("playerSprite6B"),
+                document.getElementById("playerSprite7B"), document.getElementById("playerSprite8B")];
+
+    playerLeft = document.getElementById("playerLeft8B");
+    playerRight = document.getElementById("playerRight8B");
+}
+
+
+
+
 
 
 var gameMusic = [new Audio('gameMusic/Mittsies_Titanium.mp3'),new Audio('gameMusic/rainyBoots.mp3'),new Audio('gameMusic/DOSTHymnRemix.mp3'),new Audio('gameMusic/TerritoryBattle.mp3'),new Audio('gameMusic/UnOwen.mp3'), new Audio('gameMusic/winMusic2.mp3'), new Audio('gameMusic/menuMusic.mp3')];
@@ -81,10 +93,14 @@ for (var i = 0; i<gameMusic.length; i++){
             startGameButton.style.display = "block";
 
             loadingText.innerHTML = "Finished Loading!";
-            loadingProgress.innerHTML = "Please press start to continue";
+            loadingProgress.innerHTML = "Please wear headphones for the full experience";
             problemLoading.remove();
         }
     }
+    
+    window.addEventListener("load", event => {
+
+    });
 }
 
 
@@ -103,7 +119,24 @@ var frameTime = 0, lastLoop = new Date, thisLoop;
 
 menuHit.readyState
 async function startGame(level) {
-
+    htmlA.style.overflowX = "hidden";
+    if (Character == 0){
+        playerImages = [document.getElementById("playerSprite1"),document.getElementById("playerSprite2"), document.getElementById("playerSprite3"),
+        document.getElementById("playerSprite4"), document.getElementById("playerSprite5"), document.getElementById("playerSprite6"),
+        document.getElementById("playerSprite7"), document.getElementById("playerSprite8")];
+        playerLeft = document.getElementById("playerLeft8");
+    playerRight = document.getElementById("playerRight8");
+    }
+    else { 
+        playerImages = [document.getElementById("playerSprite1B"),document.getElementById("playerSprite2B"), document.getElementById("playerSprite3B"),
+                    document.getElementById("playerSprite4B"), document.getElementById("playerSprite5B"), document.getElementById("playerSprite6B"),
+                    document.getElementById("playerSprite7B"), document.getElementById("playerSprite8B")];
+    
+        playerLeft = document.getElementById("playerLeft8B");
+        playerRight = document.getElementById("playerRight8B");
+    }
+    
+    
 var playerHeight = 30;
 var playerWidth = 30;
 var bulletModels = [];
@@ -113,8 +146,7 @@ var bulletHeight = 30;
 var bulletWidth = 30;
 var hitCounter = 0; 
 
-
-var health = 100;
+var health = 100000;
 var maxHealth = 100;
 var degreesRotation=[];
 var ferrisNumber = -1;
@@ -123,11 +155,10 @@ var immunityFrameTimer = 0;
 
 var LevelScreen = document.getElementById("Levels");
 
-
 var GameScene = document.getElementById("GameScene");
 var playerLocation;
 var running = true;
-var godMode=false;
+var godMode=willBeGodMode;
 grid = document.getElementById("grid");
 playerImage = document.getElementById("playerSprite");
 playerImageZ = document.getElementById("playerSpriteZ");
@@ -168,6 +199,8 @@ musicLoaded = 0;
 
 
     myGameArea.start();
+    godmode.style.display="none"
+
     main();
 }
 
@@ -307,8 +340,7 @@ function BulletComponent(gameNumber, width, height, color, x, y, hasCollision = 
             bulletModels[j].x = fgdsg + xk + (100*radius*(Math.cos(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180)))); 
             bulletModels[j].y =  fgdsg + yk + (100*radius*(Math.sin(((bulletModels[j].rotationSpeed*degreesRotation[ferrisNumber]+((360/bulletsInCircle)*j))*Math.PI/180))));  
             degreesRotation[ferrisNumber]+=0.05;
-            console.log(degreesRotation);
-            console.log(ferrisNumber);
+
         }
 
         }
@@ -365,13 +397,11 @@ async function win(){
 
 }
 async function updateGameArea() {
-            console.log("test");
 
     var thisFrameTime = (thisLoop=new Date) - lastLoop;
     frameTime+= (thisFrameTime - frameTime) / filterStrength;
     lastLoop = thisLoop;
     if (running == true ){
-        console.log("running");
         if (health<=maxHealth){
             health+=0.10;
     
@@ -564,7 +594,7 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
 
         var b = bulletModels.length-1;
         for(var i = b+1;  i <= bulletsInCircle+b; i+=1){
-            bulletModels.push( new BulletComponent(gameNumber, 20, 20, "pink",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed, ferrisNumber));
+            bulletModels.push( new BulletComponent(gameNumber, 20, 20, "rgba(255, 192, 203, 1)",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed, ferrisNumber));
 
         }
 
@@ -579,19 +609,28 @@ async function spawnBullet(type, ActivationTime, bulletLocation, bulletSpeed = 1
 
         var b = bulletModels.length-1;
         for(var i = b+1;  i <= bulletsInCircle+b; i+=1){
-            bulletModels.push( new BulletComponent(gameNumber, 20, 20, "pink",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed, ferrisNumber));
+            bulletModels.push( new BulletComponent(gameNumber, 20, 20, "rgba(255, 192, 203, 1)",bulletLocation[0],bulletLocation[1],true,bulletDirection, bulletsInCircle,true, bulletLocation,i, radius,rotationSpeed, bulletSpeed, ferrisNumber));
 
         }
     }
     else if (type == "win"){
         win();
     }
-
+    else if (type == "changeColor1"){
+        for(var i = 0; i<=70; i+=6){
+            document.body.style.backgroundImage = "linear-gradient(180deg, rgba("+ ((i*2)+100) + "," + ((i/4)+100) + "," +((i/4)+100)+",0.5) , rgba(0,0,0,0.6) )";
+            await wait(0.02);
+        }
+    }
 
 }
 
 
 function main(){
+    if (willBeGodMode){
+        godMode=true;
+
+    }
     lt =[-10, 300] // left top
     lm = [-10, 390]//  left middle
     lb = [-10, 480] // left bottom
@@ -614,7 +653,6 @@ function main(){
     rightDanger = [480, 0]
     // spawnBullet("danger", 0, topDanger, 10, "r") ;
     if (gameLevel == 1){
-        console.log(gameLevel);
         gameMusic[gameLevel-1].play();
         document.body.style.backgroundImage = "linear-gradient(180deg, rgba(100, 100, 100, 0.6) , black)";
 
@@ -637,6 +675,13 @@ function main(){
         document.body.style.backgroundImage = "linear-gradient(180deg, rgba(255, 102, 0, 0.3) , rgba(255, 0, 0, 0.4))";
 
         bulletScript4();
+    }
+
+    else if (gameLevel == 5) {
+        gameMusic[gameLevel-2].play();
+        document.body.style.backgroundImage = "linear-gradient(180deg, rgba(220, 0, 255, 0.3) , rgba(40, 0, 255, 0.1))";
+
+        bulletScript5();
     }
 
 }
@@ -735,7 +780,6 @@ $(document).keydown(function(event) {
 });
 $(document).keyup(function(event) {
     shouldSpriteChange=true;
-    console.log("keyUp");
     clearInterval(switchLeft);
 })
 var k = 0

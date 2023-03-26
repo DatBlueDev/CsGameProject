@@ -23,10 +23,38 @@ canvas {
     border: solid red 5px;
 
 }
-.Impossible{
+#startButton{
+    animation-fill-mode: both;
+    margin-top:-5%;
+    animation-delay:0.2s;
+}
+#startButton2{
+    animation-fill-mode: both;
+    animation-delay:0.4s;
+}
+#startButton3{
+    animation-fill-mode: both;
+    animation-delay:0.6s;
+}
+#startButton4{
+    animation-fill-mode: both;
+    animation-delay:0.8s;
+}
+#startButton5{
+    animation-fill-mode: both;
+    animation-delay:1s;
+}
+.Expert{
     background-color:#60008a;
     color:white;
     border: solid red 5px;
+
+}
+.Impossible{
+    background-color:#000000;
+    color:white;
+    border: solid rgb(183, 0, 255) 5px;
+    box-shadow: 0 0 25px #a200ff;
 
 }
 #inGameBackButton{
@@ -47,11 +75,92 @@ canvas {
     font-size:50px;
 }
 html{
+    
     min-height: 100%;
     
 }
+
+
+#AboutContainer{
+    text-align: center;
+    justify-content: center;
+    height:auto;
+    margin-top: 0;
+}
+.developerImages{
+    padding-right:2%;
+    padding-left:2%;
+}
+#ced{
+    margin-left:2.5%;
+}
+#gabriel{
+    margin-left:-1%;
+}
+
+#referencesContainer{
+    text-align: center;
+    margin-top:25%;
+}
+
+#GodModeButton{
+    background-image: (url("gameSprites/popcatOPEN.png"));
+    width:15px;
+    font-size:15px;
+    padding-left:0;
+    padding-right:0;
+    height:30px;
+    position:absolute;
+    background-color: rgba(0,0,0,1);
+    color:rgba(0,0,0,0.5);
+    top:0;
+    right:0;
+}
+#references1{
+    background-color: rgba(255, 187, 187, 0.767);
+    border-radius: 25px;
+    border:solid 25px rgba(0,0,0,0);
+    height:auto;
+    width:80%;
+    text-align: left;
+}
+#messageDatBlue{
+    margin-top:4%;
+    background-color: rgba(77, 148, 255, 0.767);
+    border-radius: 25px;
+    border:solid 25px rgba(0,0,0,0);
+    height:auto;
+    width:30%;
+
+}
+#references2{
+    background-color: rgba(255, 187, 187, 0.767);
+    border-radius: 25px;
+    border:solid 25px rgba(0,0,0,0);
+    height:auto;
+    width:80%;
+    text-align: left;
+}
+#references3{
+    background-color: rgba(255, 187, 187, 0.767);
+    border-radius: 25px;
+    border:solid 25px rgba(0,0,0,0);
+    height:auto;
+    width:80%;
+    text-align: left;
+}
+#playTesters{
+    background-color: rgba(137, 255, 108, 0.767);
+    border-radius: 25px;
+    border:solid 25px rgba(0,0,0,0);
+    height:auto;
+    width:80%;
+    text-align: left;
+
+}
 body{
-    
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
     min-height:100%;
     background-repeat: no-repeat;
     text-align: center;
@@ -72,7 +181,7 @@ body{
     animation-duration: 3s;
 }
 
-#ZoomAnimationOnWin{
+#ZoomAnimationOn {
     animation-duration:3s;
 }
 button{
@@ -82,7 +191,7 @@ button{
     width:auto;
     background-color: white;
     font-family: PressStart;
-
+    border: radius 5px;
 }
 #ProblemLoading{
     animation-delay: 10s;
@@ -124,34 +233,29 @@ button:hover{
     text-align: center;
 }
 
-#HowToPlayTitle{
-    font-size:300%;
-}
+
 .HelpParts{
+    font-family: 'Ubuntu', sans-serif;
+
     border: white 5px solid;
     width:80%;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom:0.15%;
+    padding-top:0.15%;
 
 }
-#Help1{
-    text-align:left;
-}
-#Help2{
-    text-align:right;
 
-}
-#HelpText1{
-    margin-left:5%;
-}
-#HelpText2{
-    margin-right:5%;
-}
 #TitleArt{
-    width:400px;
+    width:550px;
     position:absolute;
     bottom: 0px;
     right:0px;
+}
+#TitleArt:hover{
+    transform:scale(1.15, 1.15);
+    
+      
 }
 
 label{
@@ -211,6 +315,34 @@ footer {
 
 }
 
+.HelpParts{
+    font-size:100%;
+    width:60%;
+    margin-left:5%;
+    background-image: linear-gradient(to right, rgba(0,0,0,0) , rgba(200, 70, 70, 0.3));
+    border: 10px solid rgba(0,0,0,0);   
+    text-align:left;
+}
+
+#Help1{
+    margin-top:4%;
+}   
+
+.HelpText{
+    margin-left:3%;
+    font-size:2.5vh;
+
+}
+#gridHelp{
+    position:absolute;
+    top:35%;
+    right:3%;
+}
+#HowToPlayTitle{
+    width:35%;
+    position:absolute;
+    top:20%;
+}
 
 .slidecontainer {
     width: 100%; /* Width of the outside container */
@@ -236,10 +368,13 @@ footer {
     animation-duration:4s;
     animation-fill-mode: both;
 }
-  .slider {
+.slidecontainer{
     position:absolute;
-    bottom:120px;
-    left:0px;
+    bottom:110px;
+    left:-46vw;
+}
+  .slider {
+
     transform: rotate(270deg);
 
     -webkit-appearance: none; 
@@ -256,13 +391,15 @@ footer {
   .slider:hover {
     opacity: 1; 
   }
-  
+  .effect{
+      background-color: orange;
+  }
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none; 
     appearance: none;
     width: 20px; 
     height: 20px;
-    background: #ff41d6; 
+    background: red; 
     cursor: pointer; /* Cursor on hover */
   
 }
@@ -273,3 +410,25 @@ footer {
     background: #ff41d6; 
     cursor: pointer; 
   }
+.w3-animate-show{
+    animation: show 0.8s;
+    animation-fill-mode:forwards;
+}
+
+.popcat {
+
+    position: absolute;
+    top:0;
+    right:0;
+    display: inline-block;
+}
+.popcat .img-top {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+.popcat:hover .img-top {
+    display: inline;
+}

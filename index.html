@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 
-<html lang = "en">
+<html lang = "en" id="html">
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Raleway:wght@500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
 
         <meta charset="UTF-8">
         <title>GridLock</title>
@@ -24,13 +25,24 @@
 
         </div>
         <div id = "StartedGame" style="display:none;">
-            <div class="slidecontainer">
+            <!-- <div class="popcat">
+                <img src="gameSprites/popcatCLOSE.jpg" width=80 alt="Card Back">
+                <img src="gameSprites/popcatOPEN.png" width=80 class="img-top" alt="Card Front">
+                 <button style="background-color: rgba(0,0,0,0);" id = "godModeBTN"></button> 
+            </div> -->
+            <button type="button" onclick="toggleGodMode();" id="GodModeButton">godmode</button>
+
+            <div style = "display:hidden;"class="slidecontainer" id = "sliderthingy">
+                <p style="font-size: 25px; color:white; margin-bottom:5%; margin-left:0.7%;" >Vol:</p>
                 <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
             </div>
-            <div id = "HomeScreen" class="Home" class="w3-container">
+            <div id = "HomeScreen" class="Home w3-container">
                 <div id = "HomeButtons">
-                    <img src="gameSprites/gridlock.gif" alt = "TitleScreen" id = "TitleImage" class="w3-animate-opacity"><br><br>
-                    <img src="gameSprites/sakuya.png" alt = "MainCharacterArt" id = "TitleArt" class="w3-animate-right"     ><br><br>
+                    <img src="gameSprites/gridLock.gif" alt = "TitleScreen" id = "TitleImage" class="w3-animate-opacity"> <br>
+                    <p style="color:white; font-size:12px; margin-top:-8%;margin-bottom:8%;">To change the theme, click the anime girl on the right.</p><br>
+                    <img src="gameSprites/hakurei.png" alt = "MainCharacterArt" id = "TitleArt" class="w3-animate-right"   onclick="switchCharacters();"  ><br><br>
+                    <p style="color:white; font-size:8px; position:absolute; top:0;left:2px;">Game is completely finished, all levels are 100% done: 3/26/2023</p><br>
+                    <p style="color:white; font-size:8px; position:absolute; top:0;right:2px;">Game is completely finished, all levels are 100% done: 3/26/2023</p><br>
 
                     <button onclick="showLevels(); " id = "levelButton" class= "w3-animate-top	">Play</button> <br><br><br>
                     <button onclick="showHowToPlay();" id = "howButton" class= "w3-animate-top	">How To Play</button><br><br><br>
@@ -39,15 +51,16 @@
                 </div>
             
             </div>
-            <div id = "Levels">
+            <div id = "Levels" style="height:100vh;" >
                 <div id = "LevelsContainer" style="text-align:center;" >
-                    <img src = "gameSprites/levels.png"> <br><br><br><br>
-                    <button onclick="startGame(3); " id = "startButton" class = "Easy" class= "w3-animate-top">Level 1</button><br><br><br>
-                    <button onclick="startGame(1);" id = "startButton2" class = "Medium" class= "w3-animate-top">Level 2</button><br><br><br>
-                    <button onclick="startGame(2);" id = "startButton3" class= "Hard" class="w3-animate-top">Level 3</button><br><br><br>
-                    <button onclick="startGame(4);" id = "startButton4" class= "Impossible" class="w3-animate-top">Level 4</button><br><br><br>
+                    <img id = "levelsTitle" src = "gameSprites/levels.png" alt = "levels pngt"> <br><br><br><br>
+                    <button onclick="startGame(3); " id = "startButton" class = "Easy w3-animate-top">Level 1</button><br><br><br>
+                    <button onclick="startGame(1);" id = "startButton2" class = "Medium w3-animate-top">Level 2</button><br><br><br>
+                    <button onclick="startGame(2);" id = "startButton3" class= "Hard w3-animate-top">Level 3</button><br><br><br>
+                    <button onclick="startGame(4);" id = "startButton4" class= "Expert w3-animate-top">Level 4</button><br><br><br>
+                    <button onclick="startGame(5);" id = "startButton5" class= "Impossible w3-animate-top">Level 5</button><br><br><br>
 
-                    <button onclick="backFromLevels(); " id = "backLevelButton" class= " w3-animate-bottom">Back</button> <br><br><br>
+                    <button onclick="backFromLevels(); " id = "backLevelButton" class= "w3-animate-bottom">Back</button> <br><br><br>
 
                 </div>
             
@@ -65,30 +78,40 @@
                 <button onclick="reloadGame(1);" id = "inGameBackButton" class= "w3-bottom">Back</button>
 
             </div>
-            <div id="GameOverScene">
+            <div id="GameOverScene" style="height:100vh;">
                 <h1 id="GameOverText" class = "w3-animate-top">Game<br>Over!</h1>
                 
-                <h2 id = "TipBar"  class = "w3-animate-bottom"></h2>
-                <button onclick="reloadGame();" id = "reloadButton" class= "w3-animate-bottom">Play Again</button>
+                <h2 id = "TipBar"  class = "w3-animate-bottom">.</h2>
+                <button onclick="reloadGame();" id = "reloadButtonGO" class= "w3-animate-bottom">Play Again</button>
             </div>
 
             <div id="HowToPlayScene">
-                <p id="HowToPlayTitle" class = "w3-animate-top">How to Play!</p>
                 <div id = "HelpContainer">
-                    <div class = "HelpParts" id = "Help1" class = "w3-center w3-animate-fade">
-                        <p id = "HelpText1">You control a character in a 3x3 grid, the controls are shown below. <br> Click each and you will appear at that cell in the grid<p>
-                            <img src = "gameSprites/gridHelp.png" alt = "gridHelp" style="margin-left:40%;">
+                    <img src = "gameSprites/guide.png" alt = "gridHelp" id="HowToPlayTitle" style = "margin-right:0.5%;" class = "w3-animate-right w3-display-right">
+
+                    <div id = "Help1" class = "w3-animate-fade HelpParts">
+                        <p id = "HelpText1" class="HelpText">Gridlock is a bullet hell rhythm game, where your goal is to not get hit by the bullets which will appear on your screen.
+                            <br> You can do this by moving your character to a safe cell by clicking on its designated letter key.
+                            <br> (It is also numpad compatible by turning on numlock)<p>
                     </div>
-                    <div class = "HelpParts" id = "Help2" class = "w3-center w3-animate-fade">
-                        <p id = "HelpText2">There are bullets that will appear outside of your screen <br>
-                            Your goal is to avoid those bullets until a certain time for the level to end. <br>
-                            Get hit by those bullets and you lose HP, HP regenerates over time.<p>
+                    <div id = "Help2" class = " w3-animate-fade HelpParts">
+                        <p id = "HelpText2" class="HelpText">Naturally as a bullet hell AND a rhythm game, the game will be VERY difficult and will take a considerable amount of 
+                                                     learning and practice to get used to, and is not expected to be completed in one sitting.
+                                                     <strong>Please</strong> take time to learn the attack patterns and get comfortable with controls.<p>
                     </div>
-                    <div class = "HelpParts" id = "Help3" class = "w3-center w3-animate-fade">
-                        <p id = "HelpText3">There are two other types of bullets that can spawn, but we'll <br>
-                            let you play the game to find out... Good luck and Have Fun!<p>
+                    <div id = "Help3" class = "w3-animate-fade HelpParts">
+                        <p id = "HelpText3" class="HelpText">To complete one level, you must dodge all the bullets, without dying, until the level is finished. <br>
+                            Getting hit makes you lose hit points (HP) and once your HP is drained, you will die.
+                            Worry not as your HP regenerates over time.<p>
                     </div>
+                    <div id = "Help4" class = "w3-animate-fade HelpParts">
+                        <p id = "HelpText4" class="HelpText">As a bonus, there are two other types of bullets, aside from the normal one, with a possibility of spawning.<br>
+                            Play the game to find out. Good luck, have fun, and don't let your character die!<p>
+                    </div>
+
+                    <img src = "gameSprites/gridHelp.png" alt = "gridHelp" style="margin-left:40%; width:30%;" class= "w3-animate-opacity" id="gridHelp">
                     <br><br><br>
+
                     <button onclick="backFromHelp(); "  id = "backHelpButton" class= " w3-animate-bottom">Back</button> <br><br><br>
 
                 </div>
@@ -96,10 +119,113 @@
                 <p></p>
             </div>
             
+            <div id="AboutScene">
+                <img src = "gameSprites/about.gif" alt = "aboutTitle" id="aboutTitle" class = "w3-animate-top w3-topmiddle">
+
+                <div id = "AboutContainer">
+
+                    <br>
+                    <img id="ced" class="developerImages" style="width:40vh" src='gameSprites/ced.png' alt="ced">
+                    <img id="kyle" class="developerImages"   style="width:40vh"   src='gameSprites/kyle.png' alt="kyle">
+                    <img id="gabriel" class="developerImages"   style="width:49.3vh"   src='gameSprites/david.png' alt="gariel" >
+                    <br><br><br><br>
+                    <button onclick="backFromAbout(); "  id = "backAboutButton" class= "">Back</button> 
+
+                    <br><br><br>
+
+                    <p id ="referencesHeader" style="color:white;font-size:64px;padding :0px;margin-bottom: -4%;">References:</p>
+                    <br>
+                    
+                    <div id="referencesContainer" >
+                        <div id = "references1" class= " w3-animate-bottom w3-display-middle">
+                            <p style="font-size: 32px">Music Used:</p>
+                            <p> <br><br>
+                            <p>DOST Hymn Remix: <br>
+                                
+                                https://www.youtube.com/watch?v=CS9YoyNn4CU.<br><br>
+                                
+                                Deltarune Game Over Music:<br>
+                                https://www.youtube.com/watch?v=eQQDXcIaioA. <br><br>
+                                
+                                Mittsies Titanium: <br>
+                                https://www.youtube.com/watch?v=K_7K7v2KGYU.<br><br>
+                                
+                                Un Owen Was Her:<br>
+                                 https://www.youtube.com/watch?v=VIop055eJhU<br><br>
+                                
+                                Can You Really Call This A Hotel I Didn't Receive A Mint Under My Pillow: <br>
+                                https://www.youtube.com/watch?v=wRUdj1WgwIE.<br><br>
+                                
+                                Rainy Boots (8bit): <br>
+                                https://www.youtube.com/watch?v=x_Ow67Irn3M.<br><br>
+                                
+                                Rainy Boots (Original):<br>
+                                https://www.youtube.com/watch?v=G5hScSFkib4.<br><br>
+                                
+                                A Dream That Is More Scarlet Than Red Remix:<br>
+                                https://www.youtube.com/watch?v=XRO8UpoHpcU.</p>    
+                        </div>
+
+                        <div id = "references2" class= " w3-animate-bottom w3-display-middle" style="margin-top:-5%;">
+                            <p style="font-size: 32px">Elements and Inspiration:</p>
+                            <p> <br><br>
+                                https://www.spriters-resource.com/pc_computer/touhoufuujinrokumountainoffaith/sheet/51905/.<br><br>
+                                
+                                Press Start Font:<br>
+                                https://fonts.google.com/specimen/Press+Start+2P.<br><br>
+                                
+                                Reimu Hakurei Art:<br>
+                                https://www.deviantart.com/cirno-saysay/art/Reimu-Hakurei-dairi-version-721470346<br><br>
+                                
+                                Heavily inspired by: Touhou, Just Shapes&Beats, and Undertale.
+                                </p>    
+
+                        </div>
+
+                        <div id = "references3" class= " w3-animate-bottom w3-display-middle">
+                            <p style="font-size: 32px">Code References:</p>
+                            <p> <br><br>
+                                
+                                https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array.<br><br>
+
+                                https://www.w3schools.com/howto/howto_js_rangeslider.asp.<br><br>
+                                
+                                https://www.w3schools.com/html/html5_canvas.asp.
+                                </p>    
+
+                        </div>
+                        <br>
+                        
+                        <div id = "playTesters" class= " w3-animate-bottom w3-display-middle">
+                            <p style="font-size: 32px">Play Testers:</p>
+                            <p> 
+                                Bendigo (The King of 9 Cells of Gridlock)<br>
+                                BETA Division<br>
+                                Willow<br>
+                                Baby Des <br>
+
+                        </div>
+                        <br>
+                        <div id = "messageDatBlue" class= " w3-animate-bottom w3-display-middle">
+                            <p>Heyo I'm DatBlueDev, if you send a complete video of doing a back-to-back no-hit run for all levels <br>
+                            I will give you 200 pesos. Send the video at Blue#7665 on Discord, first one to complete it gets the prize.
+                            <br> order of the levels is not necessary, good luck!
+                            </p>
+
+                        </div>
+                    </div>
+                    <br>
+
+
+                </div>
+                
+                <p></p>
+            </div>
             <div id="WinScene">
+
                 <div class="w3-animate-zoom" id="ZoomAnimationOnWin">
-                    <p id="YouWinTitle" class = "w3-animate-opacity">You Win!</h2> <br><br>
-                    <button onclick="reloadGame();" id = "reloadButton" class= "w3-animate-bottom">Play Again</button>
+                    <p id="YouWinTitle" class = "w3-animate-opacity">You Win!</p> <br><br>
+                    <button onclick="reloadGame();" id = "reloadButtonWN" class= "w3-animate-bottom">Play Again</button>
 
                 </div>
                 <p></p>
@@ -117,6 +243,17 @@
         <img id="playerLeft8" width="220"  src='gameSprites/playerSprites/playerLeft8.png' alt="playerSprite" class = "hidden">
         <img id="playerRight8" width="220"  src='gameSprites/playerSprites/playerRight8.png' alt="playerSprite" class = "hidden">
 
+        <img id="playerSprite1B" width="220"  src='gameSprites/playerSprites2/playerDefault.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite2B" width="220"  src='gameSprites/playerSprites2/playerDefault2.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite3B" width="220"  src='gameSprites/playerSprites2/playerDefault3.png' alt="playerSprite" class = "sakuya hidden"">
+        <img id="playerSprite4B" width="220"  src='gameSprites/playerSprites2/playerDefault4.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite5B" width="220"  src='gameSprites/playerSprites2/playerDefault5.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite6B" width="220"  src='gameSprites/playerSprites2/playerDefault6.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite7B" width="220"  src='gameSprites/playerSprites2/playerDefault7.png' alt="playerSprite" class = "sakuya hidden">
+        <img id="playerSprite8B" width="220"  src='gameSprites/playerSprites2/playerDefault8.png' alt="playerSprite" class = "sakuya hidden">
+ 
+        <img id="playerLeft8B" width="220"  src='gameSprites/playerSprites2/playerLeft8.png' alt="playerSprite" class = "hidden">
+        <img id="playerRight8B" width="220"  src='gameSprites/playerSprites2/playerRight8.png' alt="playerSprite" class = "hidden">
         <img id="grid" width="220"  src='gameSprites/grid.png' alt="grid" class = "hidden">
 
 
